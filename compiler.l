@@ -19,7 +19,7 @@
 
 [print][(][^ ][)] {
 	std::string str = std::string(yytext);
-	printf("%s", str.c_str());
+	printf("\n%s\n", str.c_str());
 }
 
 %%
@@ -35,7 +35,7 @@ int main(int argc, char** argv) {
 
 	yylex();
 
-	printf("\nThere are %d chars and %d lines\n\n", chars, lines);
+	//printf("\nThere are %d chars and %d lines\n\n", chars, lines);
 
 	return EXIT_SUCCESS;
 
