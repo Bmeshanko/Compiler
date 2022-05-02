@@ -9,8 +9,8 @@
     int positive_fraction = 0;
     int negative_fraction = 0;
 %}
-%%
-        /* rules */
+
+%% 
 [a-zA-Z] { char_count++; }
 [-][0-9]+ { negative++; }
 [+]?[0-9]+ { positive++; }
@@ -18,7 +18,8 @@
 [+]?[0-9]*.\.[0-9]+ { positive_fraction++; }
 [\n] { line_count++; }
 %%
-/* code */
+
+
 int main(int argc, char** argv) {
     if (argc != 2) {
         printf("usage: lex-tutorial <file>\n");
