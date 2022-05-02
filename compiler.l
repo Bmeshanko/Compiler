@@ -12,14 +12,6 @@
 
 %%
 
-[a-zA-Z0-9] {
-	chars++;
-}
-
-[\n] {
-	lines++;
-}
-
 [print][(][^ ][)] {
 	printf("Grammar Detected");
 	std::string str = std::string(yytext);
