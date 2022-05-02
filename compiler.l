@@ -2,6 +2,7 @@
 
 	#include <stdio.h>
 	#include <stdlib.h>
+	#include <string>
 	int chars = 0;
 	int lines = 0;
 
