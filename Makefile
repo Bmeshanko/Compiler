@@ -4,7 +4,7 @@ all: git-commit compiler
 git-commit:
 	git checkout master >> .local.git.out || echo
 	git add Makefile
-	git add *.c *.l
+	git add *.c *.l *.h
 	git commit -a -m "Commit from Makefile" >> .local.git.out || echo
 	git push >> .local.git.out || echo
 
