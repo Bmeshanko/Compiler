@@ -12,11 +12,11 @@ git-commit:
 	git push >> .local.git.out || echo
 
 lex.yy.o: compiler.l
-	$(LEX) -o lex.yy.cc compiler.l
-	$(CC) -c lex.yy.cc
+	$(LEX) compiler.l -o lex.yy.cc
+	$(CC) lex.yy.cc -c
 
 compiler: lex.yy.o
-	$(CC) -o compiler lex.yy.o
+	$(CC) lex.yy.o -o compiler
 
 clean:
 	rm lex.yy.c *.o compiler

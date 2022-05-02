@@ -476,11 +476,12 @@ char *yytext_ptr;
 
 	#include <stdio.h>
 	#include <stdlib.h>
+	#include <string>
 	int chars = 0;
 	int lines = 0;
 
-#line 483 "lex.yy.cc"
 #line 484 "lex.yy.cc"
+#line 485 "lex.yy.cc"
 
 #define INITIAL 0
 
@@ -697,10 +698,10 @@ YY_DECL
 		}
 
 	{
-#line 10 "compiler.l"
+#line 11 "compiler.l"
 
 
-#line 704 "lex.yy.cc"
+#line 705 "lex.yy.cc"
 
 	while ( /*CONSTCOND*/1 )		/* loops until end-of-file is reached */
 		{
@@ -769,7 +770,7 @@ do_action:	/* This label is used only to access EOF actions. */
 
 case 1:
 YY_RULE_SETUP
-#line 12 "compiler.l"
+#line 13 "compiler.l"
 {
 	chars++;
 }
@@ -777,7 +778,7 @@ YY_RULE_SETUP
 case 2:
 /* rule 2 can match eol */
 YY_RULE_SETUP
-#line 16 "compiler.l"
+#line 17 "compiler.l"
 {
 	lines++;
 }
@@ -785,7 +786,7 @@ YY_RULE_SETUP
 case 3:
 /* rule 3 can match eol */
 YY_RULE_SETUP
-#line 20 "compiler.l"
+#line 21 "compiler.l"
 {
 	printf("Grammar Detected");
 	std::string str = std::string(yytext);
@@ -794,10 +795,10 @@ YY_RULE_SETUP
 	YY_BREAK
 case 4:
 YY_RULE_SETUP
-#line 26 "compiler.l"
+#line 27 "compiler.l"
 ECHO;
 	YY_BREAK
-#line 801 "lex.yy.cc"
+#line 802 "lex.yy.cc"
 case YY_STATE_EOF(INITIAL):
 	yyterminate();
 
@@ -1814,7 +1815,7 @@ void yyfree (void * ptr )
 
 #define YYTABLES_NAME "yytables"
 
-#line 26 "compiler.l"
+#line 27 "compiler.l"
 
 
 int main(int argc, char** argv) {
