@@ -13,10 +13,9 @@ git-commit:
 
 lex.yy.o: compiler.l
 	$(LEX) -o lex.yy.c compiler.l
-	$(CC) lex.yy.cc -c
 
-compiler: lex.yy.o
-	$(CC) lex.yy.o -o compiler
+compiler: lex.yy.cc
+	$(CC) lex.yy.cc -o compiler
 
 clean:
 	rm lex.yy.c *.o compiler
