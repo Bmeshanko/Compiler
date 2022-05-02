@@ -1,4 +1,4 @@
-all: git-commit
+all: git-commit compiler
 
 .PHONY: git-commit
 git-commit:
@@ -8,7 +8,9 @@ git-commit:
 	git commit -a -m "Commit from Makefile" >> .local.git.out || echo
 	git push >> .local.git.out || echo
 
-
+compiler:
+	lex compiler.l
+	gcc lex.yy.c -ll -o compiler
 
 clean:
 	rm -f *.o Threads/thr
