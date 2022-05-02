@@ -9,7 +9,7 @@ git-commit:
 	git push >> .local.git.out || echo
 
 compiler:
-	rm lex.yy.c
+	rm lex.yy.c compiler
 	lex compiler.l
 	gcc lex.yy.c -ll -o compiler
 

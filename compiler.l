@@ -17,6 +17,11 @@
 	lines++;
 }
 
+[print][(][^ ][)] {
+	std::string str = std::string(yytext);
+	printf("%s", str.c_str());
+}
+
 %%
 
 int main(int argc, char** argv) {
