@@ -439,10 +439,10 @@ char *yytext;
 #line 1 "compiler.l"
 #line 2 "compiler.l"
 
-#include <stdio.h>
-#include <stdlib.h>
-int chars = 0;
-int lines = 0;
+	#include <stdio.h>
+	#include <stdlib.h>
+	int chars = 0;
+	int lines = 0;
 
 #line 448 "lex.yy.c"
 #line 449 "lex.yy.c"
@@ -1750,7 +1750,7 @@ void yyfree (void * ptr )
 #line 20 "compiler.l"
 
 
-int main(int argc, const char ** argv) {
+int main(int argc, char** argv) {
 	if (argc != 2) {
 		printf("Usage: "
 			   "compiler <file>");
