@@ -9,11 +9,11 @@ git-commit:
 	git push >> .local.git.out || echo
 
 compiler:
+	rm lex.yy.c
 	lex compiler.l
 	gcc lex.yy.c -ll -o compiler
 
 clean:
-	rm -f *.o Threads/thr
-	rm -f Pointers/pointers
+	rm lex.yy.c *.o compiler
 
 
