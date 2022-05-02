@@ -18,6 +18,7 @@
 }
 
 [print][(][^ ][)] {
+	printf("Grammar Detected");
 	std::string str = std::string(yytext);
 	printf("\n%s\n", str.c_str());
 }
