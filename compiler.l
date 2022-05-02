@@ -8,6 +8,8 @@
 
 %}
 
+%option noyywrap
+
 %%
 
 [a-zA-Z0-9] {
