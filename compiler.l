@@ -30,7 +30,7 @@ int main(int argc, char** argv) {
 
 	yylex();
 
-	printf("\n\nThere are %d chars and %d lines\n\n", chars, lines);
+	printf("\nThere are %d chars and %d lines\n\n", chars, lines);
 
 	return EXIT_SUCCESS;
 

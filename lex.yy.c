@@ -1753,7 +1753,7 @@ void yyfree (void * ptr )
 int main(int argc, char** argv) {
 	if (argc != 2) {
 		printf("Usage: "
-			   "compiler <file>");
+			   "compiler <file>\n");
 		exit(0);
 	}
 	
@@ -1761,7 +1761,7 @@ int main(int argc, char** argv) {
 
 	yylex();
 
-	printf("There are %d chars and %d lines", chars, lines);
+	printf("\n\nThere are %d chars and %d lines\n\n", chars, lines);
 
 	return EXIT_SUCCESS;
 
