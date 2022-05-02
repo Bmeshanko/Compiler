@@ -1,5 +1,5 @@
 CC=g++ -g -std=c++17
-LEX=lex -l
+LEX=lex -ll
 
 all: git-commit compiler
 
