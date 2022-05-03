@@ -1,5 +1,6 @@
 CC=g++ -g -std=c++17
 LEX=lex -ll
+YACC=yacc -y -d -t --debug
 
 all: compiler git-commit
 
@@ -13,7 +14,8 @@ git-commit:
 
 compiler: compiler.l
 	$(LEX) -o lex.yy.cc compiler.l
-	$(CC) lex.yy.cc -o compiler
+	$(YACC) -o y.tab.cc compiler.y
+	$(CC) lex.yy.cc y.tab.cc -o compiler
 
 clean:
 	rm lex.yy.c *.o compiler
