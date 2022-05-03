@@ -779,7 +779,7 @@ YY_RULE_SETUP
 {
 	std::string str = std::string(yytext);
 	str = str.substr(5);
-	printf("\n\n%s\n\n", str.c_str());
+	printf("%s\n", str.c_str());
 }
 	YY_BREAK
 case 2:
