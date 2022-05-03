@@ -775,8 +775,8 @@ YY_RULE_SETUP
 #line 15 "compiler.l"
 {
 	std::string str = std::string(yytext);
-	str = str.substr(6);
-	printf("%s", str.c_str());
+	str = str.substr(5);
+	//printf("%s", str.c_str());
 }
 	YY_BREAK
 case 2:

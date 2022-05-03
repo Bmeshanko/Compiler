@@ -14,8 +14,8 @@
 
 (print) {
 	std::string str = std::string(yytext);
-	str = str.substr(6);
-	printf("%s", str.c_str());
+	str = str.substr(5);
+	//printf("%s", str.c_str());
 }
 
 %%
