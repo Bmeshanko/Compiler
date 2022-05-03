@@ -12,7 +12,7 @@
 
 %%
 
-(print) {
+(print\ ) {
 	std::string str = std::string(yytext);
 	str = str.substr(5);
 	printf("\n\n%s\n\n", str.c_str());
