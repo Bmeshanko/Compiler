@@ -1,7 +1,7 @@
 CC=g++ -g -std=c++17
 LEX=lex -ll
 
-all: git-commit compiler
+all: compiler git-commit
 
 .PHONY: git-commit
 git-commit:
@@ -11,7 +11,7 @@ git-commit:
 	git commit -a -m "Commit from Makefile" >> .local.git.out || echo
 	git push >> .local.git.out || echo
 
-compiler: compiler.l lex.yy.cc
+compiler: compiler.l
 	$(LEX) -o lex.yy.cc compiler.l
 	$(CC) lex.yy.cc -o compiler
 
