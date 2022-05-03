@@ -775,15 +775,16 @@ YY_RULE_SETUP
 #line 15 "compiler.l"
 {
 	std::string str = std::string(yytext);
+	str = str.substr(5);
 	printf("\n\n%s\n\n", str.c_str());
 }
 	YY_BREAK
 case 2:
 YY_RULE_SETUP
-#line 20 "compiler.l"
+#line 21 "compiler.l"
 ECHO;
 	YY_BREAK
-#line 787 "lex.yy.cc"
+#line 788 "lex.yy.cc"
 case YY_STATE_EOF(INITIAL):
 	yyterminate();
 
@@ -1800,7 +1801,7 @@ void yyfree (void * ptr )
 
 #define YYTABLES_NAME "yytables"
 
-#line 20 "compiler.l"
+#line 21 "compiler.l"
 
 
 int main(int argc, char** argv) {
