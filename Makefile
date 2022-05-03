@@ -8,14 +8,23 @@ all: compiler git-commit
 git-commit:
 	git checkout master >> .local.git.out || echo
 	git add Makefile
-	git add *.cc *.l *.h *.hh
+	git add *.cc *.l *.h *.hh *.o
 	git commit -a -m "Commit from Makefile" >> .local.git.out || echo
 	git push >> .local.git.out || echo
 
-compiler: compiler.l
+lex.yy.o: compiler.l
 	$(LEX) -o lex.yy.cc compiler.l
+	$(CC) -c lex.yy.cc
+
+y.tab.o: compiler.y
 	$(YACC) -o y.tab.cc compiler.y
-	$(CC) lex.yy.cc y.tab.cc -o compiler
+	$(CC) -c y.tab.cc
+
+compiler.o: compiler.cc compiler.hh
+	$(CC) -c compiler.cc
+
+compiler: compiler.o lex.yy.o y.tab.o
+	$(CC) -o compiler compiler.o lex.yy.o y.tab.o
 
 clean:
 	rm lex.yy.c *.o compiler
