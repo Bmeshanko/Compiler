@@ -776,7 +776,7 @@ YY_RULE_SETUP
 {
 	printf("Grammar Detected");
 	std::string str = std::string(yytext);
-	printf("\n%s\n", str.c_str());
+	printf("%s", str.c_str());
 }
 	YY_BREAK
 case 2:

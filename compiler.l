@@ -13,7 +13,6 @@
 %%
 
 (print) {
-	printf("Grammar Detected");
 	std::string str = std::string(yytext);
 	printf("%s", str.c_str());
 }
