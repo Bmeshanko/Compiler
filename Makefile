@@ -11,10 +11,8 @@ git-commit:
 	git commit -a -m "Commit from Makefile" >> .local.git.out || echo
 	git push >> .local.git.out || echo
 
-lex.yy.o: compiler.l
-	$(LEX) -o lex.yy.c compiler.l
-
-compiler: lex.yy.cc
+compiler: compiler.l lex.yy.cc
+	$(LEX) -o lex.yy.cc compiler.l
 	$(CC) lex.yy.cc -o compiler
 
 clean:
