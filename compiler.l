@@ -3,6 +3,7 @@
 	#include <stdio.h>
 	#include <stdlib.h>
 	#include <string>
+	#include "y.tab.hh"
 	int chars = 0;
 	int lines = 0;
 
@@ -11,6 +12,31 @@
 %option noyywrap
 
 %%
+
+[0-9] {
+	return NUMBER;
+}
+
+"*" {
+	return MULTIPLY;
+}
+
+"//" {
+	return DIVIDE;
+}
+
+"+" {
+	return ADD;
+}
+
+"-" {
+	return SUBTRACT;
+}
+
+"%" {
+	return MODULE;
+}
+
 
 (print\ ) {
 	std::string str = std::string(yytext);
