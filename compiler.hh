@@ -1,9 +1,6 @@
 #include <vector>
 
 struct Compiler {
-	std::vector<int> nums;
-	std::vector<char> ops;
+	Numparser Compiler::Numparser;
 	Compiler();
-	void insertNum(int num);
-	void insertOp(char op);
 };
