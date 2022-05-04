@@ -37,13 +37,6 @@
 	return MODULE;
 }
 
-
-(print\ ) {
-	std::string str = std::string(yytext);
-	str = str.substr(5);
-	printf("%s\n", str.c_str());
-}
-
 %%
 
 int main(int argc, char** argv) {
