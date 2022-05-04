@@ -383,10 +383,10 @@ struct yy_trans_info
 	flex_int32_t yy_verify;
 	flex_int32_t yy_nxt;
 	};
-static const flex_int16_t yy_accept[13] =
+static const flex_int16_t yy_accept[14] =
     {   0,
-        0,    0,    8,    7,    6,    2,    4,    5,    7,    1,
-        3,    0
+        1,    1,    8,    7,    6,    2,    4,    5,    7,    1,
+        3,    1,    0
     } ;
 
 static const YY_CHAR yy_ec[256] =
@@ -426,28 +426,28 @@ static const YY_CHAR yy_meta[8] =
         1,    1,    1,    1,    1,    1,    1
     } ;
 
-static const flex_int16_t yy_base[13] =
+static const flex_int16_t yy_base[14] =
     {   0,
-        0,    0,    9,   10,   10,   10,   10,   10,    2,   10,
-       10,   10
+        0,    0,   11,   12,   12,   12,   12,   12,    4,    2,
+       12,    1,   12
     } ;
 
-static const flex_int16_t yy_def[13] =
+static const flex_int16_t yy_def[14] =
     {   0,
-       12,    1,   12,   12,   12,   12,   12,   12,   12,   12,
-       12,    0
+       13,    1,   13,   13,   13,   13,   13,   13,   13,   13,
+       13,   13,    0
     } ;
 
-static const flex_int16_t yy_nxt[18] =
+static const flex_int16_t yy_nxt[20] =
     {   0,
-        4,    5,    6,    7,    8,    9,   10,   11,   12,    3,
-       12,   12,   12,   12,   12,   12,   12
+        4,    5,    6,    7,    8,    9,   10,   12,   12,   11,
+       13,    3,   13,   13,   13,   13,   13,   13,   13
     } ;
 
-static const flex_int16_t yy_chk[18] =
+static const flex_int16_t yy_chk[20] =
     {   0,
-        1,    1,    1,    1,    1,    1,    1,    9,    3,   12,
-       12,   12,   12,   12,   12,   12,   12
+        1,    1,    1,    1,    1,    1,    1,   12,   10,    9,
+        3,   13,   13,   13,   13,   13,   13,   13,   13
     } ;
 
 /* Table of booleans, true if rule could match eol. */
@@ -732,13 +732,13 @@ yy_match:
 			while ( yy_chk[yy_base[yy_current_state] + yy_c] != yy_current_state )
 				{
 				yy_current_state = (int) yy_def[yy_current_state];
-				if ( yy_current_state >= 13 )
+				if ( yy_current_state >= 14 )
 					yy_c = yy_meta[yy_c];
 				}
 			yy_current_state = yy_nxt[yy_base[yy_current_state] + yy_c];
 			++yy_cp;
 			}
-		while ( yy_base[yy_current_state] != 10 );
+		while ( yy_base[yy_current_state] != 12 );
 
 yy_find_action:
 		yy_act = yy_accept[yy_current_state];
@@ -1116,7 +1116,7 @@ static int yy_get_next_buffer (void)
 		while ( yy_chk[yy_base[yy_current_state] + yy_c] != yy_current_state )
 			{
 			yy_current_state = (int) yy_def[yy_current_state];
-			if ( yy_current_state >= 13 )
+			if ( yy_current_state >= 14 )
 				yy_c = yy_meta[yy_c];
 			}
 		yy_current_state = yy_nxt[yy_base[yy_current_state] + yy_c];
@@ -1144,11 +1144,11 @@ static int yy_get_next_buffer (void)
 	while ( yy_chk[yy_base[yy_current_state] + yy_c] != yy_current_state )
 		{
 		yy_current_state = (int) yy_def[yy_current_state];
-		if ( yy_current_state >= 13 )
+		if ( yy_current_state >= 14 )
 			yy_c = yy_meta[yy_c];
 		}
 	yy_current_state = yy_nxt[yy_base[yy_current_state] + yy_c];
-	yy_is_jam = (yy_current_state == 12);
+	yy_is_jam = (yy_current_state == 13);
 
 		return yy_is_jam ? 0 : yy_current_state;
 }
