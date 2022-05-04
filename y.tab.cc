@@ -1321,7 +1321,7 @@ yyreduce:
   case 4:
 #line 32 "compiler.y"
                {
-		printf("%d", *(yyvsp[0].number));
+		printf("%d", (yyvsp[0].number));
 	}
 #line 1327 "y.tab.cc"
     break;
