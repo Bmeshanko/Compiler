@@ -2,7 +2,7 @@ CC=g++ -g -std=c++17
 LEX=lex -ll
 YACC=yacc -y -d -t --debug
 
-all: compiler git-commit
+all: git-commit compiler
 
 .PHONY: git-commit
 git-commit:
