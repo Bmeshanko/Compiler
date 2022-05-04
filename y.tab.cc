@@ -528,8 +528,8 @@ static const yytype_int8 yytranslate[] =
   /* YYRLINE[YYN] -- Source line where rule number YYN was defined.  */
 static const yytype_int8 yyrline[] =
 {
-       0,    24,    24,    28,    32,    38,    42,    45,    48,    51,
-      54
+       0,    24,    24,    28,    32,    39,    43,    46,    49,    52,
+      55
 };
 #endif
 
@@ -1322,54 +1322,55 @@ yyreduce:
 #line 32 "compiler.y"
                {
 		std::string num = *(yyvsp[0].string);
+		fprintf(stderr, "Hey");
 		char * str = (char *) num.c_str();
-		printf("%s", str);
+		fprintf(stderr, "%s", str);
 	}
-#line 1329 "y.tab.cc"
+#line 1330 "y.tab.cc"
     break;
 
   case 6:
-#line 42 "compiler.y"
+#line 43 "compiler.y"
             {
 		
 	}
-#line 1337 "y.tab.cc"
+#line 1338 "y.tab.cc"
     break;
 
   case 7:
-#line 45 "compiler.y"
+#line 46 "compiler.y"
                    {
 
 	}
-#line 1345 "y.tab.cc"
+#line 1346 "y.tab.cc"
     break;
 
   case 8:
-#line 48 "compiler.y"
+#line 49 "compiler.y"
                    {
 
 	}
-#line 1353 "y.tab.cc"
+#line 1354 "y.tab.cc"
     break;
 
   case 9:
-#line 51 "compiler.y"
+#line 52 "compiler.y"
                  {
 
 	}
-#line 1361 "y.tab.cc"
+#line 1362 "y.tab.cc"
     break;
 
   case 10:
-#line 54 "compiler.y"
+#line 55 "compiler.y"
                  {
 		
 	}
-#line 1369 "y.tab.cc"
+#line 1370 "y.tab.cc"
     break;
 
 
-#line 1373 "y.tab.cc"
+#line 1374 "y.tab.cc"
 
       default: break;
     }
@@ -1601,7 +1602,7 @@ yyreturn:
 #endif
   return yyresult;
 }
-#line 59 "compiler.y"
+#line 60 "compiler.y"
 
 
 void yyerror(const char * s) {
