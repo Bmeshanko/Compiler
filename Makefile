@@ -27,6 +27,6 @@ compiler: compiler.o lex.yy.o y.tab.o
 	$(CC) -o compiler compiler.o lex.yy.o y.tab.o
 
 clean:
-	rm lex.yy.c *.o compiler
+	rm *.o compiler
 
 
