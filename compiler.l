@@ -14,7 +14,7 @@
 %%
 
 [0-9]* {
-	yylval.number = new std::string(yytext);
+	yylval.num_string = new std::string(yytext);
 	return NUMBER;
 }
 

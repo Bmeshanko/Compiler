@@ -776,50 +776,51 @@ case 1:
 YY_RULE_SETUP
 #line 16 "compiler.l"
 {
+	yylval.number = new std::string(yytext);
 	return NUMBER;
 }
 	YY_BREAK
 case 2:
 YY_RULE_SETUP
-#line 20 "compiler.l"
+#line 21 "compiler.l"
 {
 	return MULTIPLY;
 }
 	YY_BREAK
 case 3:
 YY_RULE_SETUP
-#line 24 "compiler.l"
+#line 25 "compiler.l"
 {
 	return DIVIDE;
 }
 	YY_BREAK
 case 4:
 YY_RULE_SETUP
-#line 28 "compiler.l"
+#line 29 "compiler.l"
 {
 	return ADD;
 }
 	YY_BREAK
 case 5:
 YY_RULE_SETUP
-#line 32 "compiler.l"
+#line 33 "compiler.l"
 {
 	return SUBTRACT;
 }
 	YY_BREAK
 case 6:
 YY_RULE_SETUP
-#line 36 "compiler.l"
+#line 37 "compiler.l"
 {
 	return MODULE;
 }
 	YY_BREAK
 case 7:
 YY_RULE_SETUP
-#line 40 "compiler.l"
+#line 41 "compiler.l"
 ECHO;
 	YY_BREAK
-#line 823 "lex.yy.cc"
+#line 824 "lex.yy.cc"
 case YY_STATE_EOF(INITIAL):
 	yyterminate();
 
@@ -1836,7 +1837,7 @@ void yyfree (void * ptr )
 
 #define YYTABLES_NAME "yytables"
 
-#line 40 "compiler.l"
+#line 41 "compiler.l"
 
 
 int main(int argc, char** argv) {
