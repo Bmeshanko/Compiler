@@ -1325,7 +1325,7 @@ yyreduce:
 #line 35 "compiler.y"
                {
 		// Declare new Numparser to process Equations.
-		Compiler::_numparser = Numparser();
+		Compiler::_numparser = new Numparser();
 		std::string raw = std::string (*(yyvsp[0].num_string));
 		char * str = (char *) raw.c_str();
 		int num = atoi(str);

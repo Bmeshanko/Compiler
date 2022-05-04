@@ -2,6 +2,6 @@
 #include "numparser.hh"
 
 struct Compiler {
-	static Numparser _numparser;
+	static Numparser *_numparser;
 	Compiler();
 };
