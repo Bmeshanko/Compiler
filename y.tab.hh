@@ -77,7 +77,7 @@ union YYSTYPE
 {
 #line 7 "compiler.y"
 
-	std::string *string;
+	char * string;
 	int * number;
 
 #line 84 "y.tab.hh"
