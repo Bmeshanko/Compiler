@@ -527,8 +527,8 @@ static const yytype_int8 yytranslate[] =
   /* YYRLINE[YYN] -- Source line where rule number YYN was defined.  */
 static const yytype_int8 yyrline[] =
 {
-       0,    23,    23,    27,    31,    33,    37,    40,    43,    46,
-      49
+       0,    23,    23,    27,    31,    35,    39,    42,    45,    48,
+      51
 };
 #endif
 
@@ -1317,48 +1317,56 @@ yyreduce:
   YY_REDUCE_PRINT (yyn);
   switch (yyn)
     {
-  case 6:
-#line 37 "compiler.y"
-            {
-		
+  case 4:
+#line 31 "compiler.y"
+               {
+		printf("Hey");
 	}
 #line 1326 "y.tab.cc"
     break;
 
-  case 7:
-#line 40 "compiler.y"
-                   {
-
+  case 6:
+#line 39 "compiler.y"
+            {
+		
 	}
 #line 1334 "y.tab.cc"
     break;
 
-  case 8:
-#line 43 "compiler.y"
+  case 7:
+#line 42 "compiler.y"
                    {
 
 	}
 #line 1342 "y.tab.cc"
     break;
 
-  case 9:
-#line 46 "compiler.y"
-                 {
+  case 8:
+#line 45 "compiler.y"
+                   {
 
 	}
 #line 1350 "y.tab.cc"
     break;
 
-  case 10:
-#line 49 "compiler.y"
+  case 9:
+#line 48 "compiler.y"
                  {
-		
+
 	}
 #line 1358 "y.tab.cc"
     break;
 
+  case 10:
+#line 51 "compiler.y"
+                 {
+		
+	}
+#line 1366 "y.tab.cc"
+    break;
 
-#line 1362 "y.tab.cc"
+
+#line 1370 "y.tab.cc"
 
       default: break;
     }
@@ -1590,7 +1598,7 @@ yyreturn:
 #endif
   return yyresult;
 }
-#line 54 "compiler.y"
+#line 56 "compiler.y"
 
 
 void yyerror(const char * s) {
