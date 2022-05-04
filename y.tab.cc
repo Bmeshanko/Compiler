@@ -1330,7 +1330,7 @@ yyreduce:
 		char * str = (char *) raw.c_str();
 		int num = atoi(str);
 
-		Compiler::_numparser.insertNum(num);
+		Compiler::_numparser->insertNum(num);
 	}
 #line 1336 "y.tab.cc"
     break;
