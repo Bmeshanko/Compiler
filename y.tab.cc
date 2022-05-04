@@ -1320,7 +1320,7 @@ yyreduce:
   case 4:
 #line 31 "compiler.y"
                {
-		printf("Hey");
+		printf("%s", *(yyvsp[0].string));
 	}
 #line 1326 "y.tab.cc"
     break;
