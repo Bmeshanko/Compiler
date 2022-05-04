@@ -1321,8 +1321,8 @@ yyreduce:
   case 4:
 #line 32 "compiler.y"
                {
-		std::string num = *(yyvsp[0].string);
 		fprintf(stderr, "Hey");
+		std::string num = *(yyvsp[0].string);
 		char * str = (char *) num.c_str();
 		fprintf(stderr, "%s", str);
 	}
