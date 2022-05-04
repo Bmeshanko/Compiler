@@ -1321,7 +1321,7 @@ yyreduce:
 #line 31 "compiler.y"
                {
 		std::string num = std::string (*(yyvsp[0].num_string));
-		char * str = num.c_str();
+		char * str = (char *) num.c_str();
 		printf("%s", str);
 	}
 #line 1328 "y.tab.cc"
