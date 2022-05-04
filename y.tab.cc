@@ -1325,7 +1325,7 @@ yyreduce:
 #line 35 "compiler.y"
                {
 		// Declare new Numparser to process Equations.
-		Compiler::_numparser = malloc(Numparser());
+		Compiler::_numparser = new Numparser();
 		
 	}
 #line 1332 "y.tab.cc"
