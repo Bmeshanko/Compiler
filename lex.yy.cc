@@ -776,7 +776,7 @@ case 1:
 YY_RULE_SETUP
 #line 16 "compiler.l"
 {
-	yylval.number = new std::string(yytext);
+	yylval.num_string = new std::string(yytext);
 	return NUMBER;
 }
 	YY_BREAK
