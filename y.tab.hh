@@ -78,8 +78,9 @@ union YYSTYPE
 #line 7 "compiler.y"
 
 	std::string *string;
+	int number;
 
-#line 83 "y.tab.hh"
+#line 84 "y.tab.hh"
 
 };
 typedef union YYSTYPE YYSTYPE;

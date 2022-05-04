@@ -141,8 +141,9 @@ union YYSTYPE
 #line 7 "compiler.y"
 
 	std::string *string;
+	int number;
 
-#line 146 "y.tab.cc"
+#line 147 "y.tab.cc"
 
 };
 typedef union YYSTYPE YYSTYPE;
@@ -158,14 +159,14 @@ int yyparse (void);
 #endif /* !YY_YY_Y_TAB_HH_INCLUDED  */
 
 /* Second part of user prologue.  */
-#line 13 "compiler.y"
+#line 14 "compiler.y"
 
 
 void yyerror(const char * s);
 int yylex();
 
 
-#line 169 "y.tab.cc"
+#line 170 "y.tab.cc"
 
 
 #ifdef short
@@ -527,8 +528,8 @@ static const yytype_int8 yytranslate[] =
   /* YYRLINE[YYN] -- Source line where rule number YYN was defined.  */
 static const yytype_int8 yyrline[] =
 {
-       0,    23,    23,    27,    31,    35,    39,    42,    45,    48,
-      51
+       0,    24,    24,    28,    32,    36,    40,    43,    46,    49,
+      52
 };
 #endif
 
@@ -1318,55 +1319,55 @@ yyreduce:
   switch (yyn)
     {
   case 4:
-#line 31 "compiler.y"
+#line 32 "compiler.y"
                {
-		printf("%s", (*(yyvsp[0].string)).c_str());
+		
 	}
-#line 1326 "y.tab.cc"
+#line 1327 "y.tab.cc"
     break;
 
   case 6:
-#line 39 "compiler.y"
+#line 40 "compiler.y"
             {
 		
 	}
-#line 1334 "y.tab.cc"
+#line 1335 "y.tab.cc"
     break;
 
   case 7:
-#line 42 "compiler.y"
+#line 43 "compiler.y"
                    {
 
 	}
-#line 1342 "y.tab.cc"
+#line 1343 "y.tab.cc"
     break;
 
   case 8:
-#line 45 "compiler.y"
+#line 46 "compiler.y"
                    {
 
 	}
-#line 1350 "y.tab.cc"
+#line 1351 "y.tab.cc"
     break;
 
   case 9:
-#line 48 "compiler.y"
+#line 49 "compiler.y"
                  {
 
 	}
-#line 1358 "y.tab.cc"
+#line 1359 "y.tab.cc"
     break;
 
   case 10:
-#line 51 "compiler.y"
+#line 52 "compiler.y"
                  {
 		
 	}
-#line 1366 "y.tab.cc"
+#line 1367 "y.tab.cc"
     break;
 
 
-#line 1370 "y.tab.cc"
+#line 1371 "y.tab.cc"
 
       default: break;
     }
@@ -1598,7 +1599,7 @@ yyreturn:
 #endif
   return yyresult;
 }
-#line 56 "compiler.y"
+#line 57 "compiler.y"
 
 
 void yyerror(const char * s) {
