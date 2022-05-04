@@ -141,7 +141,7 @@ union YYSTYPE
 #line 7 "compiler.y"
 
 	std::string *string;
-	int number;
+	int * number;
 
 #line 147 "y.tab.cc"
 
@@ -1321,7 +1321,7 @@ yyreduce:
   case 4:
 #line 32 "compiler.y"
                {
-		printf("%d", (yyvsp[0].number));
+		printf("%d", *(yyvsp[0].number));
 	}
 #line 1327 "y.tab.cc"
     break;
