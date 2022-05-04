@@ -1320,9 +1320,9 @@ yyreduce:
   case 4:
 #line 31 "compiler.y"
                {
-		fprintf(stderr, "Hey");
-		char * str = (char *) (yyvsp[0].num_string);
-		fprintf(stderr, "%s", str);
+		std::string num = std::string (*(yyvsp[0].num_string));
+		char * str = num.c_str();
+		printf("%s", str);
 	}
 #line 1328 "y.tab.cc"
     break;
