@@ -1322,7 +1322,7 @@ yyreduce:
 #line 32 "compiler.y"
                {
 		fprintf(stderr, "Hey");
-		char * str = (yyvsp[0].string);
+		char * str = (char *) (yyvsp[0].string);
 		fprintf(stderr, "%s", str);
 	}
 #line 1329 "y.tab.cc"
