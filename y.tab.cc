@@ -1323,7 +1323,7 @@ yyreduce:
                {
 		fprintf(stderr, "Hey");
 		std::string *num = new std::string(*(yyvsp[0].string));
-		char * str = (char *) num.c_str();
+		char * str = (char *) num->c_str();
 		fprintf(stderr, "%s", str);
 	}
 #line 1330 "y.tab.cc"
