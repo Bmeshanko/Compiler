@@ -162,7 +162,6 @@ int yyparse (void);
 
 
 #include "compiler.hh"
-#include "numparser.hh"
 #include <stdlib.h>
 
 void yyerror(const char * s);
@@ -170,7 +169,7 @@ int yylex();
 
 
 
-#line 174 "y.tab.cc"
+#line 173 "y.tab.cc"
 
 
 #ifdef short
@@ -532,8 +531,8 @@ static const yytype_int8 yytranslate[] =
   /* YYRLINE[YYN] -- Source line where rule number YYN was defined.  */
 static const yytype_int8 yyrline[] =
 {
-       0,    28,    28,    32,    36,    46,    52,    55,    58,    61,
-      64
+       0,    27,    27,    31,    35,    45,    51,    54,    57,    60,
+      63
 };
 #endif
 
@@ -1323,7 +1322,7 @@ yyreduce:
   switch (yyn)
     {
   case 4:
-#line 36 "compiler.y"
+#line 35 "compiler.y"
                {
 		// Declare new Numparser to process Equations.
 		Compiler::_numparser = new Numparser();
@@ -1333,59 +1332,59 @@ yyreduce:
 
 		Compiler::_numparser->insertNum(num);
 	}
-#line 1337 "y.tab.cc"
+#line 1336 "y.tab.cc"
     break;
 
   case 5:
-#line 46 "compiler.y"
+#line 45 "compiler.y"
                                {
 
 	}
-#line 1345 "y.tab.cc"
+#line 1344 "y.tab.cc"
     break;
 
   case 6:
-#line 52 "compiler.y"
+#line 51 "compiler.y"
             {
 		
 	}
-#line 1353 "y.tab.cc"
+#line 1352 "y.tab.cc"
     break;
 
   case 7:
-#line 55 "compiler.y"
+#line 54 "compiler.y"
                    {
 
 	}
-#line 1361 "y.tab.cc"
+#line 1360 "y.tab.cc"
     break;
 
   case 8:
-#line 58 "compiler.y"
+#line 57 "compiler.y"
                    {
 
 	}
-#line 1369 "y.tab.cc"
+#line 1368 "y.tab.cc"
     break;
 
   case 9:
-#line 61 "compiler.y"
+#line 60 "compiler.y"
                  {
 
 	}
-#line 1377 "y.tab.cc"
+#line 1376 "y.tab.cc"
     break;
 
   case 10:
-#line 64 "compiler.y"
+#line 63 "compiler.y"
                  {
 		
 	}
-#line 1385 "y.tab.cc"
+#line 1384 "y.tab.cc"
     break;
 
 
-#line 1389 "y.tab.cc"
+#line 1388 "y.tab.cc"
 
       default: break;
     }
@@ -1617,7 +1616,7 @@ yyreturn:
 #endif
   return yyresult;
 }
-#line 69 "compiler.y"
+#line 68 "compiler.y"
 
 
 void yyerror(const char * s) {
