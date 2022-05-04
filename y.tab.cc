@@ -1322,7 +1322,7 @@ yyreduce:
 #line 32 "compiler.y"
                {
 		fprintf(stderr, "Hey");
-		std::string num = *(yyvsp[0].string);
+		std::string num = (yyvsp[0].string);
 		char * str = (char *) num.c_str();
 		fprintf(stderr, "%s", str);
 	}
