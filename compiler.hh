@@ -1,3 +1,5 @@
+#include <vector>
+
 struct Compiler {
 	std::vector<int> nums;
 	std::vector<char> ops;
