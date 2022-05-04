@@ -7,4 +7,4 @@ Compiler::Compiler() {
 	
 }
 
-Numparser numparser;
+Numparser Compiler::Numparser;
