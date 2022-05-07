@@ -50,23 +50,23 @@ number:
 
 operator:
 	ADD {
-		char op = *$1;
+		char op = *( $1 );
 		Compiler::_np.insertOp(op);
 	}
 	| SUBTRACT {
-		char op = *$1;
+		char op = *( $1 );
 		Compiler::_np.insertOp(op);
 	}
 	| MULTIPLY {
-		char op = *$1;
+		char op = *( $1 );
 		Compiler::_np.insertOp(op);
 	}
 	| DIVIDE {
-		char op = *$1;
+		char op = *( $1 );
 		Compiler::_np.insertOp(op);
 	}
 	| MODULE {
-		char op = *$1;
+		char op = *( $1 );
 		Compiler::_np.insertOp(op);
 	}
 	;
