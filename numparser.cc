@@ -58,6 +58,7 @@ void Numparser::evaluate() {
 	}
 	nums.clear();
 	ops.clear();
+	fprintf(stderr, "\n\nHey\n\n");
 	nums.push_back(num);
 	print();
 }
