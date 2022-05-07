@@ -1,7 +1,7 @@
 #include <vector>
 #include "numparser.hh"
 
-Numparser() {
+Numparser::Numparser() {
 	nums = std::vector<int>();
 	ops = std::vector<char>();
 }
