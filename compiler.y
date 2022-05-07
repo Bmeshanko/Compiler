@@ -36,14 +36,16 @@ number:
 		
 		std::string * nstr = new std::string( *$1 );
 		int num = atoi(nstr->c_str());
-		printf("%d", num);	
+		printf("%d", num);
 		// Declare new Numparser to process Equation
 		Compiler::_np = new Numparser();
 		
 	}
 	|
 	NUMBER operator number {
-
+		std::string * nstr = new std::string ( *$1 );
+		int num = atoi(nstr->c_str());
+		printf("%d", num);
 	}
 	;
 

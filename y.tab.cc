@@ -1326,8 +1326,8 @@ yyreduce:
                {
 		
 		std::string * nstr = new std::string( *(yyvsp[0].num_string) );
-		printf("%s", nstr->c_str());
-		
+		int num = atoi(nstr->c_str());
+		printf("%d", num);	
 		// Declare new Numparser to process Equation
 		Compiler::_np = new Numparser();
 		

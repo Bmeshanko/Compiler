@@ -6,5 +6,5 @@
 Numparser * Compiler::_np;
 
 Compiler::Compiler() {
-
+	_np = new Numparser();
 }
