@@ -1347,7 +1347,7 @@ yyreduce:
   case 6:
 #line 52 "compiler.y"
             {
-		char op = *( (yyvsp[0].operator) );
+		char op = num_operator( (yyvsp[0].operator) );
 		Compiler::_np.insertOp(op);
 	}
 #line 1354 "y.tab.cc"
