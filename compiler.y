@@ -6,9 +6,10 @@
 %union
 {
 	std::string* num_string;
+	char operator;
 }
 %token <num_string> NUMBER
-%token ADD SUBTRACT MULTIPLY DIVIDE MODULE
+%token <operator> ADD SUBTRACT MULTIPLY DIVIDE MODULE
 
 %{
 
@@ -32,15 +33,7 @@ command:
 	;
 
 number:
-	NUMBER {
-		
-		std::string * nstr = new std::string( *$1 );
-		int num = atoi(nstr->c_str());
-		fprintf(stderr, "%d", num);
-		// Declare new Numparser to process Equation
-		Compiler::_np.insertNum(num);
-		
-	}
+	NUMBER
 	|
 	NUMBER operator number {
 		std::string * nstr = new std::string ( *$1 );
@@ -52,7 +45,7 @@ number:
 
 operator:
 	ADD {
-		
+
 	}
 	| SUBTRACT {
 
