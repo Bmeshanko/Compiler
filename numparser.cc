@@ -7,9 +7,9 @@ Numparser::Numparser() {
 }
 
 void insertNum(int num) {
-	this._nums.push_back(num);
+	Numparser::_nums.push_back(num);
 }
 
 void insertOp(char op) {
-	this._ops.push_back(op);
+	Numparser::_ops.push_back(op);
 }
