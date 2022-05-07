@@ -35,30 +35,34 @@ void Numparser::print() {
 
 void Numparser::evaluate() {
 	if (nums.size() - 1 != ops.size() || nums.size() != 2) {
-		perror("Invalid Equation!");
-		exit(-1);
+		//perror("Invalid Equation!");
+		//exit(-1);
 	}
 	
-	int num;
-	switch (ops.at(0)) {
+	int num1 = nums.pop_back();
+	int num2 = nums.pop_back();
+	char op = ops.pop_back();
+
+	int res;
+
+	switch (op) {
 		case '+':
-			num = nums.at(0) + nums.at(1);
+			res = num1 + num2
 			break;
 		case '-':
-			num = nums.at(0) - nums.at(1);
+			res = num1 - num2;
 			break;
 		case '*':
-			num = nums.at(0) * nums.at(1);
+			res = num1 * num2;
 			break;
 		case '/':
-			num = nums.at(0) / nums.at(1);
+			res = num1 / num2;
 			break;
 		case '%':
-			num = nums.at(0) % nums.at(1);
+			res = num1 % num2;
 			break;
 	}
-	nums.clear();
-	ops.clear();
+
 	fprintf(stderr, "\n\nHey\n\n");
 	nums.push_back(num);
 	print();
