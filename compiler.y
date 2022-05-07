@@ -50,7 +50,6 @@ number:
 
 operator:
 	ADD {
-		fprintf(stderr, "Hey");
 		char op = $1;
 		Compiler::_np.insertOp(op);
 		fprintf(stderr, "%c", op);
