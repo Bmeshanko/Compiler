@@ -4,7 +4,7 @@
 #include "compiler.hh"
 
 Compiler::Compiler() {
-	_numparser = new Numparser();	
+	_currentNumparser = new Numparser();	
 }
 
-Numparser * Compiler::_numparser;
+Numparser * Compiler::_currentNumparser;
