@@ -38,7 +38,7 @@ number:
 		int num = atoi(nstr->c_str());
 		printf("%d", num);
 		// Declare new Numparser to process Equation
-		Compiler::_np.insertNum(num);
+		Compiler::_np->insertNum(num);
 		
 	}
 	|
@@ -46,7 +46,7 @@ number:
 		std::string * nstr = new std::string ( *$1 );
 		int num = atoi(nstr->c_str());
 		printf("%d", num);
-		Compiler::_np.insertNum(num);
+		Compiler::_np->insertNum(num);
 	}
 	;
 
