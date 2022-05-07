@@ -6,5 +6,4 @@
 Numparser _currentNumparser();
 
 Compiler::Compiler() {
-	_currentNumparser = Numparser();	
 }
