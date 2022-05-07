@@ -531,8 +531,8 @@ static const yytype_int8 yytranslate[] =
   /* YYRLINE[YYN] -- Source line where rule number YYN was defined.  */
 static const yytype_int8 yyrline[] =
 {
-       0,    27,    27,    31,    35,    41,    47,    50,    53,    56,
-      59
+       0,    27,    27,    31,    35,    42,    48,    51,    54,    57,
+      60
 };
 #endif
 
@@ -1325,62 +1325,63 @@ yyreduce:
 #line 35 "compiler.y"
                {
 		// Declare new Numparser to process Equations.
-		Compiler::_numparser;
+		Numparser np = new Numparser();
+		Compiler::_numparser = np;
 		
 	}
-#line 1332 "y.tab.cc"
+#line 1333 "y.tab.cc"
     break;
 
   case 5:
-#line 41 "compiler.y"
+#line 42 "compiler.y"
                                {
 
 	}
-#line 1340 "y.tab.cc"
+#line 1341 "y.tab.cc"
     break;
 
   case 6:
-#line 47 "compiler.y"
+#line 48 "compiler.y"
             {
 		
 	}
-#line 1348 "y.tab.cc"
+#line 1349 "y.tab.cc"
     break;
 
   case 7:
-#line 50 "compiler.y"
+#line 51 "compiler.y"
                    {
 
 	}
-#line 1356 "y.tab.cc"
+#line 1357 "y.tab.cc"
     break;
 
   case 8:
-#line 53 "compiler.y"
+#line 54 "compiler.y"
                    {
 
 	}
-#line 1364 "y.tab.cc"
+#line 1365 "y.tab.cc"
     break;
 
   case 9:
-#line 56 "compiler.y"
+#line 57 "compiler.y"
                  {
 
 	}
-#line 1372 "y.tab.cc"
+#line 1373 "y.tab.cc"
     break;
 
   case 10:
-#line 59 "compiler.y"
+#line 60 "compiler.y"
                  {
 		
 	}
-#line 1380 "y.tab.cc"
+#line 1381 "y.tab.cc"
     break;
 
 
-#line 1384 "y.tab.cc"
+#line 1385 "y.tab.cc"
 
       default: break;
     }
@@ -1612,7 +1613,7 @@ yyreturn:
 #endif
   return yyresult;
 }
-#line 64 "compiler.y"
+#line 65 "compiler.y"
 
 
 void yyerror(const char * s) {
