@@ -19,8 +19,8 @@ void Numparser::insertOp(char op) {
 void Numparser::print() {
 
 	if (nums.size() - 1 != ops.size()) {
-		perror("Invalid Equation!");
-		exit(-1);
+		//perror("Invalid Equation!");
+		//exit(-1);
 	}
 	
 	for (int i = 0; i < nums.size(); i++) {
