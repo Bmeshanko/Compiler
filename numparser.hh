@@ -4,10 +4,10 @@
 #include <vector>
 
 struct Numparser {
-	std::vector<int> nums;
-	std::vector<char> ops;
-	void insertNum(int num);
-	void insertOp(char op);
+	static std::vector<int> nums;
+	static std::vector<char> ops;
+	static void insertNum(int num);
+	static void insertOp(char op);
 	Numparser();
 };
 
