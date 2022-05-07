@@ -2,8 +2,10 @@
 #include <cstdio>
 #include <vector>
 #include "compiler.hh"
+#include "numparser.hh"
 
-Numparser _currentNumparser();
+Numparser *_currentNumparser();
 
 Compiler::Compiler() {
+
 }
