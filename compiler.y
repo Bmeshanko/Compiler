@@ -33,6 +33,9 @@ command:
 
 number:
 	NUMBER {
+		
+		std::string nstr = new std::string( $1 );
+		
 		// Declare new Numparser to process Equation
 		Compiler::_np = new Numparser();
 		
