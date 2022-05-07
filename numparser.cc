@@ -59,5 +59,6 @@ void Numparser::evaluate() {
 	nums.clear();
 	ops.clear();
 	nums.push_back(num);
+	print();
 }
 
