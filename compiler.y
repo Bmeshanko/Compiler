@@ -6,7 +6,7 @@
 %union
 {
 	std::string* num_string;
-	char operator;
+	char num_operator;
 }
 %token <num_string> NUMBER
 %token <operator> ADD SUBTRACT MULTIPLY DIVIDE MODULE
