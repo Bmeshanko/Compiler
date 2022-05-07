@@ -107,7 +107,7 @@
 extern int yydebug;
 #endif
 /* "%code requires" blocks.  */
-#line 3 "compiler.y"
+#line 2 "compiler.y"
 
 	#include <string>
 
@@ -138,7 +138,7 @@ extern int yydebug;
 #if ! defined YYSTYPE && ! defined YYSTYPE_IS_DECLARED
 union YYSTYPE
 {
-#line 8 "compiler.y"
+#line 7 "compiler.y"
 
 	std::string* num_string;
 
@@ -158,7 +158,7 @@ int yyparse (void);
 #endif /* !YY_YY_Y_TAB_HH_INCLUDED  */
 
 /* Second part of user prologue.  */
-#line 15 "compiler.y"
+#line 14 "compiler.y"
 
 
 #include "compiler.hh"
@@ -531,8 +531,8 @@ static const yytype_int8 yytranslate[] =
   /* YYRLINE[YYN] -- Source line where rule number YYN was defined.  */
 static const yytype_int8 yyrline[] =
 {
-       0,    29,    29,    33,    37,    43,    52,    56,    60,    64,
-      68
+       0,    28,    28,    32,    36,    42,    51,    55,    59,    63,
+      67
 };
 #endif
 
@@ -1322,7 +1322,7 @@ yyreduce:
   switch (yyn)
     {
   case 4:
-#line 37 "compiler.y"
+#line 36 "compiler.y"
                {
 		std::string * nstr = new std::string ( *(yyvsp[0].num_string) );
 		int num = atoi(nstr->c_str());
@@ -1332,7 +1332,7 @@ yyreduce:
     break;
 
   case 5:
-#line 43 "compiler.y"
+#line 42 "compiler.y"
                                {
 		std::string * nstr = new std::string ( *(yyvsp[-2].num_string) );
 		int num = atoi(nstr->c_str());
@@ -1343,7 +1343,7 @@ yyreduce:
     break;
 
   case 6:
-#line 52 "compiler.y"
+#line 51 "compiler.y"
             {
 		char op = '+';
 		Compiler::_np.insertOp(op);
@@ -1352,7 +1352,7 @@ yyreduce:
     break;
 
   case 7:
-#line 56 "compiler.y"
+#line 55 "compiler.y"
                    {
 		char op = '-';
 		Compiler::_np.insertOp(op);
@@ -1361,7 +1361,7 @@ yyreduce:
     break;
 
   case 8:
-#line 60 "compiler.y"
+#line 59 "compiler.y"
                    {
 		char op = '*';
 		Compiler::_np.insertOp(op);
@@ -1370,7 +1370,7 @@ yyreduce:
     break;
 
   case 9:
-#line 64 "compiler.y"
+#line 63 "compiler.y"
                  {
 		char op = '/';
 		Compiler::_np.insertOp(op);
@@ -1379,7 +1379,7 @@ yyreduce:
     break;
 
   case 10:
-#line 68 "compiler.y"
+#line 67 "compiler.y"
                  {
 		char op = '%';
 		Compiler::_np.insertOp(op);
@@ -1620,7 +1620,7 @@ yyreturn:
 #endif
   return yyresult;
 }
-#line 74 "compiler.y"
+#line 73 "compiler.y"
 
 
 void yyerror(const char * s) {

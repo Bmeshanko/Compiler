@@ -50,10 +50,10 @@ void Numparser::evaluate() {
 			num = nums.at(0) * nums.at(1);
 			break;
 		case '/':
-			num = num.at(0) / nums.at(1);
+			num = nums.at(0) / nums.at(1);
 			break;
 		case '%':
-			num = num.at(0) % nums.at(1);
+			num = nums.at(0) % nums.at(1);
 			break;
 	}
 	nums.clear();

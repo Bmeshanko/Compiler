@@ -44,7 +44,7 @@
 extern int yydebug;
 #endif
 /* "%code requires" blocks.  */
-#line 3 "compiler.y"
+#line 2 "compiler.y"
 
 	#include <string>
 
@@ -75,7 +75,7 @@ extern int yydebug;
 #if ! defined YYSTYPE && ! defined YYSTYPE_IS_DECLARED
 union YYSTYPE
 {
-#line 8 "compiler.y"
+#line 7 "compiler.y"
 
 	std::string* num_string;
 
