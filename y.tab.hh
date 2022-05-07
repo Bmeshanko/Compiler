@@ -78,7 +78,7 @@ union YYSTYPE
 #line 7 "compiler.y"
 
 	std::string* num_string;
-	char operator;
+	char num_operator;
 
 #line 84 "y.tab.hh"
 

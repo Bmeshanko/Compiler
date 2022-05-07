@@ -141,7 +141,7 @@ union YYSTYPE
 #line 7 "compiler.y"
 
 	std::string* num_string;
-	char operator;
+	char num_operator;
 
 #line 147 "y.tab.cc"
 
