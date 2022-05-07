@@ -21,6 +21,6 @@ void Numparser::print() {
 	}
 
 	for (int i = 0; i < ops.size(); i++) {
-		printf("%c", nums.at(i));
+		printf("%c", ops.at(i));
 	}
 }
