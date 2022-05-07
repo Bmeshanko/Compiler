@@ -162,6 +162,7 @@ int yyparse (void);
 
 
 #include "compiler.hh"
+#include "numparser.hh"
 #include <stdlib.h>
 
 void yyerror(const char * s);
@@ -169,7 +170,7 @@ int yylex();
 
 
 
-#line 173 "y.tab.cc"
+#line 174 "y.tab.cc"
 
 
 #ifdef short
@@ -531,7 +532,7 @@ static const yytype_int8 yytranslate[] =
   /* YYRLINE[YYN] -- Source line where rule number YYN was defined.  */
 static const yytype_int8 yyrline[] =
 {
-       0,    27,    27,    31,    35,    42,    48,    51,    54,    57,
+       0,    28,    28,    32,    36,    42,    48,    51,    54,    57,
       60
 };
 #endif
@@ -1322,11 +1323,10 @@ yyreduce:
   switch (yyn)
     {
   case 4:
-#line 35 "compiler.y"
+#line 36 "compiler.y"
                {
-		// Declare new Numparser to process Equations.
-		Numparser np = Numparser();
-		Compiler::_currentNumparser = np;
+		// Declare new Numparser to process Equation
+		Compiler::_currentNumparser = new Numparser();
 		
 	}
 #line 1333 "y.tab.cc"
