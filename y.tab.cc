@@ -1327,7 +1327,7 @@ yyreduce:
 		
 		std::string * nstr = new std::string( *(yyvsp[0].num_string) );
 		int num = atoi(nstr->c_str());
-		printf("%d", num);
+		fprintf(stderr, "%d", num);
 		// Declare new Numparser to process Equation
 		Compiler::_np->insertNum(num);
 		
@@ -1340,7 +1340,7 @@ yyreduce:
                                {
 		std::string * nstr = new std::string ( *(yyvsp[-2].num_string) );
 		int num = atoi(nstr->c_str());
-		printf("%d", num);
+		fprintf(stderr, "%d", num);
 		Compiler::_np->insertNum(num);
 	}
 #line 1347 "y.tab.cc"
