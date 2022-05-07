@@ -1,4 +1,5 @@
 %code requires
+
 {
 	#include <string>
 }
@@ -51,7 +52,7 @@ operator:
 	ADD {
 		char op = '+';
 		Compiler::_np.insertOp(op);
-		Compiler::_np.print();
+		//Compiler::_np.print();
 	}
 	| SUBTRACT {
 		char op = '-';

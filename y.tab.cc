@@ -531,8 +531,8 @@ static const yytype_int8 yytranslate[] =
   /* YYRLINE[YYN] -- Source line where rule number YYN was defined.  */
 static const yytype_int8 yyrline[] =
 {
-       0,    28,    28,    32,    36,    43,    52,    57,    61,    65,
-      69
+       0,    28,    28,    32,    36,    42,    51,    56,    60,    64,
+      68
 };
 #endif
 
@@ -1327,70 +1327,69 @@ yyreduce:
 		std::string * nstr = new std::string ( *(yyvsp[0].num_string) );
 		int num = atoi(nstr->c_str());
 		Compiler::_np.insertNum(num);
-		Compiler::_np.print();
 	}
-#line 1333 "y.tab.cc"
+#line 1332 "y.tab.cc"
     break;
 
   case 5:
-#line 43 "compiler.y"
+#line 42 "compiler.y"
                                {
 		std::string * nstr = new std::string ( *(yyvsp[-2].num_string) );
 		int num = atoi(nstr->c_str());
 		Compiler::_np.insertNum(num);
 		Compiler::_np.print();
 	}
-#line 1344 "y.tab.cc"
+#line 1343 "y.tab.cc"
     break;
 
   case 6:
-#line 52 "compiler.y"
+#line 51 "compiler.y"
             {
 		char op = '+';
 		Compiler::_np.insertOp(op);
 		Compiler::_np.print();
 	}
-#line 1354 "y.tab.cc"
+#line 1353 "y.tab.cc"
     break;
 
   case 7:
-#line 57 "compiler.y"
+#line 56 "compiler.y"
                    {
 		char op = '-';
 		Compiler::_np.insertOp(op);
 	}
-#line 1363 "y.tab.cc"
+#line 1362 "y.tab.cc"
     break;
 
   case 8:
-#line 61 "compiler.y"
+#line 60 "compiler.y"
                    {
 		char op = '*';
 		Compiler::_np.insertOp(op);
 	}
-#line 1372 "y.tab.cc"
+#line 1371 "y.tab.cc"
     break;
 
   case 9:
-#line 65 "compiler.y"
+#line 64 "compiler.y"
                  {
 		char op = '/';
 		Compiler::_np.insertOp(op);
 	}
-#line 1381 "y.tab.cc"
+#line 1380 "y.tab.cc"
     break;
 
   case 10:
-#line 69 "compiler.y"
+#line 68 "compiler.y"
                  {
 		char op = '%';
 		Compiler::_np.insertOp(op);
 	}
-#line 1390 "y.tab.cc"
+#line 1389 "y.tab.cc"
     break;
 
 
-#line 1394 "y.tab.cc"
+#line 1393 "y.tab.cc"
 
       default: break;
     }
@@ -1622,7 +1621,7 @@ yyreturn:
 #endif
   return yyresult;
 }
-#line 75 "compiler.y"
+#line 74 "compiler.y"
 
 
 void yyerror(const char * s) {
