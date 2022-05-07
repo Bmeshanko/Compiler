@@ -3,8 +3,8 @@
 #include <vector>
 #include "compiler.hh"
 
+Numparser * _currentNumparser();
+
 Compiler::Compiler() {
 	_currentNumparser = new Numparser();	
 }
-
-Numparser * Compiler::_currentNumparser;
