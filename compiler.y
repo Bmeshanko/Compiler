@@ -34,7 +34,7 @@ command:
 number:
 	NUMBER {
 		
-		std::string * nstr = new std::string( $1 );
+		std::string * nstr = new std::string( *$1 );
 		printf("%s", nstr->c_str());
 		
 		// Declare new Numparser to process Equation
