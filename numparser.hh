@@ -1,3 +1,6 @@
+#ifndef numparser_hh
+#define shell_hh
+
 #include <vector>
 
 struct Numparser {
@@ -7,3 +10,5 @@ struct Numparser {
 	void insertOp(char op);
 	Numparser();
 };
+
+#endif
