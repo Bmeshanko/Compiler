@@ -161,8 +161,8 @@ int yyparse (void);
 #line 13 "compiler.y"
 
 
-#include "compiler.hh"
 #include "numparser.hh"
+#include "compiler.hh"
 #include <stdlib.h>
 
 void yyerror(const char * s);

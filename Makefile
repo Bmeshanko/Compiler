@@ -23,8 +23,11 @@ y.tab.o: compiler.y
 compiler.o: compiler.cc compiler.hh
 	$(CC) -c compiler.cc
 
-compiler: compiler.o lex.yy.o y.tab.o
-	$(CC) -o compiler compiler.o lex.yy.o y.tab.o
+numparser.o: numparser.cc numparser.hh
+	$(CC) -c numparser.cc
+
+compiler: compiler.o lex.yy.o y.tab.o numparser.o
+	$(CC) -o compiler compiler.o lex.yy.o y.tab.o numparser.o
 
 clean:
 	rm *.o compiler
