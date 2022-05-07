@@ -141,9 +141,8 @@ union YYSTYPE
 #line 7 "compiler.y"
 
 	std::string* num_string;
-	char num_operator;
 
-#line 147 "y.tab.cc"
+#line 146 "y.tab.cc"
 
 };
 typedef union YYSTYPE YYSTYPE;
@@ -170,7 +169,7 @@ int yylex();
 
 
 
-#line 174 "y.tab.cc"
+#line 173 "y.tab.cc"
 
 
 #ifdef short
@@ -1330,7 +1329,7 @@ yyreduce:
 		Compiler::_np.insertNum(num);
 		Compiler::_np.print();
 	}
-#line 1334 "y.tab.cc"
+#line 1333 "y.tab.cc"
     break;
 
   case 5:
@@ -1341,57 +1340,57 @@ yyreduce:
 		Compiler::_np.insertNum(num);
 		Compiler::_np.print();
 	}
-#line 1345 "y.tab.cc"
+#line 1344 "y.tab.cc"
     break;
 
   case 6:
 #line 52 "compiler.y"
             {
-		char op = (yyvsp[0].num_operator);
+		char op = '+'
 		Compiler::_np.insertOp(op);
 		Compiler::_np.print();
 	}
-#line 1355 "y.tab.cc"
+#line 1354 "y.tab.cc"
     break;
 
   case 7:
 #line 57 "compiler.y"
                    {
-		char op = (yyvsp[0].num_operator);
+		char op = '-'
 		Compiler::_np.insertOp(op);
 	}
-#line 1364 "y.tab.cc"
+#line 1363 "y.tab.cc"
     break;
 
   case 8:
 #line 61 "compiler.y"
                    {
-		char op = (yyvsp[0].num_operator);
+		char op = '*';
 		Compiler::_np.insertOp(op);
 	}
-#line 1373 "y.tab.cc"
+#line 1372 "y.tab.cc"
     break;
 
   case 9:
 #line 65 "compiler.y"
                  {
-		char op = (yyvsp[0].num_operator);
+		char op = '/';
 		Compiler::_np.insertOp(op);
 	}
-#line 1382 "y.tab.cc"
+#line 1381 "y.tab.cc"
     break;
 
   case 10:
 #line 69 "compiler.y"
                  {
-		char op = (yyvsp[0].num_operator);
+		char op = '%';
 		Compiler::_np.insertOp(op);
 	}
-#line 1391 "y.tab.cc"
+#line 1390 "y.tab.cc"
     break;
 
 
-#line 1395 "y.tab.cc"
+#line 1394 "y.tab.cc"
 
       default: break;
     }

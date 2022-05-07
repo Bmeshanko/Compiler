@@ -50,12 +50,12 @@ number:
 
 operator:
 	ADD {
-		char op = '+'
+		char op = '+';
 		Compiler::_np.insertOp(op);
 		Compiler::_np.print();
 	}
 	| SUBTRACT {
-		char op = '-'
+		char op = '-';
 		Compiler::_np.insertOp(op);
 	}
 	| MULTIPLY {
