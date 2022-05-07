@@ -30,6 +30,7 @@ void Numparser::print() {
 	for (int i = 0; i < ops.size(); i++) {
 		printf("%c", ops.at(i));
 	}
+	printf("\n");
 }
 
 void Numparser::evaluate() {
