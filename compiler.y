@@ -52,6 +52,7 @@ operator:
 	ADD {
 		char op = $1;
 		Compiler::_np.insertOp(op);
+		fprintf(stderr, "%c", op);
 	}
 	| SUBTRACT {
 		char op = $1;
