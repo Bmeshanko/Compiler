@@ -50,11 +50,11 @@ number:
 
 operator:
 	ADD {
-		char op = num_operator( $1 );
+		char op = $1;
 		Compiler::_np.insertOp(op);
 	}
 	| SUBTRACT {
-		char op = *$1
+		char op = $1
 		Compiler::_np.insertOp(op);
 	}
 	| MULTIPLY {
