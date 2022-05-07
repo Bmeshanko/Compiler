@@ -50,7 +50,7 @@ number:
 
 operator:
 	ADD {
-		char op = *( $1 );
+		char op = num_operator( $1 );
 		Compiler::_np.insertOp(op);
 	}
 	| SUBTRACT {

@@ -1347,7 +1347,7 @@ yyreduce:
   case 6:
 #line 52 "compiler.y"
             {
-		char op = *(yyvsp[0].operator);
+		char op = *( (yyvsp[0].operator) );
 		Compiler::_np.insertOp(op);
 	}
 #line 1354 "y.tab.cc"
@@ -1356,7 +1356,7 @@ yyreduce:
   case 7:
 #line 56 "compiler.y"
                    {
-		char op = *(yyvsp[0].operator);
+		char op = *( (yyvsp[0].operator) );
 		Compiler::_np.insertOp(op);
 	}
 #line 1363 "y.tab.cc"
@@ -1365,7 +1365,7 @@ yyreduce:
   case 8:
 #line 60 "compiler.y"
                    {
-		char op = *(yyvsp[0].operator);
+		char op = *( (yyvsp[0].operator) );
 		Compiler::_np.insertOp(op);
 	}
 #line 1372 "y.tab.cc"
@@ -1374,7 +1374,7 @@ yyreduce:
   case 9:
 #line 64 "compiler.y"
                  {
-		char op = *(yyvsp[0].operator);
+		char op = *( (yyvsp[0].operator) );
 		Compiler::_np.insertOp(op);
 	}
 #line 1381 "y.tab.cc"
@@ -1383,7 +1383,7 @@ yyreduce:
   case 10:
 #line 68 "compiler.y"
                  {
-		char op = *(yyvsp[0].operator);
+		char op = *( (yyvsp[0].operator) );
 		Compiler::_np.insertOp(op);
 	}
 #line 1390 "y.tab.cc"
