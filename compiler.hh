@@ -6,7 +6,7 @@
 
 struct Compiler {
 	Compiler();
-	Numparser *_np;
+	static Numparser *_np;
 };
 
 #endif
