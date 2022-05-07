@@ -3,7 +3,7 @@
 #include <vector>
 #include "compiler.hh"
 
-static Numparser * Compiler::_np;
+Numparser * Compiler::_np;
 
 Compiler::Compiler() {
 
