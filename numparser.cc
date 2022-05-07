@@ -1,5 +1,6 @@
 #include <vector>
 #include "numparser.hh"
+#include "compiler.hh"
 
 Numparser::Numparser() {
 	nums = std::vector<int>();
