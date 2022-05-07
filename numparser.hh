@@ -4,8 +4,8 @@
 #include <vector>
 
 struct Numparser {
-	std::vector<int> nums;
-	std::vector<char> ops;
+	std::vector<int> _nums;
+	std::vector<char> _ops;
 	void insertNum(int num);
 	void insertOp(char op);
 	Numparser();

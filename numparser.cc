@@ -2,14 +2,14 @@
 #include "numparser.hh"
 
 Numparser::Numparser() {
-	nums = std::vector<int>();
-	ops = std::vector<char>();
+	_nums = std::vector<int>();
+	_ops = std::vector<char>();
 }
 
 void insertNum(int num) {
-	nums.push_back(num);
+	_nums.push_back(num);
 }
 
 void insertOp(char op) {
-	ops.push_back(op);
+	_ops.push_back(op);
 }
