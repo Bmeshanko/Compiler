@@ -33,8 +33,31 @@ void Numparser::print() {
 }
 
 void Numparser::evaluate() {
-	if (nums.size() - 1 != ops.size()) {
+	if (nums.size() - 1 != ops.size() || nums.size() != 2) {
 		perror("Invalid Equation!");
 		exit(-1);
 	}
+	
+	int num;
+	switch (ops.at(0)) {
+		case '+':
+			num = nums.at(0) + nums.at(1);
+			break;
+		case '-':
+			num = nums.at(0) - nums.at(1);
+			break;
+		case '*':
+			num = nums.at(0) * nums.at(1);
+			break;
+		case '/':
+			num = num.at(0) / nums.at(1);
+			break;
+		case '%':
+			num = num.at(0) % nums.at(1);
+			break;
+	}
+	nums.clear();
+	ops.clear();
+	nums.push_back(num);
 }
+

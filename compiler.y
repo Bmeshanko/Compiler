@@ -1,5 +1,4 @@
 %code requires
-
 {
 	#include <string>
 }
@@ -24,7 +23,7 @@ int yylex();
 %}
 
 %%
-
+ 
 goal:
 	command
 	;
