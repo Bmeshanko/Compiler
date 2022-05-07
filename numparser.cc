@@ -6,10 +6,10 @@ Numparser::Numparser() {
 	ops = std::vector<char>();
 }
 
-void insertNum( int num ) {
+void Numparser::insertNum( int num ) {
 	nums.push_back(num);
 }
 
-void insertOp(char op) {
+void Numparser::insertOp(char op) {
 	ops.push_back(op);
 }
