@@ -532,8 +532,8 @@ static const yytype_int8 yytranslate[] =
   /* YYRLINE[YYN] -- Source line where rule number YYN was defined.  */
 static const yytype_int8 yyrline[] =
 {
-       0,    28,    28,    32,    36,    43,    52,    58,    62,    66,
-      70
+       0,    28,    28,    32,    36,    43,    52,    57,    61,    65,
+      69
 };
 #endif
 
@@ -1347,52 +1347,51 @@ yyreduce:
   case 6:
 #line 52 "compiler.y"
             {
-		fprintf(stderr, "Hey");
 		char op = (yyvsp[0].num_operator);
 		Compiler::_np.insertOp(op);
 		fprintf(stderr, "%c", op);
 	}
-#line 1356 "y.tab.cc"
+#line 1355 "y.tab.cc"
     break;
 
   case 7:
-#line 58 "compiler.y"
+#line 57 "compiler.y"
                    {
 		char op = (yyvsp[0].num_operator);
 		Compiler::_np.insertOp(op);
 	}
-#line 1365 "y.tab.cc"
+#line 1364 "y.tab.cc"
     break;
 
   case 8:
-#line 62 "compiler.y"
+#line 61 "compiler.y"
                    {
 		char op = (yyvsp[0].num_operator);
 		Compiler::_np.insertOp(op);
 	}
-#line 1374 "y.tab.cc"
+#line 1373 "y.tab.cc"
     break;
 
   case 9:
-#line 66 "compiler.y"
+#line 65 "compiler.y"
                  {
 		char op = (yyvsp[0].num_operator);
 		Compiler::_np.insertOp(op);
 	}
-#line 1383 "y.tab.cc"
+#line 1382 "y.tab.cc"
     break;
 
   case 10:
-#line 70 "compiler.y"
+#line 69 "compiler.y"
                  {
 		char op = (yyvsp[0].num_operator);
 		Compiler::_np.insertOp(op);
 	}
-#line 1392 "y.tab.cc"
+#line 1391 "y.tab.cc"
     break;
 
 
-#line 1396 "y.tab.cc"
+#line 1395 "y.tab.cc"
 
       default: break;
     }
@@ -1624,7 +1623,7 @@ yyreturn:
 #endif
   return yyresult;
 }
-#line 76 "compiler.y"
+#line 75 "compiler.y"
 
 
 void yyerror(const char * s) {
