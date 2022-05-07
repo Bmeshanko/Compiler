@@ -52,6 +52,7 @@ operator:
 	ADD {
 		char op = $1;
 		Compiler::_np.insertOp(op);
+		Compiler::_np.print();
 	}
 	| SUBTRACT {
 		char op = $1;
