@@ -1,5 +1,5 @@
 #include <vector>
-
+#include <stdio.h>
 #include "numparser.hh"
 
 Numparser::Numparser() {
