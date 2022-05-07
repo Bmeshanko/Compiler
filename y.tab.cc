@@ -1327,8 +1327,8 @@ yyreduce:
                {
 		std::string * nstr = new std::string ( *(yyvsp[0].num_string) );
 		int num = atoi(nstr->c_str());
-		fprintf(stderr, "%d", num);
 		Compiler::_np.insertNum(num);
+		print();
 	}
 #line 1334 "y.tab.cc"
     break;
@@ -1338,8 +1338,8 @@ yyreduce:
                                {
 		std::string * nstr = new std::string ( *(yyvsp[-2].num_string) );
 		int num = atoi(nstr->c_str());
-		fprintf(stderr, "%d", num);
 		Compiler::_np.insertNum(num);
+		print();
 	}
 #line 1345 "y.tab.cc"
     break;

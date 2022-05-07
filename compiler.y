@@ -37,14 +37,14 @@ number:
 		std::string * nstr = new std::string ( *$1 );
 		int num = atoi(nstr->c_str());
 		Compiler::_np.insertNum(num);
-		print();
+		Compiler::_np.print();
 	}
 	|
 	NUMBER operator number {
 		std::string * nstr = new std::string ( *$1 );
 		int num = atoi(nstr->c_str());
 		Compiler::_np.insertNum(num);
-		print();
+		Compiler::_np.print();
 	}
 	;
 
