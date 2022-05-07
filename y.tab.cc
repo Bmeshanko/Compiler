@@ -141,8 +141,9 @@ union YYSTYPE
 #line 7 "compiler.y"
 
 	std::string* num_string;
+	char operator;
 
-#line 146 "y.tab.cc"
+#line 147 "y.tab.cc"
 
 };
 typedef union YYSTYPE YYSTYPE;
@@ -158,7 +159,7 @@ int yyparse (void);
 #endif /* !YY_YY_Y_TAB_HH_INCLUDED  */
 
 /* Second part of user prologue.  */
-#line 13 "compiler.y"
+#line 14 "compiler.y"
 
 
 #include "compiler.hh"
@@ -169,7 +170,7 @@ int yylex();
 
 
 
-#line 173 "y.tab.cc"
+#line 174 "y.tab.cc"
 
 
 #ifdef short
@@ -531,8 +532,8 @@ static const yytype_int8 yytranslate[] =
   /* YYRLINE[YYN] -- Source line where rule number YYN was defined.  */
 static const yytype_int8 yyrline[] =
 {
-       0,    27,    27,    31,    35,    45,    54,    57,    60,    63,
-      66
+       0,    28,    28,    32,    36,    38,    47,    50,    53,    56,
+      59
 };
 #endif
 
@@ -1321,73 +1322,59 @@ yyreduce:
   YY_REDUCE_PRINT (yyn);
   switch (yyn)
     {
-  case 4:
-#line 35 "compiler.y"
-               {
-		
-		std::string * nstr = new std::string( *(yyvsp[0].num_string) );
-		int num = atoi(nstr->c_str());
-		fprintf(stderr, "%d", num);
-		// Declare new Numparser to process Equation
-		Compiler::_np.insertNum(num);
-		
-	}
-#line 1336 "y.tab.cc"
-    break;
-
   case 5:
-#line 45 "compiler.y"
+#line 38 "compiler.y"
                                {
 		std::string * nstr = new std::string ( *(yyvsp[-2].num_string) );
 		int num = atoi(nstr->c_str());
 		fprintf(stderr, "%d", num);
 		Compiler::_np.insertNum(num);
 	}
-#line 1347 "y.tab.cc"
+#line 1334 "y.tab.cc"
     break;
 
   case 6:
-#line 54 "compiler.y"
+#line 47 "compiler.y"
             {
-		
+
 	}
-#line 1355 "y.tab.cc"
+#line 1342 "y.tab.cc"
     break;
 
   case 7:
-#line 57 "compiler.y"
+#line 50 "compiler.y"
                    {
 
 	}
-#line 1363 "y.tab.cc"
+#line 1350 "y.tab.cc"
     break;
 
   case 8:
-#line 60 "compiler.y"
+#line 53 "compiler.y"
                    {
 
 	}
-#line 1371 "y.tab.cc"
+#line 1358 "y.tab.cc"
     break;
 
   case 9:
-#line 63 "compiler.y"
+#line 56 "compiler.y"
                  {
 
 	}
-#line 1379 "y.tab.cc"
+#line 1366 "y.tab.cc"
     break;
 
   case 10:
-#line 66 "compiler.y"
+#line 59 "compiler.y"
                  {
 		
 	}
-#line 1387 "y.tab.cc"
+#line 1374 "y.tab.cc"
     break;
 
 
-#line 1391 "y.tab.cc"
+#line 1378 "y.tab.cc"
 
       default: break;
     }
@@ -1619,7 +1606,7 @@ yyreturn:
 #endif
   return yyresult;
 }
-#line 71 "compiler.y"
+#line 64 "compiler.y"
 
 
 void yyerror(const char * s) {
