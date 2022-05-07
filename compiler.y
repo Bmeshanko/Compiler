@@ -6,10 +6,10 @@
 %union
 {
 	std::string* num_string;
-	char num_operator;
 }
+
 %token <num_string> NUMBER
-%token <num_operator> ADD SUBTRACT MULTIPLY DIVIDE MODULE
+%token ADD SUBTRACT MULTIPLY DIVIDE MODULE
 
 %{
 
@@ -50,24 +50,24 @@ number:
 
 operator:
 	ADD {
-		char op = $1;
+		char op = '+'
 		Compiler::_np.insertOp(op);
 		Compiler::_np.print();
 	}
 	| SUBTRACT {
-		char op = $1;
+		char op = '-'
 		Compiler::_np.insertOp(op);
 	}
 	| MULTIPLY {
-		char op = $1;
+		char op = '*';
 		Compiler::_np.insertOp(op);
 	}
 	| DIVIDE {
-		char op = $1;
+		char op = '/';
 		Compiler::_np.insertOp(op);
 	}
 	| MODULE {
-		char op = $1;
+		char op = '%';
 		Compiler::_np.insertOp(op);
 	}
 	;
