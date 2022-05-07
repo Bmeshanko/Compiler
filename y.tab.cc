@@ -1325,7 +1325,7 @@ yyreduce:
 #line 35 "compiler.y"
                {
 		
-		std::string * nstr = new std::string( (yyvsp[0].num_string) );
+		std::string * nstr = new std::string( *(yyvsp[0].num_string) );
 		printf("%s", nstr->c_str());
 		
 		// Declare new Numparser to process Equation

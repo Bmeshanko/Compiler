@@ -35,8 +35,8 @@ number:
 	NUMBER {
 		
 		std::string * nstr = new std::string( *$1 );
-		printf("%s", nstr->c_str());
-		
+		int num = atoi(nstr->c_str());
+		printf("%d", num);	
 		// Declare new Numparser to process Equation
 		Compiler::_np = new Numparser();
 		
