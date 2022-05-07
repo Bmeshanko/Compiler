@@ -1346,7 +1346,7 @@ yyreduce:
   case 6:
 #line 52 "compiler.y"
             {
-		char op = '+'
+		char op = '+';
 		Compiler::_np.insertOp(op);
 		Compiler::_np.print();
 	}
@@ -1356,7 +1356,7 @@ yyreduce:
   case 7:
 #line 57 "compiler.y"
                    {
-		char op = '-'
+		char op = '-';
 		Compiler::_np.insertOp(op);
 	}
 #line 1363 "y.tab.cc"
