@@ -1350,7 +1350,7 @@ yyreduce:
 		fprintf(stderr, "Hey");
 		char op = (yyvsp[0].num_operator);
 		Compiler::_np.insertOp(op);
-		fprintf(stderr, "%c", op);
+		fprintf(stderr, "+");
 	}
 #line 1356 "y.tab.cc"
     break;
