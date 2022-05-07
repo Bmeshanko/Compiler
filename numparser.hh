@@ -13,6 +13,8 @@ struct Numparser {
 	void insertOp(char op);
 
 	void print();
+	
+	void evaluate();
 
 	Numparser();
 };
