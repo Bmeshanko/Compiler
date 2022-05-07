@@ -36,15 +36,15 @@ number:
 	NUMBER {
 		std::string * nstr = new std::string ( *$1 );
 		int num = atoi(nstr->c_str());
-		fprintf(stderr, "%d", num);
 		Compiler::_np.insertNum(num);
+		print();
 	}
 	|
 	NUMBER operator number {
 		std::string * nstr = new std::string ( *$1 );
 		int num = atoi(nstr->c_str());
-		fprintf(stderr, "%d", num);
 		Compiler::_np.insertNum(num);
+		print();
 	}
 	;
 
