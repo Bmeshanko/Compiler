@@ -32,10 +32,8 @@ void Numparser::print() {
 void Numparser::evaluateAll() {
 	// Evaluates all numerical equations
 
-	fprintf(stderr, "%lu %lu", nums.size(), ops.size());
-
 	if (nums.size() - 1 != ops.size()) {
-		perror("Inv1alid Equation.");
+		perror("Invalid Equation.");
 		exit(-1);
 	}
 
