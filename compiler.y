@@ -9,7 +9,7 @@
 }
 
 %token <num_string> NUMBER
-%token ADD SUBTRACT MULTIPLY DIVIDE MODULE
+%token ADD SUBTRACT MULTIPLY DIVIDE MODULE EXPONENT SEMICOLON 
 
 %{
 
@@ -18,7 +18,6 @@
 
 void yyerror(const char * s);
 int yylex();
-
 
 %}
 
@@ -29,7 +28,13 @@ goal:
 	;
 
 command:
-	number
+	number end
+	;
+
+end:
+	SEMICOLON {
+		Compiler::_np.evaluateAll();
+	}
 	;
 
 number:
@@ -43,30 +48,27 @@ number:
 		std::string * nstr = new std::string ( *$1 );
 		int num = atoi(nstr->c_str());
 		Compiler::_np.insertNum(num);
-		Compiler::_np.print();
 	}
 	;
 
 operator:
 	ADD {
-		char op = '+';
-		Compiler::_np.insertOp(op);
+		Compiler::_np.insertOp('+');
 	}
 	| SUBTRACT {
-		char op = '-';
-		Compiler::_np.insertOp(op);
+		Compiler::_np.insertOp('-');
 	}
 	| MULTIPLY {
-		char op = '*';
-		Compiler::_np.insertOp(op);
+		Compiler::_np.insertOp('*');
 	}
 	| DIVIDE {
-		char op = '/';
-		Compiler::_np.insertOp(op);
+		Compiler::_np.insertOp('/');
 	}
 	| MODULE {
-		char op = '%';
-		Compiler::_np.insertOp(op);
+		Compiler::_np.insertOp('%');
+	}
+	| EXPONENT {
+		Compiler::_np.insertOp('^');
 	}
 	;
 

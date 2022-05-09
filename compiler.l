@@ -1,5 +1,6 @@
 %{
 
+
 	#include <stdio.h>
 	#include <stdlib.h>
 	#include <string>
@@ -18,11 +19,15 @@
 	return NUMBER;
 }
 
+"^" {
+	return EXPONENT;
+}
+
 "*" {
 	return MULTIPLY;
 }
 
-"//" {
+"/" {
 	return DIVIDE;
 }
 
@@ -36,6 +41,10 @@
 
 "%" {
 	return MODULE;
+}
+
+";" {
+	return SEMICOLON;
 }
 
 %%

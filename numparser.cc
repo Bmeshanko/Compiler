@@ -8,7 +8,7 @@ Numparser::Numparser() {
 	ops = std::vector<char>();
 }
 
-void Numparser::insertNum( int num ) {
+void Numparser::insertNum(int num) {
 	nums.push_back(num);
 }
 
@@ -17,11 +17,7 @@ void Numparser::insertOp(char op) {
 }
 
 void Numparser::print() {
-
-	if (nums.size() - 1 != ops.size()) {
-		//perror("Invalid Equation!");
-		//exit(-1);
-	}
+	// TODO: Error Checking.
 	
 	for (int i = 0; i < nums.size(); i++) {
 		printf("%d", nums.at(i));
@@ -33,21 +29,70 @@ void Numparser::print() {
 	printf("\n");
 }
 
-void Numparser::evaluate() {
-	if (nums.size() - 1 != ops.size() || nums.size() != 2) {
-		//perror("Invalid Equation!");
-		//exit(-1);
+void Numparser::evaluateAll() {
+	// Evaluates all numerical equations
+	if (nums.size() - 1 != ops.size()) {
+		perror("Invalid Equation.");
+		exit(-1);
 	}
+
+	evaluateOp('^');
+	evaluateOp('%');
+	evaluateOpLR('*', '/');
+	evaluateOpLR('+', '-');
 	
-	int num1 = nums.pop_back();
-	int num2 = nums.pop_back();
-	char op = ops.pop_back();
+	print();
+
+}
+
+void Numparser::evaluateOp(char op) {
+	for (int i = ops.size() - 1; i >= 0; i--) {
+		if (ops.at(i) == op) {
+			int res = evaluateSimple(nums.at(i), nums.at(i + 1), op);
+
+			nums.erase(nums.begin() + i);
+			nums.erase(nums.begin() + i);
+
+			nums.insert(nums.begin() + i, res);
+
+			ops.erase(ops.begin() + i);
+		}
+	}
+}
+
+void Numparser::evaluateOpLR(char op1, char op2) {
+	for (int i = ops.size() - 1; i >= 0; i--) {
+		if (ops.at(i) == op1) {
+			int res = evaluateSimple(nums.at(i), nums.at(i + 1), op1);
+
+			nums.erase(nums.begin() + i);
+			nums.erase(nums.begin() + i);
+
+			nums.insert(nums.begin() + i, res);
+
+			ops.erase(ops.begin() + i);
+		} else if (ops.at(i) == op2) {
+			int res = evaluateSimple(nums.at(i), nums.at(i + 1), op2);
+
+			nums.erase(nums.begin() + i);
+			nums.erase(nums.begin() + i);
+
+			nums.insert(nums.begin() + i, res);
+
+			ops.erase(ops.begin() + i);
+		}
+	}
+}
+
+int Numparser::evaluateSimple(int num2, int num1, char op) {
+	// Evaluates a numerical equation with two operators.
+	// Numbers are given in reverse order, so we must switch the order.
 
 	int res;
 
 	switch (op) {
 		case '+':
-			res = num1 + num2
+			res = num1 + num2;
 			break;
 		case '-':
 			res = num1 - num2;
@@ -63,8 +108,7 @@ void Numparser::evaluate() {
 			break;
 	}
 
-	fprintf(stderr, "\n\nHey\n\n");
-	nums.push_back(num);
-	print();
+	return res;
+
 }
 

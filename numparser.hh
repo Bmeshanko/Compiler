@@ -14,7 +14,13 @@ struct Numparser {
 
 	void print();
 	
-	void evaluate();
+	void evaluateAll();
+
+	void evaluateOp(char op);
+
+	void evaluateOpLR(char op1, char op2);
+	
+	int evaluateSimple(int num1, int num2, char op);
 
 	Numparser();
 };

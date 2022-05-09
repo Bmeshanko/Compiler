@@ -60,7 +60,9 @@ extern int yydebug;
     SUBTRACT = 260,
     MULTIPLY = 261,
     DIVIDE = 262,
-    MODULE = 263
+    MODULE = 263,
+    EXPONENT = 264,
+    SEMICOLON = 265
   };
 #endif
 /* Tokens.  */
@@ -70,6 +72,8 @@ extern int yydebug;
 #define MULTIPLY 261
 #define DIVIDE 262
 #define MODULE 263
+#define EXPONENT 264
+#define SEMICOLON 265
 
 /* Value type.  */
 #if ! defined YYSTYPE && ! defined YYSTYPE_IS_DECLARED
@@ -79,7 +83,7 @@ union YYSTYPE
 
 	std::string* num_string;
 
-#line 83 "y.tab.hh"
+#line 87 "y.tab.hh"
 
 };
 typedef union YYSTYPE YYSTYPE;
