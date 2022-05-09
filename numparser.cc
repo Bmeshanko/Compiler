@@ -56,7 +56,7 @@ void Numparser::evaluateOp(char op) {
 
 			nums.insert(nums.begin() + i, res);
 
-			ops.erase(ops.begin() + i);
+			ops.erase(ops.begin() + i - 1);
 		}
 	}
 }
@@ -71,7 +71,7 @@ void Numparser::evaluateOpLR(char op1, char op2) {
 
 			nums.insert(nums.begin() + i, res);
 
-			ops.erase(ops.begin() + i);
+			ops.erase(ops.begin() + i - 1);
 		} else if (ops.at(i - 1) == op2) {
 			int res = evaluateSimple(nums.at(i), nums.at(i - 1), op2);
 
@@ -80,7 +80,7 @@ void Numparser::evaluateOpLR(char op1, char op2) {
 
 			nums.insert(nums.begin() + i, res);
 
-			ops.erase(ops.begin() + i);
+			ops.erase(ops.begin() + i - 1);
 		}
 	}
 }
