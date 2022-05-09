@@ -31,6 +31,9 @@ void Numparser::print() {
 
 void Numparser::evaluateAll() {
 	// Evaluates all numerical equations
+
+	printf("%d %d", nums.size(), ops.size());
+
 	if (nums.size() - 1 != ops.size()) {
 		perror("Invalid Equation.");
 		exit(-1);
