@@ -32,7 +32,7 @@ void Numparser::print() {
 void Numparser::evaluateAll() {
 	// Evaluates all numerical equations
 
-	fprintf(stderr, "%d %d", nums.size(), ops.size());
+	fprintf(stderr, "%u %u", nums.size(), ops.size());
 
 	if (nums.size() - 1 != ops.size()) {
 		perror("Invalid Equation.");
