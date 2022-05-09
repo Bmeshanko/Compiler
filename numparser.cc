@@ -50,7 +50,7 @@ void Numparser::evaluateAll() {
 
 void Numparser::evaluateOp(char op) {
 	for (int i = ops.size(); i >= 1; i--) {
-		if (ops.at(i - 1) == op) {
+		if (ops.at(op.size() - i) == op) {
 			int res = evaluateSimple(nums.at(i), nums.at(i - 1), op);
 
 			nums.erase(nums.begin() + i);
@@ -74,7 +74,7 @@ void Numparser::evaluateOpLR(char op1, char op2) {
 			nums.insert(nums.begin() + i, res);
 
 			ops.erase(ops.begin() + i - 1);
-		} else if (ops.at(i - 1) == op2) {
+		} else if (ops.at(op.size() - i) == op2) {
 			int res = evaluateSimple(nums.at(i), nums.at(i - 1), op2);
 
 			nums.erase(nums.begin() + i);
