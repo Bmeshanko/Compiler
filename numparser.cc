@@ -35,7 +35,7 @@ void Numparser::evaluateAll() {
 	fprintf(stderr, "%lu %lu", nums.size(), ops.size());
 
 	if (nums.size() - 1 != ops.size()) {
-		perror("Invalid Equation.");
+		perror("Inv1alid Equation.");
 		exit(-1);
 	}
 
