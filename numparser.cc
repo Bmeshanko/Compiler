@@ -48,7 +48,7 @@ void Numparser::evaluateAll() {
 
 void Numparser::evaluateOp(char op) {
 	for (int i = ops.size() - 1; i >= 0; i--) {
-		fprintf(stderr, "%c", ops.at(i);
+		fprintf(stderr, "%c", ops.at(i));
 		if (ops.at(i) == op) {
 			int res = evaluateSimple(nums.at(i), nums.at(i + 1), op);
 
