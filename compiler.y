@@ -30,7 +30,14 @@ goal:
 	;
 
 command:
-	FUNCTION arguments end
+	function arguments end
+	;
+
+function:
+	FUNCTION {
+		std::string * func_str = new std::string ( *$1 );
+		printf("%s", func_str->c_str());
+	}
 	;
 
 arguments:
