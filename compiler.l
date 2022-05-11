@@ -47,6 +47,7 @@
 }
 
 [^ ]*[()] {
+	yylval.func_string = new std::string(yytext);
 	return FUNCTION;
 }
 
