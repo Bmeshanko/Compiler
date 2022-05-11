@@ -43,9 +43,6 @@ void Numparser::evaluateAll() {
 	evaluateOp('%');
 	evaluateOpLR('*', '/');
 	evaluateOpLR('+', '-');
-	
-	print();
-
 }
 
 void Numparser::evaluateOp(char op) {
@@ -110,8 +107,6 @@ int Numparser::evaluateSimple(int num2, int num1, char op) {
 			res = num1 % num2;
 			break;
 	}
-
-	fprintf(stderr, "\n\n%c %d %d %d\n\n", op, res, num1, num2);
 
 	return res;
 
