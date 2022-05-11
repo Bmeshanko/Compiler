@@ -30,7 +30,11 @@ goal:
 	;
 
 command:
-	number end
+	FUNCTION arguments end
+	;
+
+arguments:
+	number
 	;
 
 end:
