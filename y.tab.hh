@@ -56,24 +56,26 @@ extern int yydebug;
   enum yytokentype
   {
     NUMBER = 258,
-    ADD = 259,
-    SUBTRACT = 260,
-    MULTIPLY = 261,
-    DIVIDE = 262,
-    MODULE = 263,
-    EXPONENT = 264,
-    SEMICOLON = 265
+    FUNCTION = 259,
+    ADD = 260,
+    SUBTRACT = 261,
+    MULTIPLY = 262,
+    DIVIDE = 263,
+    MODULE = 264,
+    EXPONENT = 265,
+    SEMICOLON = 266
   };
 #endif
 /* Tokens.  */
 #define NUMBER 258
-#define ADD 259
-#define SUBTRACT 260
-#define MULTIPLY 261
-#define DIVIDE 262
-#define MODULE 263
-#define EXPONENT 264
-#define SEMICOLON 265
+#define FUNCTION 259
+#define ADD 260
+#define SUBTRACT 261
+#define MULTIPLY 262
+#define DIVIDE 263
+#define MODULE 264
+#define EXPONENT 265
+#define SEMICOLON 266
 
 /* Value type.  */
 #if ! defined YYSTYPE && ! defined YYSTYPE_IS_DECLARED
@@ -82,8 +84,9 @@ union YYSTYPE
 #line 7 "compiler.y"
 
 	std::string* num_string;
+	std::string* func_string;
 
-#line 87 "y.tab.hh"
+#line 90 "y.tab.hh"
 
 };
 typedef union YYSTYPE YYSTYPE;
