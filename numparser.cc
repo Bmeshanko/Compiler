@@ -1,6 +1,7 @@
 #include <vector>
 #include <stdio.h>
 #include <stdlib.h>
+#include <math.h>
 #include "numparser.hh"
 
 Numparser::Numparser() {
@@ -104,6 +105,9 @@ int Numparser::evaluateSimple(int num1, int num2, char op) {
 			break;
 		case '%':
 			res = num1 % num2;
+			break;
+		case '^':
+			res = (int) pow(num1, num2);
 			break;
 	}
 
