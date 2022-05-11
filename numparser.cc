@@ -32,8 +32,6 @@ void Numparser::print() {
 void Numparser::evaluateAll() {
 	// Evaluates all numerical equations
 
-	print();
-
 	if (nums.size() - 1 != ops.size()) {
 		perror("Invalid Equation.");
 		exit(-1);
@@ -43,6 +41,8 @@ void Numparser::evaluateAll() {
 	evaluateOp('%');
 	evaluateOpLR('*', '/');
 	evaluateOpLR('+', '-');
+
+	print();
 }
 
 void Numparser::evaluateOp(char op) {
