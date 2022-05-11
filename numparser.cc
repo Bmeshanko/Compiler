@@ -1,5 +1,4 @@
 #include <vector>
-
 #include <stdio.h>
 #include <stdlib.h>
 #include "numparser.hh"
@@ -109,7 +108,7 @@ int Numparser::evaluateSimple(int num2, int num1, char op) {
 			break;
 	}
 
-	fprintf(stderr, "%c %d %d %d", op, res, num1, num2);
+	fprintf(stderr, "%c %d %d %d\n", op, res, num1, num2);
 
 	return res;
 
