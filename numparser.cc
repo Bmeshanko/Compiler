@@ -58,7 +58,7 @@ void Numparser::evaluateOp(char op) {
 
 			nums.insert(nums.begin() + i, res);
 
-			ops.erase(ops.begin() + i);
+			ops.erase(ops.begin() + i - 1);
 		}
 	}
 }
@@ -82,7 +82,7 @@ void Numparser::evaluateOpLR(char op1, char op2) {
 
 			nums.insert(nums.begin() + i - 1, res);
 
-			ops.erase(ops.begin() + i - 1);
+			ops.erase(ops.begin() + nums.size() - i);
 		}
 	}
 }
