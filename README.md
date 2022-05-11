@@ -1,6 +1,8 @@
 # Hello! I am planning to use this project to follow the steps of the collosal task of building a custom-made Programming Language that can compile into C code, which can then be compiled into machine code.
 
-<b>The project will follow these steps:</b>
+I am taking CS352: Compilers: Practice and Principles at Purdue University this fall and this project should give me some ideas to start with. I plan to revisit or complete this project after taking the course during the Winter Break.
+
+<b>The project as planned will follow these steps:</b>
 
 - Building a Numerical Parser that can convert mathematical expressions into integers.
 
