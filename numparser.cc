@@ -1,5 +1,5 @@
 #include <vector>
-#include </Compiler/lib.h>
+#include <./lib.h>
 #include <math.h>
 #include "numparser.hh"
 
