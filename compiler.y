@@ -6,9 +6,11 @@
 %union
 {
 	std::string* num_string;
+	std::string* func_string;
 }
 
 %token <num_string> NUMBER
+%token <func_string> FUNCTION
 %token ADD SUBTRACT MULTIPLY DIVIDE MODULE EXPONENT SEMICOLON 
 
 %{
