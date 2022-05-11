@@ -86,7 +86,6 @@ void Numparser::evaluateOpLR(char op1, char op2) {
 
 int Numparser::evaluateSimple(int num1, int num2, char op) {
 	// Evaluates a numerical equation with two operators.
-	// Numbers are given in reverse order, so we must switch the order.
 
 	int res;
 
