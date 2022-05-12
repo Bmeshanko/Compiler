@@ -1,7 +1,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-const char * substr(char * str, int start) {
+char * substr(char * str, int start) {
 	if (start < 0 || start > strlen(str)) return NULL;
 
 	char * sub = (char *) malloc(strlen(str) - start);
@@ -13,7 +13,7 @@ const char * substr(char * str, int start) {
 	return sub;
 }
 
-const char * substr(char * str, int start, int end) {
+char * substr(char * str, int start, int end) {
 	if (start > end || end > strlen(str) || start < 0) return NULL;
 
 	char * sub = (char *) malloc(end - start);

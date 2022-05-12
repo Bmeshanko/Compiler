@@ -1660,5 +1660,21 @@ void yyerror(const char * s) {
 }
 
 const char ** parse_args(char * func_string) {
-	
+	char * temp1 = substr(func_string, indexof(func_string, '(' + 1);
+	char * temp2 = substr(temp1, 0, strlen(temp1) - 1);
+
+	free(temp1);
+
+	char ** args = (char **) malloc(256);
+
+	int num_args = 0;
+
+	for (int i = 0; i < strlen(temp2); i++) {
+		if (charAt(temp2, i) == ',') {
+			num_args++;
+			continue;
+		}
+
+		args[num_args][i] = charAt(temp2, i);
+	}
 }
