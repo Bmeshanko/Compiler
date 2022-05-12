@@ -11,7 +11,8 @@
 }
 
 %token <num_string> NUMBER
-%token <func_string> <args_string> FUNCTION
+%token <func_string> FUNCTION
+%token <args_string> FUNCTION
 %token ADD SUBTRACT MULTIPLY DIVIDE MODULE EXPONENT SEMICOLON 
 
 %{
