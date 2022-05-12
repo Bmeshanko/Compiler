@@ -1660,7 +1660,7 @@ void yyerror(const char * s) {
 }
 
 char ** parse_args(char * func_string) {
-	char * temp1 = substr(func_string, indexOf(func_string, '(' + 1));
+	char * temp1 = substr(func_string, indexOf(func_string, '(') + 1);
 	char * temp2 = substr(temp1, 0, strlen(temp1) - 1);
 
 	free(temp1);
