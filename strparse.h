@@ -14,9 +14,16 @@ const char * substr(char * str, int start, int end) {
 }
 
 char charAt(char * str, int index) {
-
+	return *(str + index);
 }
 
+// Returns the index of the first instance
+// Of character ch in string str.
 int indexOf(char * str, char ch) {
-
+	for (int i = 0; i < strlen(str); i++) {
+		if (*(str + i) == ch) {
+			return i;
+		}
+	}	
+	return -1;
 }
