@@ -20,7 +20,7 @@ I have completed the Numerical Parser that handles Order of Operations. I have n
 
 # In Progress
 
-Currently, I am working on creating a Function Token Parser that will take the form of `function(arg1, arg2, ...)` and can accept 0 or more arguments passed to it. I will need to create function pointers and execute those functions based off of the input to the file. This is very difficult, since there is not a direct way to convert the <u>string</u> `print(1 + 2)` into the <u>function</u> `printf("%d", 1 + 2)`.
+Currently, I am working on creating a Function Token Parser that will take the form of `function(arg1, arg2, ...)` and can accept 0 or more arguments passed to it. I will need to create function pointers and execute those functions based off of the input to the file. This is very difficult, since there is not a direct way to convert the <strong>string</strong> `print(1 + 2)` into the <strong>function</strong> `printf("%d", 1 + 2)`.
 
 # Technologies Used
 
