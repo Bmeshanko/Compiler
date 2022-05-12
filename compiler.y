@@ -7,21 +7,22 @@
 {
 	std::string* num_string;
 	std::string* func_string;
-	std::string* args_string;
 }
 
 %token <num_string> NUMBER
 %token <func_string> FUNCTION
-%token <args_string> FUNCTION
 %token ADD SUBTRACT MULTIPLY DIVIDE MODULE EXPONENT SEMICOLON 
 
 %{
 
 #include "compiler.hh"
 #include <stdlib.h>
+#include "strparse.h"
 
 void yyerror(const char * s);
 int yylex();
+
+const char ** parse_args(char * func_string);
 
 %}
 
@@ -93,3 +94,6 @@ void yyerror(const char * s) {
 	fprintf(stderr, "%s", s);
 }
 
+const char ** parse_args(char * func_string) {
+	
+}
