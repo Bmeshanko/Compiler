@@ -19,7 +19,7 @@ I am taking CS352: Compilers: Practice and Principles at Purdue University this 
 
 - Flex - Lexical Analysis
 - Bison - Parser and Context-Free Grammar
-- C/C++ - Execution + Custom Libraries
+- C/C++ - Execution and Custom Libraries
 - Makefile - Automated Commits and Compiling
 - https://regex101.com/ - Testing Regexes
  
