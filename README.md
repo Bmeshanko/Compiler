@@ -14,6 +14,13 @@ I am taking CS352: Compilers: Practice and Principles at Purdue University this 
 - Adding Additonal Functionality (Custom Objects/Extensibility). 
 	- Building an Object Oriented Programming Language would be incredibly difficult, so an interesting place to start would be with variables that can have multiple parameters to them (Similar to JavaScript Objects).
 
+# Completed
+
+I have completed the Numerical Parser that handles Order of Operations. I have not implemented parentheses yet, but something like `1 + 1 * 2` will correctly output 3, not 4 like a left-to-right Numerical Parser would do.
+
+# In Progress
+
+Currently, I am working on creating a Function Token Parser that will take the form of `function(arg1, arg2, ...)` and can accept 0 or more arguments passed to it. I will need to create function pointers and execute those functions based off of the input to the file. This is very difficult, since there is not a direct way to convert the <b>string</b> `print(1 + 2)` into the <b> function </b> `printf("%d", 1 + 2)`.
 
 # Technologies Used
 
