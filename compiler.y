@@ -23,7 +23,7 @@
 void yyerror(const char * s);
 int yylex();
 
-const char ** parse_args(char * func_string);
+char ** parse_args(char * func_string);
 
 %}
 
@@ -95,7 +95,7 @@ void yyerror(const char * s) {
 	fprintf(stderr, "%s", s);
 }
 
-const char ** parse_args(char * func_string) {
+char ** parse_args(char * func_string) {
 	char * temp1 = substr(func_string, indexOf(func_string, '(' + 1));
 	char * temp2 = substr(temp1, 0, strlen(temp1) - 1);
 
