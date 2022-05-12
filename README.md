@@ -13,3 +13,13 @@ I am taking CS352: Compilers: Practice and Principles at Purdue University this 
 
 - Adding Additonal Functionality (Custom Objects/Extensibility). 
 	- Building an Object Oriented Programming Language would be incredibly difficult, so an interesting place to start would be with variables that can have multiple parameters to them (Similar to JavaScript Objects).
+
+
+# Technologies Used
+
+- Flex - Lexical Analysis
+- Bison - Parser and Context-Free Grammar
+- C/C++ - Execution + Custom Libraries
+- Makefile - Automated Commits and Compiling
+- https://regex101.com/ - Testing Regexes
+ 
