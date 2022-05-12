@@ -839,15 +839,16 @@ case 9:
 YY_RULE_SETUP
 #line 49 "compiler.l"
 {
+	yylval.func_string = new std::string(yytext);
 	return FUNCTION;
 }
 	YY_BREAK
 case 10:
 YY_RULE_SETUP
-#line 53 "compiler.l"
+#line 54 "compiler.l"
 ECHO;
 	YY_BREAK
-#line 851 "lex.yy.cc"
+#line 852 "lex.yy.cc"
 case YY_STATE_EOF(INITIAL):
 	yyterminate();
 
@@ -1864,7 +1865,7 @@ void yyfree (void * ptr )
 
 #define YYTABLES_NAME "yytables"
 
-#line 53 "compiler.l"
+#line 54 "compiler.l"
 
 
 int main(int argc, char** argv) {
