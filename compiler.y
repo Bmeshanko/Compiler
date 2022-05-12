@@ -46,6 +46,7 @@ function:
 
 arguments:
 	number
+	| // Can be blank
 	;
 
 end:
