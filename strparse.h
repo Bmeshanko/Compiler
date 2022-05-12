@@ -2,7 +2,7 @@
 #include <string.h>
 
 const char * substr(char * str, int start) {
-	char * sub = malloc(strlen(str) - start);
+	char * sub = (char *) malloc(strlen(str) - start);
 	for (int i = start; i < strlen(str); i++) {
 		*(sub + i - start) = *(str + i);
 	}

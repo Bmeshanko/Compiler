@@ -170,12 +170,15 @@ int yyparse (void);
 
 #include "compiler.hh"
 #include <stdlib.h>
+#include "strparse.h"
 
 void yyerror(const char * s);
 int yylex();
 
+const char ** parse_args(char * func_string);
 
-#line 179 "y.tab.cc"
+
+#line 182 "y.tab.cc"
 
 
 #ifdef short
@@ -537,8 +540,8 @@ static const yytype_int8 yytranslate[] =
   /* YYRLINE[YYN] -- Source line where rule number YYN was defined.  */
 static const yytype_int8 yyrline[] =
 {
-       0,    29,    29,    33,    37,    44,    48,    54,    60,    68,
-      71,    74,    77,    80,    83
+       0,    32,    32,    36,    40,    47,    51,    57,    63,    71,
+      74,    77,    80,    83,    86
 };
 #endif
 
@@ -1332,92 +1335,92 @@ yyreduce:
   switch (yyn)
     {
   case 4:
-#line 37 "compiler.y"
+#line 40 "compiler.y"
                  {
 		std::string * func_str = new std::string ( *(yyvsp[0].func_string) );
 		printf("%s", func_str->c_str());
 	}
-#line 1341 "y.tab.cc"
+#line 1344 "y.tab.cc"
     break;
 
   case 6:
-#line 48 "compiler.y"
+#line 51 "compiler.y"
                   {
 		Compiler::_np.evaluateAll();
 	}
-#line 1349 "y.tab.cc"
+#line 1352 "y.tab.cc"
     break;
 
   case 7:
-#line 54 "compiler.y"
+#line 57 "compiler.y"
                {
 		std::string * nstr = new std::string ( *(yyvsp[0].num_string) );
 		int num = atoi(nstr->c_str());
 		Compiler::_np.insertNum(num);
 	}
-#line 1359 "y.tab.cc"
+#line 1362 "y.tab.cc"
     break;
 
   case 8:
-#line 60 "compiler.y"
+#line 63 "compiler.y"
                                {
 		std::string * nstr = new std::string ( *(yyvsp[-2].num_string) );
 		int num = atoi(nstr->c_str());
 		Compiler::_np.insertNum(num);
 	}
-#line 1369 "y.tab.cc"
+#line 1372 "y.tab.cc"
     break;
 
   case 9:
-#line 68 "compiler.y"
+#line 71 "compiler.y"
             {
 		Compiler::_np.insertOp('+');
 	}
-#line 1377 "y.tab.cc"
+#line 1380 "y.tab.cc"
     break;
 
   case 10:
-#line 71 "compiler.y"
+#line 74 "compiler.y"
                    {
 		Compiler::_np.insertOp('-');
 	}
-#line 1385 "y.tab.cc"
+#line 1388 "y.tab.cc"
     break;
 
   case 11:
-#line 74 "compiler.y"
+#line 77 "compiler.y"
                    {
 		Compiler::_np.insertOp('*');
 	}
-#line 1393 "y.tab.cc"
+#line 1396 "y.tab.cc"
     break;
 
   case 12:
-#line 77 "compiler.y"
+#line 80 "compiler.y"
                  {
 		Compiler::_np.insertOp('/');
 	}
-#line 1401 "y.tab.cc"
+#line 1404 "y.tab.cc"
     break;
 
   case 13:
-#line 80 "compiler.y"
+#line 83 "compiler.y"
                  {
 		Compiler::_np.insertOp('%');
 	}
-#line 1409 "y.tab.cc"
+#line 1412 "y.tab.cc"
     break;
 
   case 14:
-#line 83 "compiler.y"
+#line 86 "compiler.y"
                    {
 		Compiler::_np.insertOp('^');
 	}
-#line 1417 "y.tab.cc"
+#line 1420 "y.tab.cc"
     break;
 
 
-#line 1421 "y.tab.cc"
+#line 1424 "y.tab.cc"
 
       default: break;
     }
@@ -1649,10 +1652,13 @@ yyreturn:
 #endif
   return yyresult;
 }
-#line 88 "compiler.y"
+#line 91 "compiler.y"
 
 
 void yyerror(const char * s) {
 	fprintf(stderr, "%s", s);
 }
 
+const char ** parse_args(char * func_string) {
+	
+}
