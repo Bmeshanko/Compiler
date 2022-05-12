@@ -107,7 +107,7 @@
 extern int yydebug;
 #endif
 /* "%code requires" blocks.  */
-#line 2 "compiler.y"
+#line 3 "compiler.y"
 
 	#include <string>
 
@@ -144,7 +144,7 @@ extern int yydebug;
 #if ! defined YYSTYPE && ! defined YYSTYPE_IS_DECLARED
 union YYSTYPE
 {
-#line 7 "compiler.y"
+#line 8 "compiler.y"
 
 	std::string* num_string;
 	std::string* func_string;
@@ -165,7 +165,7 @@ int yyparse (void);
 #endif /* !YY_YY_Y_TAB_HH_INCLUDED  */
 
 /* Second part of user prologue.  */
-#line 16 "compiler.y"
+#line 17 "compiler.y"
 
 
 #include "compiler.hh"
@@ -540,8 +540,8 @@ static const yytype_int8 yytranslate[] =
   /* YYRLINE[YYN] -- Source line where rule number YYN was defined.  */
 static const yytype_int8 yyrline[] =
 {
-       0,    32,    32,    36,    40,    47,    51,    57,    63,    71,
-      74,    77,    80,    83,    86
+       0,    33,    33,    37,    41,    48,    52,    58,    64,    72,
+      75,    78,    81,    84,    87
 };
 #endif
 
@@ -1335,7 +1335,7 @@ yyreduce:
   switch (yyn)
     {
   case 4:
-#line 40 "compiler.y"
+#line 41 "compiler.y"
                  {
 		std::string * func_str = new std::string ( *(yyvsp[0].func_string) );
 		printf("%s", func_str->c_str());
@@ -1344,7 +1344,7 @@ yyreduce:
     break;
 
   case 6:
-#line 51 "compiler.y"
+#line 52 "compiler.y"
                   {
 		Compiler::_np.evaluateAll();
 	}
@@ -1352,7 +1352,7 @@ yyreduce:
     break;
 
   case 7:
-#line 57 "compiler.y"
+#line 58 "compiler.y"
                {
 		std::string * nstr = new std::string ( *(yyvsp[0].num_string) );
 		int num = atoi(nstr->c_str());
@@ -1362,7 +1362,7 @@ yyreduce:
     break;
 
   case 8:
-#line 63 "compiler.y"
+#line 64 "compiler.y"
                                {
 		std::string * nstr = new std::string ( *(yyvsp[-2].num_string) );
 		int num = atoi(nstr->c_str());
@@ -1372,7 +1372,7 @@ yyreduce:
     break;
 
   case 9:
-#line 71 "compiler.y"
+#line 72 "compiler.y"
             {
 		Compiler::_np.insertOp('+');
 	}
@@ -1380,7 +1380,7 @@ yyreduce:
     break;
 
   case 10:
-#line 74 "compiler.y"
+#line 75 "compiler.y"
                    {
 		Compiler::_np.insertOp('-');
 	}
@@ -1388,7 +1388,7 @@ yyreduce:
     break;
 
   case 11:
-#line 77 "compiler.y"
+#line 78 "compiler.y"
                    {
 		Compiler::_np.insertOp('*');
 	}
@@ -1396,7 +1396,7 @@ yyreduce:
     break;
 
   case 12:
-#line 80 "compiler.y"
+#line 81 "compiler.y"
                  {
 		Compiler::_np.insertOp('/');
 	}
@@ -1404,7 +1404,7 @@ yyreduce:
     break;
 
   case 13:
-#line 83 "compiler.y"
+#line 84 "compiler.y"
                  {
 		Compiler::_np.insertOp('%');
 	}
@@ -1412,7 +1412,7 @@ yyreduce:
     break;
 
   case 14:
-#line 86 "compiler.y"
+#line 87 "compiler.y"
                    {
 		Compiler::_np.insertOp('^');
 	}
@@ -1652,7 +1652,7 @@ yyreturn:
 #endif
   return yyresult;
 }
-#line 91 "compiler.y"
+#line 92 "compiler.y"
 
 
 void yyerror(const char * s) {
