@@ -16,7 +16,7 @@ I am taking CS352: Compilers: Practice and Principles at Purdue University this 
 
 # Completed
 
-I have completed the Numerical Parser that handles Order of Operations. I have not implemented parentheses yet, but something like 
+I have completed the Numerical Parser that handles Order of Operations. I have not implemented parentheses yet, but something like\n 
 `1 + 1 * 2` will correctly output 3, not 4 like a left-to-right Numerical Parser would do.
 
 # In Progress
