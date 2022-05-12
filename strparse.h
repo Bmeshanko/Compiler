@@ -2,15 +2,27 @@
 #include <string.h>
 
 const char * substr(char * str, int start) {
+	if (start < 0 || start > strlen(str)) return NULL;
+
 	char * sub = (char *) malloc(strlen(str) - start);
+
 	for (int i = start; i < strlen(str); i++) {
 		*(sub + i - start) = *(str + i);
 	}
+
 	return sub;
 }
 
 const char * substr(char * str, int start, int end) {
+	if (start > end || end > strlen(str) || start < 0) return NULL;
 
+	char * sub = (char *) malloc(end - start);
+
+	for (int i = start; i < end; i++) {
+		*(sub + i - start) = *(str + i);
+	}
+
+	return sub;
 }
 
 char charAt(char * str, int index) {
@@ -24,6 +36,7 @@ int indexOf(char * str, char ch) {
 		if (*(str + i) == ch) {
 			return i;
 		}
-	}	
+	}
+
 	return -1;
 }

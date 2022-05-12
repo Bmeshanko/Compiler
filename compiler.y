@@ -1,4 +1,5 @@
 %code requires
+
 {
 	#include <string>
 }
