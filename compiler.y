@@ -40,7 +40,7 @@ command:
 function:
 	FUNCTION {
 		std::string * func_str = new std::string ( *$1 );
-		printf("%s", func_str->c_str());
+		printf("\n%s\n", func_str->c_str());
 	}
 	;
 
