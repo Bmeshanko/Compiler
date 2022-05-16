@@ -46,7 +46,7 @@
 	return SEMICOLON;
 }
 
-[^ ]*([^,]) {
+(.*)[(](.*)[)] {
 	// func_string will contain the 
 	yylval.func_string = new std::string(yytext);
 	return FUNCTION;
