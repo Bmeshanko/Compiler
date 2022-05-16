@@ -1338,7 +1338,7 @@ yyreduce:
 #line 41 "compiler.y"
                  {
 		std::string * func_str = new std::string ( *(yyvsp[0].func_string) );
-		printf("%s", func_str->c_str());
+		printf("\n%s\n", func_str->c_str());
 	}
 #line 1344 "y.tab.cc"
     break;
