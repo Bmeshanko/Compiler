@@ -97,6 +97,9 @@ void yyerror(const char * s) {
 }
 
 char ** parse_args(char * func_string) {
+	// Creates an array of argument strings from
+	// A single string that separates by commas.
+
 	char * temp1 = substr(func_string, indexOf(func_string, '(') + 1);
 	char * temp2 = substr(temp1, 0, strlen(temp1) - 1);
 
