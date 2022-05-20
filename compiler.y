@@ -106,7 +106,6 @@ char ** parse_args(char * func_string) {
 	free(temp1);
 
 	char ** args = (char **) malloc(256);
-
 	int num_args = 0;
 
 	for (int i = 0; i < strlen(temp2); i++) {
