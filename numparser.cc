@@ -110,8 +110,6 @@ int Numparser::evaluateSimple(int num1, int num2, char op) {
 			break;
 	}
 
-	fprintf(stderr, "%c %d %d %d\n", op, res, num1, num2);
-
 	return res;
 
 }
