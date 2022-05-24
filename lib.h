@@ -6,4 +6,4 @@ int _pnum(int num) {
 	return 0;
 }
 
-int (*pnum)(const char*, ...) = _pnum;
+int (*pnum)(int) = _pnum;
