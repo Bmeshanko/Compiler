@@ -12,8 +12,8 @@ git-commit:
 	git commit -a -m "Commit from Makefile" >> .local.git.out || echo
 	git push >> .local.git.out || echo
 
-y.tab.o: parser.y
-	$(YACC) parser.y
+y.tab.o: interpreter.y
+	$(YACC) interpreter.y
 	$(CC) -c y.tab.c
 
 lex.yy.o: parser.l

@@ -146,7 +146,7 @@ extern int yydebug;
 #if ! defined YYSTYPE && ! defined YYSTYPE_IS_DECLARED
 union YYSTYPE
 {
-#line 1 "parser.y"
+#line 1 "interpreter.y"
 
 	int val;
 
@@ -194,7 +194,7 @@ typedef enum yysymbol_kind_t yysymbol_kind_t;
 
 
 /* Second part of user prologue.  */
-#line 5 "parser.y"
+#line 5 "interpreter.y"
 
 	#include <stdio.h>
 	int yyerror (char const *s) {
@@ -1160,7 +1160,7 @@ yyreduce:
   switch (yyn)
     {
   case 5: /* Line: Exp NWL  */
-#line 27 "parser.y"
+#line 27 "interpreter.y"
           {
 	printf("%d\n", (yyvsp[-1].val));
 }
@@ -1168,61 +1168,61 @@ yyreduce:
     break;
 
   case 6: /* Exp: NUM  */
-#line 32 "parser.y"
+#line 32 "interpreter.y"
          { (yyval.val) = (yyvsp[0].val); }
 #line 1174 "y.tab.c"
     break;
 
   case 7: /* Exp: Exp PLS Exp  */
-#line 33 "parser.y"
+#line 33 "interpreter.y"
               { (yyval.val) = (yyvsp[-2].val) + (yyvsp[0].val); }
 #line 1180 "y.tab.c"
     break;
 
   case 8: /* Exp: Exp MNS Exp  */
-#line 34 "parser.y"
+#line 34 "interpreter.y"
               { (yyval.val) = (yyvsp[-2].val) - (yyvsp[0].val); }
 #line 1186 "y.tab.c"
     break;
 
   case 9: /* Exp: Exp MLT Exp  */
-#line 35 "parser.y"
+#line 35 "interpreter.y"
               { (yyval.val) = (yyvsp[-2].val) * (yyvsp[0].val); }
 #line 1192 "y.tab.c"
     break;
 
   case 10: /* Exp: Exp DIV Exp  */
-#line 36 "parser.y"
+#line 36 "interpreter.y"
               { (yyval.val) = (yyvsp[-2].val) / (yyvsp[0].val); }
 #line 1198 "y.tab.c"
     break;
 
   case 11: /* Exp: Exp MOD Exp  */
-#line 37 "parser.y"
+#line 37 "interpreter.y"
               { (yyval.val) = (yyvsp[-2].val) % (yyvsp[0].val); }
 #line 1204 "y.tab.c"
     break;
 
   case 12: /* Exp: Exp AND Exp  */
-#line 38 "parser.y"
+#line 38 "interpreter.y"
               { (yyval.val) = (yyvsp[-2].val) & (yyvsp[0].val); }
 #line 1210 "y.tab.c"
     break;
 
   case 13: /* Exp: Exp OR Exp  */
-#line 39 "parser.y"
+#line 39 "interpreter.y"
              { (yyval.val) = (yyvsp[-2].val) | (yyvsp[0].val); }
 #line 1216 "y.tab.c"
     break;
 
   case 14: /* Exp: Exp XOR Exp  */
-#line 40 "parser.y"
+#line 40 "interpreter.y"
               { (yyval.val) = (yyvsp[-2].val) ^ (yyvsp[0].val); }
 #line 1222 "y.tab.c"
     break;
 
   case 15: /* Exp: LPA Exp RPA  */
-#line 41 "parser.y"
+#line 41 "interpreter.y"
               { (yyval.val) = (yyvsp[-1].val);}
 #line 1228 "y.tab.c"
     break;
@@ -1421,4 +1421,4 @@ yyreturnlab:
   return yyresult;
 }
 
-#line 43 "parser.y"
+#line 43 "interpreter.y"
