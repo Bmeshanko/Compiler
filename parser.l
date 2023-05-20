@@ -39,8 +39,5 @@ int main(int argc, char** argv) {
 
 	yyparse();
 
-	//printf("\nThere are %d chars and %d lines\n\n", chars, lines);
-
 	return EXIT_SUCCESS;
-
 }
