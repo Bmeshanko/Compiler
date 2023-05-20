@@ -2,55 +2,27 @@
 
 	#include <stdio.h>
 	#include <stdlib.h>
-	#include <string>
-	#include "y.tab.hh"
-	int chars = 0;
-	int lines = 0;
 
 %}
 
-%option noyywrap
+DIGIT	[0-9]
 
 %%
 
-[0-9]* {
-	yylval.num_string = new std::string(yytext);
-	return NUMBER;
+
+"-"?{DIGIT}+ {
+	yylval = atoi(yytext);
+	return NUM;
 }
 
-"^" {
-	return EXPONENT;
-}
-
-"*" {
-	return MULTIPLY;
-}
-
-"/" {
-	return DIVIDE;
-}
-
-"+" {
-	return ADD;
-}
-
-"-" {
-	return SUBTRACT;
-}
-
-"%" {
-	return MODULE;
-}
-
-";" {
-	return SEMICOLON;
-}
-
-(.*)[(](.*)[)] {
-	// func_string will contain the 
-	yylval.func_string = new std::string(yytext);
-	return FUNCTION;
-}
+"+" { return PLS; }
+"-" { return MNS; }
+"*" { return MLT; }
+"/" { return DIV; }
+"%" { return MOD; }
+"(" { return LPA; }
+")" { return RPA; }
+"\n" { return NWL; }
 
 %%
 
