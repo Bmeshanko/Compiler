@@ -1,8 +1,7 @@
 %{
-
 	#include <stdio.h>
 	#include <stdlib.h>
-	#include "y.tab.hh"
+	#include "y.tab.h"
 %}
 
 %option noyywrap
@@ -13,7 +12,7 @@ DIGIT	[0-9]
 
 
 "-"?{DIGIT}+ {
-	yylval = atoi(yytext);
+	yylval.val = atoi(yytext);
 	return NUM;
 }
 
@@ -21,7 +20,10 @@ DIGIT	[0-9]
 "-" { return MNS; }
 "*" { return MLT; }
 "/" { return DIV; }
-"%" { return MOD; }
+"%" { return DIV; }
+"&" { return AND; }
+"|" { return OR; }
+"^" { return XOR; }
 "(" { return LPA; }
 ")" { return RPA; }
 "\n" { return NWL; }
