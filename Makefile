@@ -13,11 +13,11 @@ git-commit:
 	git push >> .local.git.out || echo
 
 lex.yy.o: parser.l
-	$(LEX) -o lex.yy.cc parser.l
+	$(LEX) parser.l
 	$(CC) -c lex.yy.cc
 
 y.tab.o: parser.y
-	$(YACC) -o y.tab.cc parser.y
+	$(YACC) parser.y
 	$(CC) -c y.tab.cc
 
 compiler: lex.yy.o y.tab.o
