@@ -5,6 +5,8 @@
 
 %}
 
+%option noyywrap
+
 DIGIT	[0-9]
 
 %%
