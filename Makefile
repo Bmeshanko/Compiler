@@ -17,7 +17,7 @@ lex.yy.o: parser.l
 	$(CC) -c lex.yy.cc
 
 y.tab.o: parser.y
-	$(YACC) parser.y
+	$(YACC) -o y.tab.cc parser.y
 	$(CC) -c y.tab.cc
 
 compiler: lex.yy.o y.tab.o

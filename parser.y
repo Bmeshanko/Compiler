@@ -1,5 +1,5 @@
 %union {
-	double res;
+	double val;
 }
 
 %{
@@ -11,12 +11,13 @@
 
 %token PLS MNS MLT DIV MOD
 %token LPA RPA 
-%token NUM
+%token <val> NUM
 %token NWL
 %start Seq
-%type <res> Exp
+%type <val> Exp
 
 %%
+
 Seq: 
 | Seq Line
 
