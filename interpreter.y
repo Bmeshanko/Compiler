@@ -15,6 +15,8 @@
 %token LPA RPA 
 %token <val> NUM
 %token NWL
+%token END
+
 %start Seq
 %type <val> Exp
 
@@ -23,9 +25,11 @@
 Seq: 
 | Seq Line
 
-Line: NWL
-| Exp NWL {
-	printf("%d\n", $1);
+End: NWL | END
+
+Line: End
+| Exp End {
+	printf("Hey! %d\n", $1);
 }
 ;
 

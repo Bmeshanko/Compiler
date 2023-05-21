@@ -15,6 +15,7 @@
 %token LPA RPA 
 %token <val> NUM
 %token NWL
+%token END
 %start Seq
 %type <val> Exp
 

@@ -65,7 +65,8 @@ extern int yydebug;
     LPA = 266,                     /* LPA  */
     RPA = 267,                     /* RPA  */
     NUM = 268,                     /* NUM  */
-    NWL = 269                      /* NWL  */
+    NWL = 269,                     /* NWL  */
+    END = 270                      /* END  */
   };
   typedef enum yytokentype yytoken_kind_t;
 #endif
@@ -86,6 +87,7 @@ extern int yydebug;
 #define RPA 267
 #define NUM 268
 #define NWL 269
+#define END 270
 
 /* Value type.  */
 #if ! defined YYSTYPE && ! defined YYSTYPE_IS_DECLARED
@@ -95,7 +97,7 @@ union YYSTYPE
 
 	int val;
 
-#line 99 "y.tab.h"
+#line 101 "y.tab.h"
 
 };
 typedef union YYSTYPE YYSTYPE;

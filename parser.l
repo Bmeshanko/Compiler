@@ -27,6 +27,7 @@ DIGIT	[0-9]
 "(" { return LPA; }
 ")" { return RPA; }
 "\n" { return NWL; }
+";" { return END; }
 
 %%
 
