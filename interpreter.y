@@ -29,7 +29,7 @@ End: NWL | END
 
 Line: End
 | Exp End {
-	printf("Hey! %d\n", $1);
+	printf("%d\n", $1);
 }
 ;
 

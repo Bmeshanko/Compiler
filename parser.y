@@ -4,6 +4,7 @@
 
 %{
 	#include <stdio.h>
+	#include "tree.hh"
 	int yyerror (char const *s) {
 		return fprintf (stderr, "%s\n", s);
 	}
