@@ -3,7 +3,18 @@
 #include <map>
 
 class Tree {
-    
+    public:
+        Tree() {
+
+        }
+};
+
+class AST {
+    std::vector<Tree> nodes;
+    public:
+        AST() {
+            
+        }
 };
 
 class Prim : Tree {
@@ -28,7 +39,7 @@ class Env {
     std::map<std::string, int> vars;
 
     bool isDefined(std::string name) {
-        return vars.contains(name);
+        return vars.count(name) > 0;
     }
 
     int getVar(std::string name) {
@@ -37,7 +48,7 @@ class Env {
     
     void varDec(std::string name, int value) {
         if (isDefined(name)) {
-            fprintf(stderr, "Variable " + name.c_str() + " is already defined!\n");
+            fprintf(stderr, "Error: Variable %s is already defined.\n", name.c_str());
         } else {
             vars[name] = value;
         }
@@ -45,9 +56,9 @@ class Env {
 
     void varAssign(std::string name, int value) {
         if (!isDefined(name)) {
-            fprintf(stderr, "Variable " + name.c_str() + " is not yet defined!\n");
+            fprintf(stderr, "Error: Variable %s is undefined.\n", name.c_str());
         } else {
             vars[name] = value;
         }
     }
-}
+};

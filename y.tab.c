@@ -1169,7 +1169,7 @@ yyreduce:
   case 7: /* Line: Exp End  */
 #line 31 "interpreter.y"
           {
-	printf("Hey! %d\n", (yyvsp[-1].val));
+	printf("%d\n", (yyvsp[-1].val));
 }
 #line 1175 "y.tab.c"
     break;
