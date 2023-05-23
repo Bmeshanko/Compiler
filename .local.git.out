@@ -1,58 +1,11 @@
-M	.vscode/settings.json
-M	parser.l
-M	parser.y
-Your branch is up to date with 'origin/master'.
-M	.vscode/settings.json
-A	Makefile
-M	parser.l
-M	parser.y
-Your branch is up to date with 'origin/master'.
-M	.vscode/settings.json
-A	Makefile
-M	parser.l
-M	parser.y
-Your branch is up to date with 'origin/master'.
-[master a7ff3bf] Commit from Makefile
- 4 files changed, 133 insertions(+), 106 deletions(-)
- create mode 100644 Makefile
-Your branch is up to date with 'origin/master'.
-On branch master
-Your branch is up to date with 'origin/master'.
-
-Untracked files:
-  (use "git add <file>..." to include in what will be committed)
-	.local.git.out
-
-nothing added to commit but untracked files present (use "git add" to track)
-Your branch is up to date with 'origin/master'.
-On branch master
-Your branch is up to date with 'origin/master'.
-
-Untracked files:
-  (use "git add <file>..." to include in what will be committed)
-	.local.git.out
-	lex.yy.cc
-
-nothing added to commit but untracked files present (use "git add" to track)
-M	parser.l
-Your branch is up to date with 'origin/master'.
-[master dccf17e] Commit from Makefile
- 1 file changed, 2 insertions(+)
+M	.local.git.out
+D	.vscode/settings.json
 M	Makefile
-Your branch is ahead of 'origin/master' by 1 commit.
-  (use "git push" to publish your local commits)
-[master 31b29a3] Commit from Makefile
- 1 file changed, 2 insertions(+), 2 deletions(-)
-M	Makefile
-M	parser.y
+D	input
+M	lex.yy.c
+M	parser.c
+M	parser.h
+M	tree.c
+M	tree.h
+M	y.tab.c
 Your branch is up to date with 'origin/master'.
-[master f285a8b] Commit from Makefile
- 2 files changed, 5 insertions(+), 4 deletions(-)
-M	parser.l
-Your branch is up to date with 'origin/master'.
-[master 8e308f8] Commit from Makefile
- 1 file changed, 1 insertion(+), 1 deletion(-)
-M	parser.l
-Your branch is up to date with 'origin/master'.
-[master 726e2ee] Commit from Makefile
- 1 file changed, 3 deletions(-)
