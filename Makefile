@@ -6,11 +6,11 @@ all: compiler
 .PHONY: git-commit
 
 git-commit: 
-	git checkout master >> .local.git.out || echo
+	git checkout master
 	git add Makefile
 	git add *.y *.l
-	git commit -a -m "Commit from Makefile" >> .local.git.out || echo
-	git push >> .local.git.out || echo
+	git commit -a -m "Commit from Makefile"
+	git push
 
 interpreter.o: interpreter.y
 	$(YACC) -o interpreter.c interpreter.y
@@ -31,4 +31,4 @@ interpreter: interpreter.o lex.yy.o tree.h tree.c
 	$(CC) -o compiler lex.yy.o interpreter.o tree.h tree.c
 
 clean:
-	rm *.o compiler input
+	rm *.o compiler input.txt
