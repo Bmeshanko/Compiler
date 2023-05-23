@@ -31,4 +31,4 @@ interpreter: interpreter.o lex.yy.o tree.h tree.c
 	$(CC) -o compiler lex.yy.o interpreter.o tree.h tree.c
 
 clean:
-	rm *.o compiler input.txt
+	rm *.o compiler
