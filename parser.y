@@ -1,7 +1,3 @@
-%union {
-	int val;
-}
-
 %{
 	#include <stdio.h>
 	#include "tree.hh"
@@ -11,10 +7,16 @@
 	int yylex (void);
 %}
 
+%union {
+	Tree val;
+	int num;
+}
+
+
 %token PLS MNS MLT DIV MOD
 %token AND OR XOR
 %token LPA RPA 
-%token <val> NUM
+%token <num> NUM
 %token NWL
 %token END
 %start Seq
@@ -27,19 +29,20 @@ Seq:
 
 Line: NWL
 | Exp NWL {
-	printf("%d\n", $1);
+	printf("Parsed correctly");
 }
 ;
 
-Exp: NUM { $$ = $1; }
-| Exp PLS Exp { $$ = $1 + $3; }
-| Exp MNS Exp { $$ = $1 - $3; }
-| Exp MLT Exp { $$ = $1 * $3; }
-| Exp DIV Exp { $$ = $1 / $3; }
-| Exp MOD Exp { $$ = $1 % $3; }
-| Exp AND Exp { $$ = $1 & $3; }
-| Exp OR Exp { $$ = $1 | $3; }
-| Exp XOR Exp { $$ = $1 ^ $3; }
-| LPA Exp RPA { $$ = $2;};
+Exp: NUM { $$ = Lit($1); }
+| Exp PLS Exp { $$ = Prim('+', $1, $3);  }
+| Exp MNS Exp { $$ = Prim('-', $1, $3); }
+| Exp MLT Exp { $$ = Prim('*', $1, $3); }
+| Exp DIV Exp { $$ = Prim('/', $1, $3); }
+| Exp MOD Exp { $$ = Prim('%', $1, $3); }
+| Exp AND Exp { $$ = Prim('&', $1, $3); }
+| Exp OR Exp { $$ = Prim('|', $1, $3); }
+| Exp XOR Exp { $$ = Prim('^', $1, $3); }
+| LPA Exp RPA { $$ = $2; }
+;
 
 %%

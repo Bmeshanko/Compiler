@@ -12,16 +12,23 @@ git-commit:
 	git commit -a -m "Commit from Makefile" >> .local.git.out || echo
 	git push >> .local.git.out || echo
 
-y.tab.o: interpreter.y
-	$(YACC) interpreter.y
-	$(CC) -c y.tab.c
+interpreter.o: interpreter.y
+	$(YACC) -o interpreter.c interpreter.y
+	$(CC) -c interpreter.c
+
+parser.o: parser.y
+	$(YACC) -o parser.c parser.y
+	$(CC) -c parser.c
 
 lex.yy.o: parser.l
 	$(LEX) parser.l
 	$(CC) -c lex.yy.c
 
-compiler: y.tab.o lex.yy.o tree.hh
-	$(CC) -o compiler lex.yy.o y.tab.o tree.hh
+compiler: parser.o lex.yy.o tree.hh
+	$(CC) -o compiler lex.yy.o parser.o tree.hh
+
+interpreter: interpreter.o lex.yy.o tree.hh
+	$(CC) -o compiler lex.yy.o interpreter.o tree.hh
 
 clean:
 	rm *.o compiler

@@ -17,13 +17,24 @@ class AST {
         }
 };
 
-class Prim : Tree {
+class Prim : public Tree {
     char op;
-    std::vector<Tree> args;
+    Tree arg1;
+    Tree arg2;
+    public:
+        Prim(char op, Tree arg1, Tree arg2) {
+            this -> op = op;
+            this -> arg1 = arg1;
+            this -> arg2 = arg2;
+        }
 };
 
-class Lit : Tree {
+class Lit : public Tree {
     int value;
+    public:
+        Lit(int value) {
+            this -> value = value;
+        }
 };
 
 class Let : Tree {
