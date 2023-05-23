@@ -29,12 +29,12 @@ Seq:
 
 Line: NWL
 | Exp NWL {
-	printf("Parsed correctly");
+	printf("%s", $1.to_string());
 }
 ;
 
 Exp: NUM { $$ = Lit($1); }
-| Exp PLS Exp { $$ = Prim('+', $1, $3);  }
+| Exp PLS Exp { $$ = Prim('+', $1, $3); printf("%s", $$.to_string()); }
 | Exp MNS Exp { $$ = Prim('-', $1, $3); }
 | Exp MLT Exp { $$ = Prim('*', $1, $3); }
 | Exp DIV Exp { $$ = Prim('/', $1, $3); }

@@ -1088,7 +1088,7 @@ yyreduce:
   case 5: /* Line: Exp NWL  */
 #line 31 "parser.y"
           {
-	printf("Parsed correctly");
+	printf("%s", (yyvsp[-1].val).to_string());
 }
 #line 1094 "parser.c"
     break;
@@ -1101,7 +1101,7 @@ yyreduce:
 
   case 7: /* Exp: Exp PLS Exp  */
 #line 37 "parser.y"
-              { (yyval.val) = Prim('+', (yyvsp[-2].val), (yyvsp[0].val));  }
+              { (yyval.val) = Prim('+', (yyvsp[-2].val), (yyvsp[0].val)); printf("%s", (yyval.val).to_string()); }
 #line 1106 "parser.c"
     break;
 

@@ -1,11 +1,12 @@
 #include <vector>
 #include <string>
 #include <map>
+#include <cstdlib>
 
 class Tree {
     public:
-        Tree() {
-
+        char* to_string() {
+            return (char*) "Tree";
         }
 };
 
@@ -27,6 +28,10 @@ class Prim : public Tree {
             this -> arg1 = arg1;
             this -> arg2 = arg2;
         }
+        
+        char* to_string() {
+            return (char*) "Prim(%c, %s, %s)", op, arg1.to_string(), arg2.to_string();
+        }
 };
 
 class Lit : public Tree {
@@ -34,6 +39,12 @@ class Lit : public Tree {
     public:
         Lit(int value) {
             this -> value = value;
+        }
+
+        char* to_string() {
+            char* buf;
+            sprintf(buf, "Lit(%d)", value);
+            return buf;
         }
 };
 
