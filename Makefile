@@ -24,11 +24,11 @@ lex.yy.o: parser.l
 	$(LEX) parser.l
 	$(CC) -c lex.yy.c
 
-compiler: parser.o lex.yy.o tree.hh
-	$(CC) -o compiler lex.yy.o parser.o tree.hh
+compiler: parser.o lex.yy.o tree.h tree.c
+	$(CC) -o compiler lex.yy.o parser.o tree.h tree.c
 
-interpreter: interpreter.o lex.yy.o tree.hh
-	$(CC) -o compiler lex.yy.o interpreter.o tree.hh
+interpreter: interpreter.o lex.yy.o tree.h tree.c
+	$(CC) -o compiler lex.yy.o interpreter.o tree.h tree.c
 
 clean:
 	rm *.o compiler

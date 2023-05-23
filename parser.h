@@ -95,7 +95,7 @@ union YYSTYPE
 {
 #line 10 "parser.y"
 
-	Tree val;
+	struct Prim * val;
 	int num;
 
 #line 102 "parser.h"

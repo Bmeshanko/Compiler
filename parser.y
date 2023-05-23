@@ -1,14 +1,14 @@
 %{
 	#include <stdio.h>
-	#include "tree.hh"
+	#include "tree.h"
 	int yyerror (char const *s) {
-		return fprintf (stderr, "%s\n", s);
+		return fprintf(stderr, "%s\n", s);
 	}
 	int yylex (void);
 %}
 
 %union {
-	Tree val;
+	struct Prim * val;
 	int num;
 }
 
@@ -29,19 +29,19 @@ Seq:
 
 Line: NWL
 | Exp NWL {
-	printf("%s", $1.to_string());
+	printf("%s\n", to_string($1));
 }
 ;
 
-Exp: NUM { $$ = Lit($1); }
-| Exp PLS Exp { $$ = Prim('+', $1, $3); printf("%s", $$.to_string()); }
-| Exp MNS Exp { $$ = Prim('-', $1, $3); }
-| Exp MLT Exp { $$ = Prim('*', $1, $3); }
-| Exp DIV Exp { $$ = Prim('/', $1, $3); }
-| Exp MOD Exp { $$ = Prim('%', $1, $3); }
-| Exp AND Exp { $$ = Prim('&', $1, $3); }
-| Exp OR Exp { $$ = Prim('|', $1, $3); }
-| Exp XOR Exp { $$ = Prim('^', $1, $3); }
+Exp: NUM { $$ = new_lit($1); }
+| Exp PLS Exp { $$ = new_prim('+', $1, $3); }
+| Exp MNS Exp { $$ = new_prim('-', $1, $3); }
+| Exp MLT Exp { $$ = new_prim('*', $1, $3); }
+| Exp DIV Exp { $$ = new_prim('/', $1, $3); }
+| Exp MOD Exp { $$ = new_prim('%', $1, $3); }
+| Exp AND Exp { $$ = new_prim('&', $1, $3); }
+| Exp OR Exp { $$ = new_prim('|', $1, $3); }
+| Exp XOR Exp { $$ = new_prim('^', $1, $3); }
 | LPA Exp RPA { $$ = $2; }
 ;
 

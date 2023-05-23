@@ -70,9 +70,9 @@
 #line 1 "parser.y"
 
 	#include <stdio.h>
-	#include "tree.hh"
+	#include "tree.h"
 	int yyerror (char const *s) {
-		return fprintf (stderr, "%s\n", s);
+		return fprintf(stderr, "%s\n", s);
 	}
 	int yylex (void);
 
@@ -1088,62 +1088,62 @@ yyreduce:
   case 5: /* Line: Exp NWL  */
 #line 31 "parser.y"
           {
-	printf("%s", (yyvsp[-1].val).to_string());
+	printf("%s\n", to_string((yyvsp[-1].val)));
 }
 #line 1094 "parser.c"
     break;
 
   case 6: /* Exp: NUM  */
 #line 36 "parser.y"
-         { (yyval.val) = Lit((yyvsp[0].num)); }
+         { (yyval.val) = new_lit((yyvsp[0].num)); }
 #line 1100 "parser.c"
     break;
 
   case 7: /* Exp: Exp PLS Exp  */
 #line 37 "parser.y"
-              { (yyval.val) = Prim('+', (yyvsp[-2].val), (yyvsp[0].val)); printf("%s", (yyval.val).to_string()); }
+              { (yyval.val) = new_prim('+', (yyvsp[-2].val), (yyvsp[0].val)); }
 #line 1106 "parser.c"
     break;
 
   case 8: /* Exp: Exp MNS Exp  */
 #line 38 "parser.y"
-              { (yyval.val) = Prim('-', (yyvsp[-2].val), (yyvsp[0].val)); }
+              { (yyval.val) = new_prim('-', (yyvsp[-2].val), (yyvsp[0].val)); }
 #line 1112 "parser.c"
     break;
 
   case 9: /* Exp: Exp MLT Exp  */
 #line 39 "parser.y"
-              { (yyval.val) = Prim('*', (yyvsp[-2].val), (yyvsp[0].val)); }
+              { (yyval.val) = new_prim('*', (yyvsp[-2].val), (yyvsp[0].val)); }
 #line 1118 "parser.c"
     break;
 
   case 10: /* Exp: Exp DIV Exp  */
 #line 40 "parser.y"
-              { (yyval.val) = Prim('/', (yyvsp[-2].val), (yyvsp[0].val)); }
+              { (yyval.val) = new_prim('/', (yyvsp[-2].val), (yyvsp[0].val)); }
 #line 1124 "parser.c"
     break;
 
   case 11: /* Exp: Exp MOD Exp  */
 #line 41 "parser.y"
-              { (yyval.val) = Prim('%', (yyvsp[-2].val), (yyvsp[0].val)); }
+              { (yyval.val) = new_prim('%', (yyvsp[-2].val), (yyvsp[0].val)); }
 #line 1130 "parser.c"
     break;
 
   case 12: /* Exp: Exp AND Exp  */
 #line 42 "parser.y"
-              { (yyval.val) = Prim('&', (yyvsp[-2].val), (yyvsp[0].val)); }
+              { (yyval.val) = new_prim('&', (yyvsp[-2].val), (yyvsp[0].val)); }
 #line 1136 "parser.c"
     break;
 
   case 13: /* Exp: Exp OR Exp  */
 #line 43 "parser.y"
-             { (yyval.val) = Prim('|', (yyvsp[-2].val), (yyvsp[0].val)); }
+             { (yyval.val) = new_prim('|', (yyvsp[-2].val), (yyvsp[0].val)); }
 #line 1142 "parser.c"
     break;
 
   case 14: /* Exp: Exp XOR Exp  */
 #line 44 "parser.y"
-              { (yyval.val) = Prim('^', (yyvsp[-2].val), (yyvsp[0].val)); }
+              { (yyval.val) = new_prim('^', (yyvsp[-2].val), (yyvsp[0].val)); }
 #line 1148 "parser.c"
     break;
 
