@@ -93,11 +93,12 @@ extern int yydebug;
 #if ! defined YYSTYPE && ! defined YYSTYPE_IS_DECLARED
 union YYSTYPE
 {
-#line 1 "interpreter.y"
+#line 10 "parser.y"
 
-	int val;
+	struct Prim * val;
+	int num;
 
-#line 101 "y.tab.h"
+#line 102 "y.tab.h"
 
 };
 typedef union YYSTYPE YYSTYPE;

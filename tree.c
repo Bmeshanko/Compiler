@@ -14,21 +14,33 @@ struct Prim *new_prim(char op, struct Prim *left, struct Prim *right) {
     return ret;
 }
 
-struct Prim *new_lit(int val) {
+struct Lit *new_lit(int val) {
     struct Lit *ret = (struct Lit *)malloc(sizeof(struct Lit));
 
     ret -> val = val;
 
-    return (struct Prim *) ret;
+    return ret;
 }
 
-char * to_string(struct Prim *tree) {
+char * prim_to_string(struct Prim *tree) {
     char * ret = (char *) malloc(1024);
     if (tree->left == NULL && tree->right == NULL) {
         struct Lit * leaf = (struct Lit *) tree;
         sprintf(ret, "Lit(%d)", leaf->val);
     } else {
-        sprintf(ret, "Prim(\"%c\", %s, %s)", tree->op, to_string(tree->left), to_string(tree->right));
+        sprintf(ret, "Prim(\"%c\", %s, %s)", tree->op, prim_to_string(tree->left), prim_to_string(tree->right));
     }
+    return ret;
+}
+
+char * let_to_string(struct Let *dec) {
+    char * ret = (char *) malloc(1024);
+    sprintf(ret, "Let(%s, %s)", dec->id, prim_to_string(dec->val));
+    return ret;
+}
+
+char * ref_to_string(struct Ref *ref) {
+    char * ret = (char *) malloc(1024);
+    sprintf(ret, "Ref(%s)", ref->id);
     return ret;
 }

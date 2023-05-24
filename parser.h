@@ -65,8 +65,7 @@ extern int yydebug;
     LPA = 266,                     /* LPA  */
     RPA = 267,                     /* RPA  */
     NUM = 268,                     /* NUM  */
-    NWL = 269,                     /* NWL  */
-    END = 270                      /* END  */
+    NWL = 269                      /* NWL  */
   };
   typedef enum yytokentype yytoken_kind_t;
 #endif
@@ -87,7 +86,6 @@ extern int yydebug;
 #define RPA 267
 #define NUM 268
 #define NWL 269
-#define END 270
 
 /* Value type.  */
 #if ! defined YYSTYPE && ! defined YYSTYPE_IS_DECLARED
@@ -98,7 +96,7 @@ union YYSTYPE
 	struct Prim * val;
 	int num;
 
-#line 102 "parser.h"
+#line 100 "parser.h"
 
 };
 typedef union YYSTYPE YYSTYPE;

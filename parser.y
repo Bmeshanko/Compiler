@@ -13,14 +13,11 @@
 }
 
 
-%token PLS MNS MLT DIV MOD
-%token AND OR XOR
-%token LPA RPA 
+%token PLS MNS MLT DIV MOD AND OR XOR LPA RPA 
 %token <num> NUM
 %token NWL
-%token END
 %start Seq
-%type <val> Exp
+%type <val> Exp Factor Term Num
 
 %%
 
@@ -28,21 +25,28 @@ Seq:
 | Seq Line
 
 Line: NWL
-| Exp NWL {
-	printf("%s\n", to_string($1));
-}
+| Exp NWL { printf("%s\n", prim_to_string($1)); }
 ;
 
-Exp: NUM { $$ = new_lit($1); }
-| Exp PLS Exp { $$ = new_prim('+', $1, $3); }
-| Exp MNS Exp { $$ = new_prim('-', $1, $3); }
-| Exp MLT Exp { $$ = new_prim('*', $1, $3); }
-| Exp DIV Exp { $$ = new_prim('/', $1, $3); }
-| Exp MOD Exp { $$ = new_prim('%', $1, $3); }
-| Exp AND Exp { $$ = new_prim('&', $1, $3); }
-| Exp OR Exp { $$ = new_prim('|', $1, $3); }
-| Exp XOR Exp { $$ = new_prim('^', $1, $3); }
+Factor: NUM { $$ = (struct Prim *)new_lit($1); }
 | LPA Exp RPA { $$ = $2; }
+;
+
+Term: Factor
+| Factor MLT Factor { $$ = new_prim('*', $1, $3); }
+| Factor DIV Factor { $$ = new_prim('/', $1, $3); }
+| Factor MOD Factor { $$ = new_prim('%', $1, $3); }
+;
+
+Num: Term
+| Term PLS Term { $$ = new_prim('+', $1, $3); }
+| Term MNS Term { $$ = new_prim('-', $1, $3); }
+;
+
+Exp: Num
+| Num AND Num { $$ = new_prim('&', $1, $3); }
+| Num OR Num { $$ = new_prim('|', $1, $3); }
+| Num XOR Num { $$ = new_prim('^', $1, $3); }
 ;
 
 %%
