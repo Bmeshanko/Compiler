@@ -1,18 +1,19 @@
 %{
 	#include <stdio.h>
 	#include <stdlib.h>
-	#include "y.tab.h"
+	#include "parser.h"
 %}
 
 %option noyywrap
 
 DIGIT	[0-9]
+ID 		[a-zA-z]
 
 %%
 
 
 "-"?{DIGIT}+ {
-	yylval.val = atoi(yytext);
+	yylval.num = atoi(yytext);
 	return NUM;
 }
 
@@ -27,7 +28,13 @@ DIGIT	[0-9]
 "(" { return LPA; }
 ")" { return RPA; }
 "\n" { return NWL; }
-";" { return END; }
+"=" { return EQU; }
+"val" { return DEC; }
+
+{ID}+ {
+	yylval.id = yytext;
+	return VAR;
+}
 
 %%
 

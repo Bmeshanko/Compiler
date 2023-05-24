@@ -8,16 +8,21 @@
 %}
 
 %union {
-	struct Prim * val;
+	struct Prim *val;
+	struct Let *dec;
+	char * id;
 	int num;
 }
 
 
-%token PLS MNS MLT DIV MOD AND OR XOR LPA RPA 
-%token <num> NUM
+%token PLS MNS MLT DIV MOD AND OR XOR LPA RPA
+%token EQU DEC
 %token NWL
-%start Seq
+%token <id> VAR
+%token <num> NUM
 %type <val> Exp Factor Term Num
+%type <dec> Let
+%start Seq
 
 %%
 
@@ -25,7 +30,10 @@ Seq:
 | Seq Line
 
 Line: NWL
-| Exp NWL { printf("%s\n", prim_to_string($1)); }
+| Let NWL { printf("%s\n", let_to_string($1)); }
+;
+
+Let: DEC VAR EQU Exp { $$ = new_let($2, $4); }
 ;
 
 Factor: NUM { $$ = (struct Prim *)new_lit($1); }

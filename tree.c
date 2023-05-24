@@ -22,6 +22,23 @@ struct Lit *new_lit(int val) {
     return ret;
 }
 
+struct Let *new_let(char* id, struct Prim *val) {
+    struct Let *ret = (struct Let *)malloc(sizeof(struct Let));
+
+    ret -> id = id;
+    ret -> val = val;
+    
+    return ret;
+}
+
+struct Ref *new_ref(char* id) {
+    struct Ref *ret = (struct Ref *)malloc(sizeof(struct Ref));
+
+    ret -> id = id;
+
+    return ret;
+}
+
 char * prim_to_string(struct Prim *tree) {
     char * ret = (char *) malloc(1024);
     if (tree->left == NULL && tree->right == NULL) {

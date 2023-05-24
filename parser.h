@@ -64,8 +64,11 @@ extern int yydebug;
     XOR = 265,                     /* XOR  */
     LPA = 266,                     /* LPA  */
     RPA = 267,                     /* RPA  */
-    NUM = 268,                     /* NUM  */
-    NWL = 269                      /* NWL  */
+    EQU = 268,                     /* EQU  */
+    DEC = 269,                     /* DEC  */
+    NWL = 270,                     /* NWL  */
+    VAR = 271,                     /* VAR  */
+    NUM = 272                      /* NUM  */
   };
   typedef enum yytokentype yytoken_kind_t;
 #endif
@@ -84,8 +87,11 @@ extern int yydebug;
 #define XOR 265
 #define LPA 266
 #define RPA 267
-#define NUM 268
-#define NWL 269
+#define EQU 268
+#define DEC 269
+#define NWL 270
+#define VAR 271
+#define NUM 272
 
 /* Value type.  */
 #if ! defined YYSTYPE && ! defined YYSTYPE_IS_DECLARED
@@ -93,10 +99,12 @@ union YYSTYPE
 {
 #line 10 "parser.y"
 
-	struct Prim * val;
+	struct Prim *val;
+	struct Let *dec;
+	char * id;
 	int num;
 
-#line 100 "parser.h"
+#line 108 "parser.h"
 
 };
 typedef union YYSTYPE YYSTYPE;
