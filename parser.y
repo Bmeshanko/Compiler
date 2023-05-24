@@ -36,7 +36,8 @@ Line: NWL
 Let: DEC VAR EQU Exp { $$ = new_let($2, $4); }
 ;
 
-Factor: NUM { $$ = (struct Prim *)new_lit($1); }
+Factor: VAR { $$ = (struct Prim *)new_ref($1); }
+| NUM { $$ = (struct Prim *)new_lit($1); } 
 | LPA Exp RPA { $$ = $2; }
 ;
 

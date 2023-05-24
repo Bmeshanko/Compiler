@@ -457,16 +457,16 @@ union yyalloc
 /* YYFINAL -- State number of the termination state.  */
 #define YYFINAL  2
 /* YYLAST -- Last index in YYTABLE.  */
-#define YYLAST   25
+#define YYLAST   26
 
 /* YYNTOKENS -- Number of terminals.  */
 #define YYNTOKENS  18
 /* YYNNTS -- Number of nonterminals.  */
 #define YYNNTS  8
 /* YYNRULES -- Number of rules.  */
-#define YYNRULES  19
+#define YYNRULES  20
 /* YYNSTATES -- Number of states.  */
-#define YYNSTATES  34
+#define YYNSTATES  35
 
 /* YYMAXUTOK -- Last valid token kind.  */
 #define YYMAXUTOK   272
@@ -517,8 +517,9 @@ static const yytype_int8 yytranslate[] =
 /* YYRLINE[YYN] -- Source line where rule number YYN was defined.  */
 static const yytype_int8 yyrline[] =
 {
-       0,    29,    29,    30,    32,    33,    36,    39,    40,    43,
-      44,    45,    46,    49,    50,    51,    54,    55,    56,    57
+       0,    29,    29,    30,    32,    33,    36,    39,    40,    41,
+      44,    45,    46,    47,    50,    51,    52,    55,    56,    57,
+      58
 };
 #endif
 
@@ -547,7 +548,7 @@ yysymbol_name (yysymbol_kind_t yysymbol)
 }
 #endif
 
-#define YYPACT_NINF (-11)
+#define YYPACT_NINF (-12)
 
 #define yypact_value_is_default(Yyn) \
   ((Yyn) == YYPACT_NINF)
@@ -561,10 +562,10 @@ yysymbol_name (yysymbol_kind_t yysymbol)
    STATE-NUM.  */
 static const yytype_int8 yypact[] =
 {
-     -11,     0,   -11,     3,   -11,   -11,    -7,    10,   -11,   -10,
-     -10,   -11,    -3,     2,     1,   -11,    12,   -10,   -10,   -10,
-     -10,   -10,   -10,   -10,   -10,   -11,   -11,   -11,   -11,   -11,
-     -11,   -11,   -11,   -11
+     -12,     0,   -12,   -11,   -12,   -12,    -7,    12,   -12,   -10,
+     -10,   -12,   -12,    -3,     9,     1,   -12,    10,   -10,   -10,
+     -10,   -10,   -10,   -10,   -10,   -10,   -12,   -12,   -12,   -12,
+     -12,   -12,   -12,   -12,   -12
 };
 
 /* YYDEFACT[STATE-NUM] -- Default reduction number in state STATE-NUM.
@@ -573,21 +574,21 @@ static const yytype_int8 yypact[] =
 static const yytype_int8 yydefact[] =
 {
        2,     0,     1,     0,     4,     3,     0,     0,     5,     0,
-       0,     7,     9,    13,    16,     6,     0,     0,     0,     0,
-       0,     0,     0,     0,     0,     8,    10,    11,    12,    14,
-      15,    17,    18,    19
+       0,     7,     8,    10,    14,    17,     6,     0,     0,     0,
+       0,     0,     0,     0,     0,     0,     9,    11,    12,    13,
+      15,    16,    18,    19,    20
 };
 
 /* YYPGOTO[NTERM-NUM].  */
 static const yytype_int8 yypgoto[] =
 {
-     -11,   -11,   -11,   -11,    -1,    -8,    -2,    15
+     -12,   -12,   -12,   -12,    -2,     2,    -4,    16
 };
 
 /* YYDEFGOTO[NTERM-NUM].  */
 static const yytype_int8 yydefgoto[] =
 {
-       0,     1,     5,     6,    12,    13,    14,    15
+       0,     1,     5,     6,    13,    14,    15,    16
 };
 
 /* YYTABLE[YYPACT[STATE-NUM]] -- What to do in state STATE-NUM.  If
@@ -595,16 +596,16 @@ static const yytype_int8 yydefgoto[] =
    number is the opposite.  If YYTABLE_NINF, syntax error.  */
 static const yytype_int8 yytable[] =
 {
-       2,    10,    17,    18,    19,    20,    21,    11,     8,    22,
-      23,    24,    29,    30,     3,     4,    26,    27,    28,     7,
-      31,    32,    33,     9,    25,    16
+       2,    10,    18,    19,    20,     7,    11,    12,     8,    23,
+      24,    25,    21,    22,     3,     4,    27,    28,    29,    32,
+      33,    34,    26,    30,    31,     9,    17
 };
 
 static const yytype_int8 yycheck[] =
 {
-       0,    11,     5,     6,     7,     3,     4,    17,    15,     8,
-       9,    10,    20,    21,    14,    15,    17,    18,    19,    16,
-      22,    23,    24,    13,    12,    10
+       0,    11,     5,     6,     7,    16,    16,    17,    15,     8,
+       9,    10,     3,     4,    14,    15,    18,    19,    20,    23,
+      24,    25,    12,    21,    22,    13,    10
 };
 
 /* YYSTOS[STATE-NUM] -- The symbol kind of the accessing symbol of
@@ -612,23 +613,25 @@ static const yytype_int8 yycheck[] =
 static const yytype_int8 yystos[] =
 {
        0,    19,     0,    14,    15,    20,    21,    16,    15,    13,
-      11,    17,    22,    23,    24,    25,    25,     5,     6,     7,
-       3,     4,     8,     9,    10,    12,    22,    22,    22,    23,
-      23,    24,    24,    24
+      11,    16,    17,    22,    23,    24,    25,    25,     5,     6,
+       7,     3,     4,     8,     9,    10,    12,    22,    22,    22,
+      23,    23,    24,    24,    24
 };
 
 /* YYR1[RULE-NUM] -- Symbol kind of the left-hand side of rule RULE-NUM.  */
 static const yytype_int8 yyr1[] =
 {
-       0,    18,    19,    19,    20,    20,    21,    22,    22,    23,
-      23,    23,    23,    24,    24,    24,    25,    25,    25,    25
+       0,    18,    19,    19,    20,    20,    21,    22,    22,    22,
+      23,    23,    23,    23,    24,    24,    24,    25,    25,    25,
+      25
 };
 
 /* YYR2[RULE-NUM] -- Number of symbols on the right-hand side of rule RULE-NUM.  */
 static const yytype_int8 yyr2[] =
 {
-       0,     2,     0,     2,     1,     2,     4,     1,     3,     1,
-       3,     3,     3,     1,     3,     3,     1,     3,     3,     3
+       0,     2,     0,     2,     1,     2,     4,     1,     1,     3,
+       1,     3,     3,     3,     1,     3,     3,     1,     3,     3,
+       3
 };
 
 
@@ -1094,77 +1097,83 @@ yyreduce:
   case 5: /* Line: Let NWL  */
 #line 33 "parser.y"
           { printf("%s\n", let_to_string((yyvsp[-1].dec))); }
-#line 1098 "parser.c"
+#line 1101 "parser.c"
     break;
 
   case 6: /* Let: DEC VAR EQU Exp  */
 #line 36 "parser.y"
                      { (yyval.dec) = new_let((yyvsp[-2].id), (yyvsp[0].val)); }
-#line 1104 "parser.c"
+#line 1107 "parser.c"
     break;
 
-  case 7: /* Factor: NUM  */
+  case 7: /* Factor: VAR  */
 #line 39 "parser.y"
-            { (yyval.val) = (struct Prim *)new_lit((yyvsp[0].num)); }
-#line 1110 "parser.c"
+            { (yyval.val) = (struct Prim *)new_ref((yyvsp[0].id)); }
+#line 1113 "parser.c"
     break;
 
-  case 8: /* Factor: LPA Exp RPA  */
+  case 8: /* Factor: NUM  */
 #line 40 "parser.y"
+      { (yyval.val) = (struct Prim *)new_lit((yyvsp[0].num)); }
+#line 1119 "parser.c"
+    break;
+
+  case 9: /* Factor: LPA Exp RPA  */
+#line 41 "parser.y"
               { (yyval.val) = (yyvsp[-1].val); }
-#line 1116 "parser.c"
+#line 1125 "parser.c"
     break;
 
-  case 10: /* Term: Factor MLT Factor  */
-#line 44 "parser.y"
-                    { (yyval.val) = new_prim('*', (yyvsp[-2].val), (yyvsp[0].val)); }
-#line 1122 "parser.c"
-    break;
-
-  case 11: /* Term: Factor DIV Factor  */
+  case 11: /* Term: Factor MLT Factor  */
 #line 45 "parser.y"
-                    { (yyval.val) = new_prim('/', (yyvsp[-2].val), (yyvsp[0].val)); }
-#line 1128 "parser.c"
+                    { (yyval.val) = new_prim('*', (yyvsp[-2].val), (yyvsp[0].val)); }
+#line 1131 "parser.c"
     break;
 
-  case 12: /* Term: Factor MOD Factor  */
+  case 12: /* Term: Factor DIV Factor  */
 #line 46 "parser.y"
+                    { (yyval.val) = new_prim('/', (yyvsp[-2].val), (yyvsp[0].val)); }
+#line 1137 "parser.c"
+    break;
+
+  case 13: /* Term: Factor MOD Factor  */
+#line 47 "parser.y"
                     { (yyval.val) = new_prim('%', (yyvsp[-2].val), (yyvsp[0].val)); }
-#line 1134 "parser.c"
+#line 1143 "parser.c"
     break;
 
-  case 14: /* Num: Term PLS Term  */
-#line 50 "parser.y"
-                { (yyval.val) = new_prim('+', (yyvsp[-2].val), (yyvsp[0].val)); }
-#line 1140 "parser.c"
-    break;
-
-  case 15: /* Num: Term MNS Term  */
+  case 15: /* Num: Term PLS Term  */
 #line 51 "parser.y"
+                { (yyval.val) = new_prim('+', (yyvsp[-2].val), (yyvsp[0].val)); }
+#line 1149 "parser.c"
+    break;
+
+  case 16: /* Num: Term MNS Term  */
+#line 52 "parser.y"
                 { (yyval.val) = new_prim('-', (yyvsp[-2].val), (yyvsp[0].val)); }
-#line 1146 "parser.c"
+#line 1155 "parser.c"
     break;
 
-  case 17: /* Exp: Num AND Num  */
-#line 55 "parser.y"
-              { (yyval.val) = new_prim('&', (yyvsp[-2].val), (yyvsp[0].val)); }
-#line 1152 "parser.c"
-    break;
-
-  case 18: /* Exp: Num OR Num  */
+  case 18: /* Exp: Num AND Num  */
 #line 56 "parser.y"
-             { (yyval.val) = new_prim('|', (yyvsp[-2].val), (yyvsp[0].val)); }
-#line 1158 "parser.c"
+              { (yyval.val) = new_prim('&', (yyvsp[-2].val), (yyvsp[0].val)); }
+#line 1161 "parser.c"
     break;
 
-  case 19: /* Exp: Num XOR Num  */
+  case 19: /* Exp: Num OR Num  */
 #line 57 "parser.y"
+             { (yyval.val) = new_prim('|', (yyvsp[-2].val), (yyvsp[0].val)); }
+#line 1167 "parser.c"
+    break;
+
+  case 20: /* Exp: Num XOR Num  */
+#line 58 "parser.y"
               { (yyval.val) = new_prim('^', (yyvsp[-2].val), (yyvsp[0].val)); }
-#line 1164 "parser.c"
+#line 1173 "parser.c"
     break;
 
 
-#line 1168 "parser.c"
+#line 1177 "parser.c"
 
       default: break;
     }
@@ -1357,4 +1366,4 @@ yyreturnlab:
   return yyresult;
 }
 
-#line 60 "parser.y"
+#line 61 "parser.y"

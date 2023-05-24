@@ -3,3 +3,5 @@ parser.c
 parser.h
 lex.yy.o
 parser.o
+compiler
+input
