@@ -7,15 +7,8 @@
 %option noyywrap
 
 DIGIT	[0-9]
-ID 		[a-zA-z]
 
 %%
-
-
-"-"?{DIGIT}+ {
-	yylval.num = atoi(yytext);
-	return NUM;
-}
 
 "+" { return PLS; }
 "-" { return MNS; }
@@ -31,9 +24,14 @@ ID 		[a-zA-z]
 "=" { return EQU; }
 "val" { return DEC; }
 
-{ID}+ {
-	yylval.id = yytext;
+[a-zA-Z][a-zA-Z0-9]* {
+	yylval.id = strdup(yytext);
 	return VAR;
+}
+
+"-"?{DIGIT}+ {
+	yylval.num = atoi(yytext);
+	return NUM;
 }
 
 %%

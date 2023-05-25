@@ -1,2 +1,1 @@
-val x = 3 + 3
-val y = x + 3
+val num = 4 + 7 * 2

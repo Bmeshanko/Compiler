@@ -4,6 +4,7 @@
 #include <cstdlib>
 
 struct Prim {
+    short type;
     char op;
 
     struct Prim *left;
@@ -11,15 +12,19 @@ struct Prim {
 };
 
 struct Lit {
+    short type;
     int val;
 };
 
 struct Let {
+    short type;
     char* id;
+
     struct Prim *val;
 };
 
 struct Ref {
+    short type;
     char* id;
 };
 
@@ -29,5 +34,6 @@ struct Let *new_let(char* id, struct Prim *val);
 struct Ref *new_ref(char* id);
 
 char * prim_to_string(struct Prim *tree);
+char * lit_to_string(struct Lit *lit);
 char * let_to_string(struct Let *dec);
 char * ref_to_string(struct Ref *ref);
