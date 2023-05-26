@@ -22,9 +22,13 @@
 %token <num> NUM
 %type <val> Exp Factor Term Num
 %type <dec> Let
-%start Seq
+%start Env
 
 %%
+
+Env: Seq {
+	
+}
 
 Seq: 
 | Seq Line
