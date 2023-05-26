@@ -21,13 +21,14 @@ DIGIT	[0-9]
 "(" { return LPA; }
 ")" { return RPA; }
 
-"=" { return EQU; }
 "<" { return LTN; }
 ">" { return GTN; }
 ">=" { return GEQ; }
 "<=" { return LEQ; }
 "!=" { return NEQ; }
+"==" { return EQU; }
 
+"=" { return DEC; }
 "\n" { return NWL; }
 
 [a-zA-Z][a-zA-Z0-9]* {

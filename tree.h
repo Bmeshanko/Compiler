@@ -3,9 +3,14 @@
 #include <map>
 #include <cstdlib>
 
+struct Tree {
+    short type;
+    struct Tree *next;
+};
+
 struct Prim {
     short type;
-    char op;
+    char* op;
 
     struct Prim *left;
     struct Prim *right;
@@ -28,7 +33,13 @@ struct Ref {
     char* id;
 };
 
-struct Prim *new_prim(char op, struct Prim *left, struct Prim *right);
+struct If {
+    short type;
+    struct Prim *cond;
+    struct Body *body;
+};
+
+struct Prim *new_prim(char* op, struct Prim *left, struct Prim *right);
 struct Lit *new_lit(int val);
 struct Let *new_let(char* id, struct Prim *val);
 struct Ref *new_ref(char* id);

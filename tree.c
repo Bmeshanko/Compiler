@@ -2,10 +2,10 @@
 #include <string.h>
 #include "tree.h"
 
-struct Prim *new_prim(char op, struct Prim *left, struct Prim *right) {
+struct Prim *new_prim(char *op, struct Prim *left, struct Prim *right) {
     struct Prim *ret = (struct Prim *)malloc(sizeof(struct Prim));
 
-    ret -> op = op;
+    ret -> op = strdup(op);
     ret -> left = left;
     ret -> right = right;
     ret -> type = 1;
@@ -50,7 +50,7 @@ char * prim_to_string(struct Prim *tree) {
         struct Ref *ref = (struct Ref *) tree;
         return ref_to_string(ref);
     } else if (tree->type == 1) {
-        sprintf(ret, "Prim(\"%c\", %s, %s)", tree->op, prim_to_string(tree->left), prim_to_string(tree->right));
+        sprintf(ret, "Prim(\"%s\", %s, %s)", tree->op, prim_to_string(tree->left), prim_to_string(tree->right));
     }
     return ret;
 }
