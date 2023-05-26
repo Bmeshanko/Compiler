@@ -43,16 +43,13 @@ struct Ref *new_ref(char* id) {
 
 char * prim_to_string(struct Prim *tree) {
     char * ret = (char *) malloc(1024);
-    if (tree->left == NULL && tree->right == NULL) {
-        // Leaf node
-        if (tree->type == 2) {
-            struct Lit *lit = (struct Lit *) tree;
-            return lit_to_string(lit);
-        } else if (tree->type == 4) {
-            struct Ref *ref = (struct Ref *) tree;
-            return ref_to_string(ref);
-        }
-    } else {
+    if (tree->type == 2) {
+        struct Lit *lit = (struct Lit *) tree;
+        return lit_to_string(lit);
+    } else if (tree->type == 4) {
+        struct Ref *ref = (struct Ref *) tree;
+        return ref_to_string(ref);
+    } else if (tree->type == 1) {
         sprintf(ret, "Prim(\"%c\", %s, %s)", tree->op, prim_to_string(tree->left), prim_to_string(tree->right));
     }
     return ret;

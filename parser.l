@@ -20,9 +20,15 @@ DIGIT	[0-9]
 "^" { return XOR; }
 "(" { return LPA; }
 ")" { return RPA; }
-"\n" { return NWL; }
+
 "=" { return EQU; }
-"val" { return DEC; }
+"<" { return LTN; }
+">" { return GTN; }
+">=" { return GEQ; }
+"<=" { return LEQ; }
+"!=" { return NEQ; }
+
+"\n" { return NWL; }
 
 [a-zA-Z][a-zA-Z0-9]* {
 	yylval.id = strdup(yytext);

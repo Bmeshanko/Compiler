@@ -16,7 +16,7 @@
 
 
 %token PLS MNS MLT DIV MOD AND OR XOR LPA RPA
-%token EQU DEC
+%token LTN GTN GEQ LEQ NEQ EQU
 %token NWL
 %token <id> VAR
 %token <num> NUM
@@ -33,7 +33,7 @@ Line: NWL
 | Let NWL { printf("%s\n", let_to_string($1)); }
 ;
 
-Let: DEC VAR EQU Exp { $$ = new_let($2, $4); }
+Let: VAR EQU Exp { $$ = new_let($1, $3); }
 ;
 
 Factor: VAR { $$ = (struct Prim *)new_ref($1); }
@@ -42,20 +42,20 @@ Factor: VAR { $$ = (struct Prim *)new_ref($1); }
 ;
 
 Term: Factor
-| Factor MLT Factor { $$ = new_prim('*', $1, $3); }
-| Factor DIV Factor { $$ = new_prim('/', $1, $3); }
-| Factor MOD Factor { $$ = new_prim('%', $1, $3); }
+| Term MLT Term { $$ = new_prim('*', $1, $3); }
+| Term DIV Term { $$ = new_prim('/', $1, $3); }
+| Term MOD Term { $$ = new_prim('%', $1, $3); }
 ;
 
 Num: Term
-| Term PLS Term { $$ = new_prim('+', $1, $3); }
-| Term MNS Term { $$ = new_prim('-', $1, $3); }
+| Num PLS Num { $$ = new_prim('+', $1, $3); }
+| Num MNS Num { $$ = new_prim('-', $1, $3); }
 ;
 
 Exp: Num
-| Num AND Num { $$ = new_prim('&', $1, $3); }
-| Num OR Num { $$ = new_prim('|', $1, $3); }
-| Num XOR Num { $$ = new_prim('^', $1, $3); }
+| Exp AND Exp { $$ = new_prim('&', $1, $3); }
+| Exp OR Exp { $$ = new_prim('|', $1, $3); }
+| Exp XOR Exp { $$ = new_prim('^', $1, $3); }
 ;
 
 %%
