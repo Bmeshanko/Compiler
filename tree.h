@@ -2,6 +2,7 @@
 #include <string>
 #include <map>
 #include <cstdlib>
+#define N 1000
 
 struct Tree {
     short type;
@@ -37,6 +38,10 @@ struct If {
     short type;
     struct Prim *cond;
     struct Body *body;
+};
+
+struct Env {
+    struct Tree prog[N];
 };
 
 struct Prim *new_prim(char* op, struct Prim *left, struct Prim *right);

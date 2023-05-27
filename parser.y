@@ -27,7 +27,7 @@
 %%
 
 Env: Seq {
-	
+	struct Env *env = (struct Env *) malloc(sizeof(struct Env));
 }
 
 Seq: 
