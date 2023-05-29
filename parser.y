@@ -22,12 +22,14 @@
 %token <num> NUM
 %type <val> Exp Factor Term Num
 %type <dec> Let
-%start Env
+%start Environment
 
 %%
 
-Env: Seq {
+Environment: Seq {
 	struct Env *env = (struct Env *) malloc(sizeof(struct Env));
+	int c = 0;
+	printf("I'm in Environment!\n");
 }
 
 Seq: 
