@@ -5,6 +5,10 @@
 		return fprintf(stderr, "%s\n", s);
 	}
 	int yylex (void);
+
+	struct Env *env = new_env();
+	int line_num = 1;
+
 %}
 
 %union {
@@ -22,21 +26,23 @@
 %token <num> NUM
 %type <val> Exp Factor Term Num
 %type <dec> Let
-%start Environment
+%start Prog
 
 %%
 
-Environment: Seq {
-	struct Env *env = (struct Env *) malloc(sizeof(struct Env));
-	int c = 0;
-	printf("I'm in Environment!\n");
+Prog: Seq {
+	printf("End of Program\n");
 }
 
 Seq: 
 | Seq Line
 
 Line: NWL
-| Let NWL { printf("%s\n", let_to_string($1)); }
+| Let NWL { 
+	printf("%s\n", let_to_string($1));
+	env -> lines = line_num;
+	env -> prog[line_num - 1] = (struct Tree *) $1;
+}
 ;
 
 Let: VAR DEC Exp { $$ = new_let($1, $3); }

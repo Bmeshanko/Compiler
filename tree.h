@@ -41,13 +41,15 @@ struct If {
 };
 
 struct Env {
-    struct Tree prog[N];
+    struct Tree* prog[N]; // 0-indexed array representing each line of the program.
+    int lines; // 1-indexed amount of lines in the program
 };
 
 struct Prim *new_prim(char* op, struct Prim *left, struct Prim *right);
 struct Lit *new_lit(int val);
 struct Let *new_let(char* id, struct Prim *val);
 struct Ref *new_ref(char* id);
+struct Env *new_env();
 
 char * prim_to_string(struct Prim *tree);
 char * lit_to_string(struct Lit *lit);

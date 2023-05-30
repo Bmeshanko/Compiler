@@ -41,6 +41,14 @@ struct Ref *new_ref(char* id) {
     return ret;
 }
 
+struct Env *new_env() {
+    struct Env *ret = (struct Env *)malloc(sizeof(struct Env));
+    
+    ret -> lines = 0;
+
+    return ret;
+}
+
 char * prim_to_string(struct Prim *tree) {
     char * ret = (char *) malloc(1024);
     if (tree->type == 2) {
