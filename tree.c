@@ -2,6 +2,14 @@
 #include <string.h>
 #include "tree.h"
 
+struct Env *new_env() {
+    struct Env *ret = (struct Env *)malloc(sizeof(struct Env));
+
+    ret -> lines = 0;
+
+    return ret;
+}
+
 struct Prim *new_prim(char *op, struct Tree *left, struct Tree *right) {
     struct Prim *ret = (struct Prim *)malloc(sizeof(struct Prim));
 
@@ -41,14 +49,6 @@ struct Ref *new_ref(char* id) {
     return ret;
 }
 
-struct Env *new_env() {
-    struct Env *ret = (struct Env *)malloc(sizeof(struct Env));
-
-    ret -> lines = 0;
-
-    return ret;
-}
-
 char * prim_to_string(struct Prim *prim) {
     char * ret = (char *) malloc(1024);
     sprintf(ret, "Prim(\"%s\", %s, %s)", prim->op, tree_to_string(prim->left), tree_to_string(prim->right));
@@ -83,4 +83,19 @@ char * tree_to_string(struct Tree *tree) {
     } else if (tree -> type == 4) {
         return ref_to_string((struct Ref *) tree);
     }
+}
+
+char * env_to_string(struct Env *env) {
+    char * ret = (char *) malloc(2048);
+    for (int i = 0; i < env->lines; i++) {
+        char * idx = (char *) malloc(1024);
+        sprintf(idx, "%s", tree_to_string(env->prog[i]));
+        strcat(ret, idx);
+        if (i < env->lines - 1) {
+            strcat(ret, ", ");
+        } else {
+            strcat(ret, "\n");
+        }
+    }
+    return ret;
 }

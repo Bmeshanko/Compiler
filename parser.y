@@ -31,7 +31,7 @@
 %%
 
 Prog: Seq {
-	printf("End of Program\n");
+	printf("%s", env_to_string(env));
 }
 
 Seq: 
@@ -39,9 +39,7 @@ Seq:
 
 Line: NWL
 | Let NWL { 
-	printf("%s\n", let_to_string($1));
-	env -> lines = line_num;
-	env -> prog[line_num - 1] = (struct Tree *) $1;
+	env->prog[env->lines++] = (struct Tree *) $1;
 }
 ;
 
