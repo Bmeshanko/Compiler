@@ -13,8 +13,8 @@ struct Prim {
     short type;
     char* op;
 
-    struct Prim *left;
-    struct Prim *right;
+    struct Tree *left;
+    struct Tree *right;
 };
 
 struct Lit {
@@ -45,7 +45,7 @@ struct Env {
     int lines; // 1-indexed amount of lines in the program
 };
 
-struct Prim *new_prim(char* op, struct Prim *left, struct Prim *right);
+struct Prim *new_prim(char* op, struct Tree *left, struct Tree *right);
 struct Lit *new_lit(int val);
 struct Let *new_let(char* id, struct Prim *val);
 struct Ref *new_ref(char* id);
@@ -55,3 +55,4 @@ char * prim_to_string(struct Prim *tree);
 char * lit_to_string(struct Lit *lit);
 char * let_to_string(struct Let *dec);
 char * ref_to_string(struct Ref *ref);
+char * tree_to_string(struct Tree *tree);

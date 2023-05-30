@@ -2,7 +2,7 @@
 #include <string.h>
 #include "tree.h"
 
-struct Prim *new_prim(char *op, struct Prim *left, struct Prim *right) {
+struct Prim *new_prim(char *op, struct Tree *left, struct Tree *right) {
     struct Prim *ret = (struct Prim *)malloc(sizeof(struct Prim));
 
     ret -> op = strdup(op);
@@ -43,23 +43,15 @@ struct Ref *new_ref(char* id) {
 
 struct Env *new_env() {
     struct Env *ret = (struct Env *)malloc(sizeof(struct Env));
-    
+
     ret -> lines = 0;
 
     return ret;
 }
 
-char * prim_to_string(struct Prim *tree) {
+char * prim_to_string(struct Prim *prim) {
     char * ret = (char *) malloc(1024);
-    if (tree->type == 2) {
-        struct Lit *lit = (struct Lit *) tree;
-        return lit_to_string(lit);
-    } else if (tree->type == 4) {
-        struct Ref *ref = (struct Ref *) tree;
-        return ref_to_string(ref);
-    } else if (tree->type == 1) {
-        sprintf(ret, "Prim(\"%s\", %s, %s)", tree->op, prim_to_string(tree->left), prim_to_string(tree->right));
-    }
+    sprintf(ret, "Prim(\"%s\", %s, %s)", prim->op, tree_to_string(prim->left), tree_to_string(prim->right));
     return ret;
 }
 
@@ -69,9 +61,9 @@ char * lit_to_string(struct Lit *lit) {
     return ret;
 }
 
-char * let_to_string(struct Let *dec) {
+char * let_to_string(struct Let *let) {
     char * ret = (char *) malloc(1024);
-    sprintf(ret, "Let(%s, %s)", dec->id, prim_to_string(dec->val));
+    sprintf(ret, "Let(%s, %s)", let->id, prim_to_string(let->val));
     return ret;
 }
 
@@ -79,4 +71,16 @@ char * ref_to_string(struct Ref *ref) {
     char * ret = (char *) malloc(1024);
     sprintf(ret, "Ref(%s)", ref->id);
     return ret;
+}
+
+char * tree_to_string(struct Tree *tree) {
+    if (tree -> type == 1) {
+        return prim_to_string((struct Prim *) tree);
+    } else if (tree -> type == 2) {
+        return lit_to_string((struct Lit *) tree);
+    } else if (tree -> type == 3) {
+        return let_to_string((struct Let *) tree);
+    } else if (tree -> type == 4) {
+        return ref_to_string((struct Ref *) tree);
+    }
 }
