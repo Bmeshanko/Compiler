@@ -21,6 +21,7 @@
 
 %token PLS MNS MLT DIV MOD AND OR XOR LPA RPA
 %token LTN GTN GEQ LEQ NEQ EQU
+%token IF LBR RBR
 %token NWL DEC
 %token <id> VAR
 %token <num> NUM
@@ -41,7 +42,12 @@ Line: NWL
 | Let NWL { 
 	env->prog[env->lines++] = (struct Tree *) $1;
 }
+| If NWL {
+	
+}
 ;
+
+If: IF LPA Exp RPA LBR Seq RBR 
 
 Let: VAR DEC Exp { $$ = new_let($1, $3); }
 ;

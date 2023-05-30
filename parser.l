@@ -31,6 +31,10 @@ DIGIT	[0-9]
 "=" { return DEC; }
 "\n" { return NWL; }
 
+"if" { return IF; }
+"{" { return LBR; }
+"}" { return RBR; }
+
 [a-zA-Z][a-zA-Z0-9]* {
 	yylval.id = strdup(yytext);
 	return VAR;

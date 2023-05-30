@@ -57,4 +57,5 @@ char * lit_to_string(struct Lit *lit);
 char * let_to_string(struct Let *dec);
 char * ref_to_string(struct Ref *ref);
 char * tree_to_string(struct Tree *tree);
+char * if_to_string(struct If *ifs);
 char * env_to_string(struct Env *env);
