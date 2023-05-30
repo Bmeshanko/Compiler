@@ -12,8 +12,9 @@
 %}
 
 %union {
-	struct Prim *val;
+	struct Tree *val;
 	struct Let *dec;
+	struct If *ifs;
 	char * id;
 	int num;
 }
@@ -21,12 +22,13 @@
 
 %token PLS MNS MLT DIV MOD AND OR XOR LPA RPA
 %token LTN GTN GEQ LEQ NEQ EQU
-%token IF LBR RBR
+%token IF ELSE LBR RBR
 %token NWL DEC
 %token <id> VAR
 %token <num> NUM
 %type <val> Exp Factor Term Num
 %type <dec> Let
+%type <ifs> If
 %start Prog
 
 %%
@@ -43,7 +45,7 @@ Line: NWL
 	env->prog[env->lines++] = (struct Tree *) $1;
 }
 | If NWL {
-	
+
 }
 ;
 
@@ -52,32 +54,32 @@ If: IF LPA Exp RPA LBR Seq RBR
 Let: VAR DEC Exp { $$ = new_let($1, $3); }
 ;
 
-Factor: VAR { $$ = (struct Prim *) new_ref($1); }
-| NUM { $$ = (struct Prim *) new_lit($1); } 
+Factor: VAR { $$ = (struct Tree *) new_ref($1); }
+| NUM { $$ = (struct Tree *) new_lit($1); } 
 | LPA Exp RPA { $$ = $2; }
 ;
 
 Term: Factor
-| Term MLT Term { $$ = new_prim((char *)"*", (struct Tree *) $1, (struct Tree *) $3); }
-| Term DIV Term { $$ = new_prim((char *)"/", (struct Tree *) $1, (struct Tree *) $3); }
-| Term MOD Term { $$ = new_prim((char *)"%", (struct Tree *) $1, (struct Tree *) $3); }
+| Term MLT Term { $$ = (struct Tree*) new_prim((char *)"*", $1, $3); }
+| Term DIV Term { $$ = (struct Tree*) new_prim((char *)"/", $1, $3); }
+| Term MOD Term { $$ = (struct Tree*) new_prim((char *)"%",  $1, $3); }
 ;
 
 Num: Term
-| Num PLS Num { $$ = new_prim((char *)"+", (struct Tree *) $1, (struct Tree *) $3); }
-| Num MNS Num { $$ = new_prim((char *)"-", (struct Tree *) $1, (struct Tree *) $3); }
+| Num PLS Num { $$ = (struct Tree*) new_prim((char *)"+", $1, $3); }
+| Num MNS Num { $$ = (struct Tree*) new_prim((char *)"-", $1, $3); }
 ;
 
 Exp: Num
-| Exp AND Exp { $$ = new_prim((char *)"&", (struct Tree *) $1, (struct Tree *) $3); }
-| Exp OR Exp { $$ = new_prim((char *)"|", (struct Tree *) $1, (struct Tree *) $3); }
-| Exp XOR Exp { $$ = new_prim((char *)"^", (struct Tree *) $1, (struct Tree *) $3); }
-| Exp LTN Exp { $$ = new_prim((char *)"<", (struct Tree *) $1, (struct Tree *) $3); }
-| Exp GTN Exp { $$ = new_prim((char *)">", (struct Tree *) $1, (struct Tree *) $3); }
-| Exp LEQ Exp { $$ = new_prim((char *)"<=", (struct Tree *) $1, (struct Tree *) $3); }
-| Exp GEQ Exp { $$ = new_prim((char *)">=", (struct Tree *) $1, (struct Tree *) $3); }
-| Exp NEQ Exp { $$ = new_prim((char *)"!=", (struct Tree *) $1, (struct Tree *) $3); }
-| Exp EQU Exp { $$ = new_prim((char *)"==", (struct Tree *) $1, (struct Tree *) $3); }
+| Exp AND Exp { $$ = (struct Tree*) new_prim((char *)"&", $1, $3); }
+| Exp OR Exp { $$ = (struct Tree*) new_prim((char *)"|", $1, $3); }
+| Exp XOR Exp { $$ = (struct Tree*) new_prim((char *)"^", $1, $3); }
+| Exp LTN Exp { $$ = (struct Tree*) new_prim((char *)"<", $1, $3); }
+| Exp GTN Exp { $$ = (struct Tree*) new_prim((char *)">", $1, $3); }
+| Exp LEQ Exp { $$ = (struct Tree*) new_prim((char *)"<=", $1, $3); }
+| Exp GEQ Exp { $$ = (struct Tree*) new_prim((char *)">=", $1, $3); }
+| Exp NEQ Exp { $$ = (struct Tree*) new_prim((char *)"!=", $1, $3); }
+| Exp EQU Exp { $$ = (struct Tree*) new_prim((char *)"==", $1, $3); }
 ;
 
 %%

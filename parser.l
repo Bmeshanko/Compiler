@@ -32,6 +32,7 @@ DIGIT	[0-9]
 "\n" { return NWL; }
 
 "if" { return IF; }
+"else" { return ELSE; }
 "{" { return LBR; }
 "}" { return RBR; }
 

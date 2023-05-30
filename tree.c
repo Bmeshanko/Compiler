@@ -2,10 +2,23 @@
 #include <string.h>
 #include "tree.h"
 
+/*
+*   Constructor Functions
+*/
+
 struct Env *new_env() {
     struct Env *ret = (struct Env *)malloc(sizeof(struct Env));
 
     ret -> lines = 0;
+
+    return ret;
+}
+
+struct If *new_if(struct Tree *cond, struct Env *env) {
+    struct Env *ret = (struct If *)malloc(sizeof(struct If));
+
+    ret -> cond = cond;
+    ret -> env = env;
 
     return ret;
 }
@@ -30,7 +43,7 @@ struct Lit *new_lit(int val) {
     return ret;
 }
 
-struct Let *new_let(char* id, struct Prim *val) {
+struct Let *new_let(char* id, struct Tree *val) {
     struct Let *ret = (struct Let *)malloc(sizeof(struct Let));
 
     ret -> id = strdup(id);
@@ -49,6 +62,31 @@ struct Ref *new_ref(char* id) {
     return ret;
 }
 
+/*
+*   To String Functions
+*/
+
+char * env_to_string(struct Env *env) {
+    char * ret = (char *) malloc(2048);
+    for (int i = 0; i < env->lines; i++) {
+        char * idx = (char *) malloc(1024);
+        sprintf(idx, "%s", tree_to_string(env->prog[i]));
+        strcat(ret, idx);
+        if (i < env->lines - 1) {
+            strcat(ret, ", ");
+        } else {
+            strcat(ret, "\n");
+        }
+    }
+    return ret;
+}
+
+char * if_to_string(struct If *ifs) {
+    char * ret = (char *) malloc(1024);
+    sprintf(ret, "If(%s, %s)", tree_to_string(ifs->cond), env_to_string(ifs->body));
+    return ret;
+}
+
 char * prim_to_string(struct Prim *prim) {
     char * ret = (char *) malloc(1024);
     sprintf(ret, "Prim(\"%s\", %s, %s)", prim->op, tree_to_string(prim->left), tree_to_string(prim->right));
@@ -63,7 +101,7 @@ char * lit_to_string(struct Lit *lit) {
 
 char * let_to_string(struct Let *let) {
     char * ret = (char *) malloc(1024);
-    sprintf(ret, "Let(%s, %s)", let->id, prim_to_string(let->val));
+    sprintf(ret, "Let(%s, %s)", let->id, tree_to_string(let->val));
     return ret;
 }
 
@@ -83,19 +121,4 @@ char * tree_to_string(struct Tree *tree) {
     } else if (tree -> type == 4) {
         return ref_to_string((struct Ref *) tree);
     }
-}
-
-char * env_to_string(struct Env *env) {
-    char * ret = (char *) malloc(2048);
-    for (int i = 0; i < env->lines; i++) {
-        char * idx = (char *) malloc(1024);
-        sprintf(idx, "%s", tree_to_string(env->prog[i]));
-        strcat(ret, idx);
-        if (i < env->lines - 1) {
-            strcat(ret, ", ");
-        } else {
-            strcat(ret, "\n");
-        }
-    }
-    return ret;
 }
