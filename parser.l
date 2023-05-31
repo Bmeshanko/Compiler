@@ -33,6 +33,7 @@ DIGIT	[0-9]
 
 "if" { return IF; }
 "else" { return ELSE; }
+"while" { return WHILE; }
 "{" { return LBR; }
 "}" { return RBR; }
 

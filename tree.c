@@ -14,11 +14,28 @@ struct Env *new_env() {
     return ret;
 }
 
-struct If *new_if(struct Tree *cond, struct Env *env) {
-    struct Env *ret = (struct If *)malloc(sizeof(struct If));
+struct If *new_if(struct Tree *cond) {
+    struct If *ret = (struct If *)malloc(sizeof(struct If));
 
     ret -> cond = cond;
-    ret -> env = env;
+    ret -> type = 5;
+
+    return ret;
+}
+
+struct While *new_while(struct Tree *cond) {
+    struct While *ret = (struct While *)malloc(sizeof(struct While));
+
+    ret -> cond = cond;
+    ret -> type = 6;
+
+    return ret;
+}
+
+struct End *new_end() {
+    struct End *ret = (struct End *)malloc(sizeof(struct End));
+
+    ret -> type = 7;
 
     return ret;
 }
@@ -63,6 +80,14 @@ struct Ref *new_ref(char* id) {
 }
 
 /*
+*   Add To Environment Function
+*/
+
+void add_to_env(struct Env *env, struct Tree *tree) {
+    env->prog[env->lines++] = tree;
+}
+
+/*
 *   To String Functions
 */
 
@@ -73,7 +98,7 @@ char * env_to_string(struct Env *env) {
         sprintf(idx, "%s", tree_to_string(env->prog[i]));
         strcat(ret, idx);
         if (i < env->lines - 1) {
-            strcat(ret, ", ");
+            strcat(ret, ";\n");
         } else {
             strcat(ret, "\n");
         }
@@ -81,9 +106,23 @@ char * env_to_string(struct Env *env) {
     return ret;
 }
 
+// You cannot name a variable "if"
 char * if_to_string(struct If *ifs) {
     char * ret = (char *) malloc(1024);
-    sprintf(ret, "If(%s, %s)", tree_to_string(ifs->cond), env_to_string(ifs->body));
+    sprintf(ret, "If(%s)", tree_to_string(ifs->cond));
+    return ret;
+}
+
+// You cannot name a variable "while"
+char * while_to_string(struct While *whiles) {
+    char * ret = (char *) malloc(1024);
+    sprintf(ret, "While(%s)", tree_to_string(whiles->cond));
+    return ret;
+}
+
+char * end_to_string(struct End *end) {
+    char * ret = (char *) malloc(16);
+    sprintf(ret, "End");
     return ret;
 }
 
@@ -112,13 +151,21 @@ char * ref_to_string(struct Ref *ref) {
 }
 
 char * tree_to_string(struct Tree *tree) {
-    if (tree -> type == 1) {
-        return prim_to_string((struct Prim *) tree);
-    } else if (tree -> type == 2) {
-        return lit_to_string((struct Lit *) tree);
-    } else if (tree -> type == 3) {
-        return let_to_string((struct Let *) tree);
-    } else if (tree -> type == 4) {
-        return ref_to_string((struct Ref *) tree);
+    switch (tree -> type) {
+        case 1:
+            return prim_to_string((struct Prim *) tree);
+        case 2:
+            return lit_to_string((struct Lit *) tree);
+        case 3:
+            return let_to_string((struct Let *) tree);
+        case 4:
+            return ref_to_string((struct Ref *) tree);
+        case 5:
+            return if_to_string((struct If*) tree);
+        case 6:
+            return while_to_string((struct While*) tree);
+        case 7:
+            return end_to_string((struct End*) tree);
     }
+    return NULL;
 }

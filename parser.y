@@ -15,6 +15,8 @@
 	struct Tree *val;
 	struct Let *dec;
 	struct If *ifs;
+	struct While *whiles;
+	struct End *end;
 	char * id;
 	int num;
 }
@@ -22,13 +24,15 @@
 
 %token PLS MNS MLT DIV MOD AND OR XOR LPA RPA
 %token LTN GTN GEQ LEQ NEQ EQU
-%token IF ELSE LBR RBR
+%token IF WHILE ELSE LBR RBR 
 %token NWL DEC
 %token <id> VAR
 %token <num> NUM
-%type <val> Exp Factor Term Num
+%type <val> Exp Factor Term Num Line
 %type <dec> Let
 %type <ifs> If
+%type <whiles> While
+%type <end> End
 %start Prog
 
 %%
@@ -40,16 +44,20 @@ Prog: Seq {
 Seq: 
 | Seq Line
 
-Line: NWL
-| Let NWL { 
-	env->prog[env->lines++] = (struct Tree *) $1;
-}
-| If NWL {
-
-}
+Line: Let NWL { env->prog[env->lines++] = (struct Tree *) $1; }
+| If NWL { env->prog[env->lines++] = (struct Tree *) $1; }
+| While NWL { env->prog[env->lines++] = (struct Tree *) $1; }
+| End NWL { env->prog[env->lines++] = (struct Tree *) $1; }
 ;
 
-If: IF LPA Exp RPA LBR Seq RBR 
+If: IF LPA Exp RPA LBR { $$ = new_if($3); }
+;
+
+While: WHILE LPA Exp RPA LBR { $$ = new_while($3); }
+;
+
+End: RBR { $$ = new_end(); }
+;
 
 Let: VAR DEC Exp { $$ = new_let($1, $3); }
 ;
