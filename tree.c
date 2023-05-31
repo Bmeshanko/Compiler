@@ -79,6 +79,15 @@ struct Ref *new_ref(char* id) {
     return ret;
 }
 
+struct Print * new_print(struct Tree* ref) {
+    struct Print *ret = (struct Print *)malloc(sizeof(struct Print));
+
+    ret -> ref = ref;
+    ret -> type = 8;
+
+    return ret;
+}
+
 /*
 *   Add To Environment Function
 */
@@ -150,6 +159,12 @@ char * ref_to_string(struct Ref *ref) {
     return ret;
 }
 
+char * print_to_string(struct Print *print) {
+    char * ret = (char *) malloc(1024);
+    sprintf(ret, "Print(%s)", tree_to_string(print->ref));
+    return ret;
+}
+
 char * tree_to_string(struct Tree *tree) {
     switch (tree -> type) {
         case 1:
@@ -166,6 +181,8 @@ char * tree_to_string(struct Tree *tree) {
             return while_to_string((struct While*) tree);
         case 7:
             return end_to_string((struct End*) tree);
+        case 8:
+            return print_to_string((struct Print*) tree);
     }
     return NULL;
 }

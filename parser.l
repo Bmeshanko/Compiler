@@ -37,6 +37,8 @@ DIGIT	[0-9]
 "{" { return LBR; }
 "}" { return RBR; }
 
+"print" { return PRINT; }
+
 [a-zA-Z][a-zA-Z0-9]* {
 	yylval.id = strdup(yytext);
 	return VAR;

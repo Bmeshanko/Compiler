@@ -53,6 +53,11 @@ struct End {
     short type;
 };
 
+struct Print {
+    short type;
+    Tree * ref;
+};
+
 struct Env *new_env();
 struct If *new_if(struct Tree *cond);
 struct While *new_while(struct Tree *cond);
@@ -61,7 +66,9 @@ struct Prim *new_prim(char* op, struct Tree *left, struct Tree *right);
 struct Lit *new_lit(int val);
 struct Let *new_let(char* id, struct Tree *val);
 struct Ref *new_ref(char* id);
+struct Print *new_print(struct Tree *ref);
 
+char * tree_to_string(struct Tree *tree);
 char * env_to_string(struct Env *env);
 char * if_to_string(struct If *ifs);
 char * while_to_string(struct While *whiles);
@@ -70,4 +77,4 @@ char * prim_to_string(struct Prim *tree);
 char * lit_to_string(struct Lit *lit);
 char * let_to_string(struct Let *dec);
 char * ref_to_string(struct Ref *ref);
-char * tree_to_string(struct Tree *tree);
+char * print_to_string(struct Print *print);

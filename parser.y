@@ -17,6 +17,7 @@
 	struct If *ifs;
 	struct While *whiles;
 	struct End *end;
+	struct Print *print;
 	char * id;
 	int num;
 }
@@ -24,7 +25,8 @@
 
 %token PLS MNS MLT DIV MOD AND OR XOR LPA RPA
 %token LTN GTN GEQ LEQ NEQ EQU
-%token IF WHILE ELSE LBR RBR 
+%token IF ELSE WHILE LBR RBR 
+%token PRINT
 %token NWL DEC
 %token <id> VAR
 %token <num> NUM
@@ -33,6 +35,7 @@
 %type <ifs> If
 %type <whiles> While
 %type <end> End
+%type <print> Print
 %start Prog
 
 %%
@@ -48,6 +51,7 @@ Line: Let NWL { env->prog[env->lines++] = (struct Tree *) $1; }
 | If NWL { env->prog[env->lines++] = (struct Tree *) $1; }
 | While NWL { env->prog[env->lines++] = (struct Tree *) $1; }
 | End NWL { env->prog[env->lines++] = (struct Tree *) $1; }
+| Print NWL { env->prog[env->lines++] = (struct Tree *) $1; }
 ;
 
 If: IF LPA Exp RPA LBR { $$ = new_if($3); }
@@ -61,6 +65,8 @@ End: RBR { $$ = new_end(); }
 
 Let: VAR DEC Exp { $$ = new_let($1, $3); }
 ;
+
+Print: PRINT LPA Exp RPA { $$ = new_print($3); }
 
 Factor: VAR { $$ = (struct Tree *) new_ref($1); }
 | NUM { $$ = (struct Tree *) new_lit($1); } 
