@@ -16,19 +16,19 @@ interpreter.o: interpreter.y
 	$(YACC) -o interpreter.c interpreter.y
 	$(CC) -c interpreter.c
 
-parser.o: parser.y
-	$(YACC) -o parser.c parser.y
-	$(CC) -c parser.c
+y.tab.o: parser.y
+	$(YACC) -o y.tab.c parser.y
+	$(CC) -c y.tab.c
 
 lex.yy.o: parser.l
 	$(LEX) parser.l
 	$(CC) -c lex.yy.c
 
-compiler: parser.o lex.yy.o tree.h tree.c
-	$(CC) -o compiler lex.yy.o parser.o tree.h tree.c
+compiler: y.tab.o lex.yy.o parser.h parser.c
+	$(CC) -o compiler lex.yy.o y.tab.o parser.h parser.c
 
-interpreter: interpreter.o lex.yy.o tree.h tree.c
-	$(CC) -o compiler lex.yy.o interpreter.o tree.h tree.c
+interpreter: interpreter.o lex.yy.o parser.h parser.c
+	$(CC) -o compiler lex.yy.o interpreter.o parser.h parser.c
 
 clean:
-	rm *.o compiler parser.c parser.h lex.yy.c
+	rm *.o compiler y.tab.c y.tab.h lex.yy.c

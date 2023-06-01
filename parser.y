@@ -1,6 +1,6 @@
 %{
 	#include <stdio.h>
-	#include "tree.h"
+	#include "parser.h"
 	int yyerror (char const *s) {
 		return fprintf(stderr, "%s\n", s);
 	}

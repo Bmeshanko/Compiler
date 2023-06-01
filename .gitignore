@@ -1,6 +1,6 @@
 lex.yy.c
-parser.c
-parser.h
+y.tab.c
+y.tab.h
 lex.yy.o
 parser.o
 compiler
