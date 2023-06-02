@@ -14,7 +14,7 @@ DIGIT	[0-9]
 "-" { return MNS; }
 "*" { return MLT; }
 "/" { return DIV; }
-"%" { return DIV; }
+"%" { return MOD; }
 "&" { return AND; }
 "|" { return OR; }
 "^" { return XOR; }
