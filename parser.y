@@ -48,6 +48,9 @@
 %%
 
 Prog: Seq {
+	printf("Un-typed AST:\n\n");
+	printf("%s\n", env_to_string(env));
+	printf("Interpreter:\n");
 	eval(env, 0, env->lines, variables);
 }
 

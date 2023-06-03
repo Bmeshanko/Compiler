@@ -22,14 +22,14 @@ void eval(struct Env *prog, int start, int finish, mci &variables) {
             if (evalCond(((struct If *)tree)->cond, 5, variables)) {
                 eval(prog, i + 1, end, variables);
             }
-            i = end;
+            i = end - 1;
         } else if (type == 6) {
             // While Statement
             int end = findEnd(prog, i);
             while (evalCond(((struct While *)tree)->cond, 6, variables)) {
                 eval(prog, i + 1, end, variables);
             }
-            i = end;
+            i = end - 1;
         } else if (type == 8) {
             // Print Statement
             printf("%d\n", evalNum(((struct Print *)tree)->val, variables));
@@ -45,7 +45,7 @@ int findEnd(struct Env *prog, int start) {
         short type = prog->prog[i]->type;
         if (type == 7) diff--;
         if (type == 4 || type == 5) diff++;
-        if (diff == 0) return i;
+        if (diff == 0) return i + 1;
     }
     return -1;
 }
@@ -55,13 +55,7 @@ void evalLet(struct Let *let, mci &variables) {
 }
 
 bool evalCond(struct Tree *tree, int type, mci &variables) {
-    if (type == 5) {
-        return evalNum(((struct If *) tree) -> cond, variables) == 0;
-    } else if (type == 6) {
-        return evalNum(((struct While *) tree) -> cond, variables) == 0;
-    } else {
-        return NULL;
-    }
+    return evalNum(tree, variables) != 0;
 }
 
 int evalNum(struct Tree *tree, mci &variables) {

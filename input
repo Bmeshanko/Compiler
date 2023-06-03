@@ -1,6 +1,6 @@
 n = 1
 res = 1
-while (n < 10) {
+while (n <= 5) {
 res = res * n
 n = n + 1
 }
