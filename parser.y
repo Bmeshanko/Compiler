@@ -1,10 +1,13 @@
 %code requires
 {
+	#include <string>
+}
+
+%{
 	#include <stdio.h>
 	#include "interpreter.hh"
 	#include "parser.hh"
 	#include <map>
-	#include <string>
 	int yyerror (char const *s) {
 		return fprintf(stderr, "%s\n", s);
 	}
@@ -12,8 +15,8 @@
 
 	struct Env *env = new_env();
 	int line_num = 1;
-	std::map<std::string*, int> variables;
-}
+	std::map<std::string, int> variables;
+%}
 
 %union {
 	struct Tree *val;

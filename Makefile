@@ -1,6 +1,6 @@
-CC = g++ -g -std=c++17
+CC = g++
 LEX = lex -ll
-YACC = yacc -y -d -t
+YACC = yacc -d -t -y
 
 all: compiler
 .PHONY: git-commit
@@ -21,7 +21,7 @@ lex.yy.o: parser.l
 	$(CC) -c lex.yy.c
 
 compiler: y.tab.o lex.yy.o parser.hh parser.cc interpreter.hh interpreter.cc
-	$(CC) -o compiler lex.yy.o y.tab.o parser.hh parser.cc interpreter.hh interpreter.cc
+	$(CC) -o compiler y.tab.o lex.yy.o parser.hh parser.cc interpreter.hh interpreter.cc
 
 clean:
 	rm *.o compiler y.tab.c y.tab.h lex.yy.c

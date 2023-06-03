@@ -4,9 +4,12 @@
 #include <string>
 #include "interpreter.hh"
 #include "parser.hh"
+#include <map>
 
-void eval(struct Env *prog, int start, int end, mci &variables) {
-    for (int i = start; i < end; i++) {
+typedef std::map<std::string, int> mci;
+
+void eval(struct Env *prog, int start, int finish, mci &variables) {
+    for (int i = start; i < finish; i++) {
         struct Tree * tree = prog->prog[i];
         short type = tree->type;
 
@@ -19,12 +22,14 @@ void eval(struct Env *prog, int start, int end, mci &variables) {
             if (evalCond(((struct If *)tree)->cond, 5, variables)) {
                 eval(prog, i + 1, end, variables);
             }
+            i = end;
         } else if (type == 6) {
             // While Statement
             int end = findEnd(prog, i);
             while (evalCond(((struct While *)tree)->cond, 6, variables)) {
                 eval(prog, i + 1, end, variables);
             }
+            i = end;
         } else if (type == 8) {
             // Print Statement
             printf("%d\n", evalNum(((struct Print *)tree)->val, variables));
@@ -46,7 +51,7 @@ int findEnd(struct Env *prog, int start) {
 }
 
 void evalLet(struct Let *let, mci &variables) {
-    variables[let -> id] = evalNum(let -> val, variables);
+    variables.insert_or_assign(*(let -> id), evalNum(let -> val, variables));
 }
 
 bool evalCond(struct Tree *tree, int type, mci &variables) {
@@ -61,7 +66,7 @@ bool evalCond(struct Tree *tree, int type, mci &variables) {
 
 int evalNum(struct Tree *tree, mci &variables) {
     if (tree -> type == 4) {
-        return variables[((struct Ref *) tree) -> id];
+        return variables[*(((struct Ref *) tree) -> id)];
     } else if (tree -> type == 2) {
         return ((struct Lit *) tree) -> val;
     } else if (tree -> type == 1) {
