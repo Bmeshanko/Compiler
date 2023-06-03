@@ -1,6 +1,6 @@
 CC = g++ -g -std=c++17
 LEX = lex -ll
-YACC = yacc -y -d -t --debug
+YACC = yacc -y -d -t
 
 all: compiler
 .PHONY: git-commit

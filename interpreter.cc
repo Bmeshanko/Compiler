@@ -5,8 +5,6 @@
 #include "interpreter.hh"
 #include "parser.hh"
 
-typedef std::map<std::string*, int> mci;
-
 void eval(struct Env *prog, int start, int end, mci &variables) {
     for (int i = start; i < end; i++) {
         struct Tree * tree = prog->prog[i];
