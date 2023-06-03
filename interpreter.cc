@@ -45,7 +45,7 @@ int findEnd(struct Env *prog, int start) {
         short type = prog->prog[i]->type;
         if (type == 7) diff--;
         if (type == 4 || type == 5) diff++;
-        if (diff == 0) return i + 1;
+        if (diff == 0) return i;
     }
     return -1;
 }
