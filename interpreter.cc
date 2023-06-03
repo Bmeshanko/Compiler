@@ -22,14 +22,14 @@ void eval(struct Env *prog, int start, int finish, mci &variables) {
             if (evalCond(((struct If *)tree)->cond, 5, variables)) {
                 eval(prog, i + 1, end, variables);
             }
-            i = end + 1;
+            i = end;
         } else if (type == 6) {
             // While Statement
             int end = findEnd(prog, i);
             while (evalCond(((struct While *)tree)->cond, 6, variables)) {
                 eval(prog, i + 1, end, variables);
             }
-            i = end + 1;
+            i = end;
         } else if (type == 8) {
             // Print Statement
             printf("%d\n", evalNum(((struct Print *)tree)->val, variables));
@@ -82,7 +82,9 @@ int evalNum(struct Tree *tree, mci &variables) {
         else if (strcmp(op, "==") == 0) return evalNum(l, variables) == evalNum(r, variables); 
         else if (strcmp(op, "!=") == 0) return evalNum(l, variables) != evalNum(r, variables); 
         else if (strcmp(op, "<=") == 0) return evalNum(l, variables) <= evalNum(r, variables); 
-        else if (strcmp(op, ">=") == 0) return evalNum(l, variables) >= evalNum(r, variables); 
+        else if (strcmp(op, ">=") == 0) return evalNum(l, variables) >= evalNum(r, variables);
+        else if (strcmp(op, "&&") == 0) return evalNum(l, variables) && evalNum(r, variables);
+        else if (strcmp(op, "||") == 0) return evalNum(l, variables) || evalNum(r, variables);
         else return 0;
     }
     return 0;

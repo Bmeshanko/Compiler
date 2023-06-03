@@ -15,6 +15,7 @@
 
 	struct Env *env = new_env();
 	int line_num = 1;
+	// For Untyped AST Interpreter
 	std::map<std::string, int> variables;
 %}
 
@@ -30,7 +31,7 @@
 }
 
 
-%token PLS MNS MLT DIV MOD AND OR XOR LPA RPA
+%token PLS MNS MLT DIV MOD BAND BOR BXOR LPA RPA AND OR
 %token LTN GTN GEQ LEQ NEQ EQU
 %token IF WHILE LBR RBR 
 %token PRINT
@@ -38,7 +39,7 @@
 %token DEC
 %token <id> VAR
 %token <num> NUM
-%type <val> Exp Factor Term Num Line
+%type <val> Exp Cond Factor Term Num Line
 %type <dec> Let
 %type <ifs> If
 %type <whiles> While
@@ -69,23 +70,24 @@ Line: Let NWL { env->prog[env->lines++] = (struct Tree *) $1; }
 | Print NWL { env->prog[env->lines++] = (struct Tree *) $1; }
 ;
 
-If: IF LPA Exp RPA LBR { $$ = new_if($3); }
+If: IF LPA Cond RPA LBR { $$ = new_if($3); }
 ;
 
-While: WHILE LPA Exp RPA LBR { $$ = new_while($3); }
+While: WHILE LPA Cond RPA LBR { $$ = new_while($3); }
 ;
 
 End: RBR { $$ = new_end(); }
 ;
 
-Let: VAR DEC Exp { $$ = new_let($1, $3); }
+Let: VAR DEC Cond { $$ = new_let($1, $3); }
 ;
 
-Print: PRINT LPA Exp RPA { $$ = new_print($3); }
+Print: PRINT LPA Cond RPA { $$ = new_print($3); }
 
 Factor: VAR { $$ = (struct Tree *) new_ref($1); }
 | NUM { $$ = (struct Tree *) new_lit($1); } 
-| LPA Exp RPA { $$ = $2; }
+| LPA Cond RPA { $$ = $2; }
+|
 ;
 
 Term: Factor
@@ -100,15 +102,20 @@ Num: Term
 ;
 
 Exp: Num
-| Exp AND Exp { $$ = (struct Tree*) new_prim((char *)"&", $1, $3); }
-| Exp OR Exp { $$ = (struct Tree*) new_prim((char *)"|", $1, $3); }
-| Exp XOR Exp { $$ = (struct Tree*) new_prim((char *)"^", $1, $3); }
+| Exp BAND Exp { $$ = (struct Tree*) new_prim((char *)"&", $1, $3); }
+| Exp BOR Exp { $$ = (struct Tree*) new_prim((char *)"|", $1, $3); }
+| Exp BXOR Exp { $$ = (struct Tree*) new_prim((char *)"^", $1, $3); }
 | Exp LTN Exp { $$ = (struct Tree*) new_prim((char *)"<", $1, $3); }
 | Exp GTN Exp { $$ = (struct Tree*) new_prim((char *)">", $1, $3); }
 | Exp LEQ Exp { $$ = (struct Tree*) new_prim((char *)"<=", $1, $3); }
 | Exp GEQ Exp { $$ = (struct Tree*) new_prim((char *)">=", $1, $3); }
 | Exp NEQ Exp { $$ = (struct Tree*) new_prim((char *)"!=", $1, $3); }
 | Exp EQU Exp { $$ = (struct Tree*) new_prim((char *)"==", $1, $3); }
+;
+
+Cond: Exp
+| Cond AND Cond { $$ = (struct Tree*) new_prim((char *)"&&", $1, $3); }
+| Cond OR Cond { $$ = (struct Tree*) new_prim((char *)"||", $1, $3); }
 ;
 
 %%

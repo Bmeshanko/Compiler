@@ -10,14 +10,17 @@ DIGIT	[0-9]
 
 %%
 
+"&&" { return AND; }
+"||" { return OR; }
+
 "+" { return PLS; }
 "-" { return MNS; }
 "*" { return MLT; }
 "/" { return DIV; }
 "%" { return MOD; }
-"&" { return AND; }
-"|" { return OR; }
-"^" { return XOR; }
+"&" { return BAND; }
+"|" { return BOR; }
+"^" { return BXOR; }
 "(" { return LPA; }
 ")" { return RPA; }
 
@@ -37,6 +40,7 @@ DIGIT	[0-9]
 "}" { return RBR; }
 
 "print" { return PRINT; }
+
 
 "\t" { return TAB; }
 
