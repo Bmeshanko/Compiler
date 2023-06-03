@@ -1,7 +1,2 @@
-res = 1
-n = 10
-while (n < 10) {
-res = res * n
-n = n - 1
-}
-print(res + 1)
+a = 1
+print(a)

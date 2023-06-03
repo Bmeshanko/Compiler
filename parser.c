@@ -79,10 +79,10 @@ struct Ref *new_ref(char* id) {
     return ret;
 }
 
-struct Print * new_print(struct Tree* ref) {
+struct Print * new_print(struct Tree* val) {
     struct Print *ret = (struct Print *)malloc(sizeof(struct Print));
 
-    ret -> ref = ref;
+    ret -> val = val;
     ret -> type = 8;
 
     return ret;
@@ -161,7 +161,7 @@ char * ref_to_string(struct Ref *ref) {
 
 char * print_to_string(struct Print *print) {
     char * ret = (char *) malloc(1024);
-    sprintf(ret, "Print(%s)", tree_to_string(print->ref));
+    sprintf(ret, "Print(%s)", tree_to_string(print->val));
     return ret;
 }
 

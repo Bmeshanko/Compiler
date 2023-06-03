@@ -1,34 +1,36 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <map>
-#include "interpreter.h"
+#include <cstring>
+#include "interpreter.hh"
+#include "parser.h"
 
-map<char *, int> variables;
+typedef std::map<char *, int> mci;
 
-void eval(struct Env *prog, int start, int end) {
+void eval(struct Env *prog, int start, int end, mci &variables) {
     for (int i = start; i < end; i++) {
         struct Tree * tree = prog->prog[i];
         short type = tree->type;
 
         if (type == 3) {
             // Let Statement
-            evalLet((struct Let *) tree);
+            evalLet((struct Let *) tree, variables);
         } else if (type == 5) {
             // If Statement
             int end = findEnd(prog, i);
-            if (evalCond((struct If *)tree->cond), 5) {
-                eval(prog, i + 1, end);
+            if (evalCond(((struct If *)tree)->cond, 5, variables)) {
+                eval(prog, i + 1, end, variables);
             }
         } else if (type == 6) {
             // While Statement
             int end = findEnd(prog, i);
-            while (evalCond((struct While *)tree->cond), 6) {
-                eval(prog, i + 1, end);
+            while (evalCond(((struct While *)tree)->cond, 6, variables)) {
+                eval(prog, i + 1, end, variables);
             }
         } else if (type == 8) {
             // Print Statement
+            printf("%d\n", evalNum(((struct Print *)tree)->val, variables));
         } else {
-            // Do nothing
+            // End: Do nothing
         }
     }
 }
@@ -44,48 +46,50 @@ int findEnd(struct Env *prog, int start) {
     return -1;
 }
 
-void evalLet(struct Let *let) {
-     variables[let->id] = evalNum(let->val);
+void evalLet(struct Let *let, mci &variables) {
+     variables[(char *) let -> id] = evalNum(let -> val, variables);
+     printf("Let: %d\n", variables[let->id]);
+     printf("Exp: %d\n", evalNum(let->val, variables));
 }
 
-bool evalCond(struct Tree *tree, short type) {
+bool evalCond(struct Tree *tree, int type, mci &variables) {
     if (type == 5) {
-        return evalNum((struct If *) tree -> cond) == 0;
+        return evalNum(((struct If *) tree) -> cond, variables) == 0;
     } else if (type == 6) {
-        return evalNum((struct While *) tree -> cond) == 0;
+        return evalNum(((struct While *) tree) -> cond, variables) == 0;
     } else {
         return NULL;
     }
 }
 
-int evalNum(struct Tree *tree) {
+int evalNum(struct Tree *tree, mci &variables) {
     if (tree -> type == 4) {
-        return variables[(struct Ref *) tree -> id];
+        return variables[(char *)(((struct Ref *) tree) -> id)];
     } else if (tree -> type == 2) {
-        return (struct Lit *) tree -> val;
+        return ((struct Lit *) tree) -> val;
     } else if (tree -> type == 1) {
-        struct Prim * l = (struct Prim *) tree -> left;
-        struct Prim * r = (struct Prim *) tree - > right;
+        struct Tree * l = ((struct Prim *) tree) -> left;
+        struct Tree * r = ((struct Prim *) tree) -> right;
 
-        switch ((struct Prim *) tree -> op) {
-            case "+": return evalPrim(l) + evalPrim(r);
-            case "-": return evalPrim(l) - evalPrim(r);
-            case "*": return evalPrim(l) * evalPrim(r);
-            case "/": return evalPrim(l) / evalPrim(r);
-            case "%%": return evalPrim(l) % evalPrim(r);
-            case "|": return evalPrim(l) | evalPrim(r);
-            case "&": return evalPrim(l) & evalPrim(r);
-            case "^": return evalPrim(l) ^ evalPrim(r);
-            case "==": return evalPrim(l) == evalPrim(r);
-            case "!=": return evalPrim(l) != evalPrim(r);
-            case "<=": return evalPrim(l) <= evalPrim(r);
-            case ">=": return evalPrim(l) >= evalPrim(r);
-            case "<": return evalPrim(l) < evalPrim(r);
-            case ">": return evalPrim(l) > evalPrim(r);
-        }
-    } else {
-        return NULL;
+        char * op = ((struct Prim *) tree) -> op;
+
+        if (strcmp(op, "+") == 0) return evalNum(l, variables) + evalNum(r, variables); 
+        else if (strcmp(op, "-") == 0) return evalNum(l, variables) - evalNum(r, variables); 
+        else if (strcmp(op, "*")== 0) return evalNum(l, variables) * evalNum(r, variables); 
+        else if (strcmp(op, "/") == 0) return evalNum(l, variables) / evalNum(r, variables); 
+        else if (strcmp(op, "%") == 0) return evalNum(l, variables) % evalNum(r, variables); 
+        else if (strcmp(op, "^") == 0) return evalNum(l, variables) ^ evalNum(r, variables); 
+        else if (strcmp(op, "&") == 0) return evalNum(l, variables) & evalNum(r, variables); 
+        else if (strcmp(op, "|") == 0) return evalNum(l, variables) | evalNum(r, variables); 
+        else if (strcmp(op, "<") == 0) return evalNum(l, variables) < evalNum(r, variables); 
+        else if (strcmp(op, ">") == 0) return evalNum(l, variables) > evalNum(r, variables); 
+        else if (strcmp(op, "==") == 0) return evalNum(l, variables) == evalNum(r, variables); 
+        else if (strcmp(op, "!=") == 0) return evalNum(l, variables) != evalNum(r, variables); 
+        else if (strcmp(op, "<=") == 0) return evalNum(l, variables) <= evalNum(r, variables); 
+        else if (strcmp(op, ">=") == 0) return evalNum(l, variables) >= evalNum(r, variables); 
+        else return 0;
     }
+    return 0;
 }
 
 

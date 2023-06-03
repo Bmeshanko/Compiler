@@ -55,7 +55,7 @@ struct End {
 
 struct Print {
     short type;
-    Tree * ref;
+    struct Tree * val;
 };
 
 struct Env *new_env();

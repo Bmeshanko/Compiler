@@ -1,6 +1,8 @@
 %{
 	#include <stdio.h>
+	#include "interpreter.hh"
 	#include "parser.h"
+	#include <map>
 	int yyerror (char const *s) {
 		return fprintf(stderr, "%s\n", s);
 	}
@@ -8,7 +10,7 @@
 
 	struct Env *env = new_env();
 	int line_num = 1;
-
+	std::map<char *, int> variables;
 %}
 
 %union {
@@ -41,7 +43,7 @@
 %%
 
 Prog: Seq {
-	printf("%s", env_to_string(env));
+	eval(env, 0, env->lines, variables);
 }
 
 Seq: 

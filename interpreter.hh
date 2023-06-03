@@ -1,10 +1,11 @@
 #include <stdlib.h>
 #include <stdio.h>
+#include <map>
 
-void eval (struct Env *prog);
-void evalGeneric(struct Tree *tree);
-void evalFromTo(struct Env *prog, int start, int end);
-void evalLet(struct Let *let);
-bool evalIf(struct If *ifs);
-bool evalWhile(struct While *whiles);
-int evalNum(struct Tree *tree);
+typedef std::map<char *, int> mci;
+
+void eval(struct Env *prog, int start, int end, mci &variables);
+int findEnd(struct Env *prog, int start);
+void evalLet(struct Let *let, mci &variables);
+bool evalCond(struct Tree *tree, int type, mci &variables);
+int evalNum(struct Tree *tree, mci &variables);
