@@ -11,7 +11,6 @@ typedef std::map<std::string, int> mci;
 void eval(struct Env *prog, int start, int finish, mci &variables) {
     for (int i = start; i < finish; i++) {
         struct Tree * tree = prog->prog[i];
-        printf("i = %d, %s\n", i, tree_to_string(tree));
         short type = tree->type;
 
         if (type == 3) {
@@ -31,7 +30,6 @@ void eval(struct Env *prog, int start, int finish, mci &variables) {
                 eval(prog, i + 1, end, variables);
             }
             i = end + 1;
-            printf("End i = %d\n", i);
         } else if (type == 8) {
             // Print Statement
             printf("%d\n", evalNum(((struct Print *)tree)->val, variables));

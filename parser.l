@@ -32,12 +32,13 @@ DIGIT	[0-9]
 "\n" { return NWL; }
 
 "if" { return IF; }
-"else" { return ELSE; }
 "while" { return WHILE; }
 "{" { return LBR; }
 "}" { return RBR; }
 
 "print" { return PRINT; }
+
+"\t" { return TAB; }
 
 [a-zA-Z][a-zA-Z0-9]* {
 	yylval.id = new std::string(yytext);

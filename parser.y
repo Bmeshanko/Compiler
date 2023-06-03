@@ -32,9 +32,10 @@
 
 %token PLS MNS MLT DIV MOD AND OR XOR LPA RPA
 %token LTN GTN GEQ LEQ NEQ EQU
-%token IF ELSE WHILE LBR RBR 
+%token IF WHILE LBR RBR 
 %token PRINT
-%token NWL DEC
+%token NWL TAB
+%token DEC
 %token <id> VAR
 %token <num> NUM
 %type <val> Exp Factor Term Num Line
@@ -56,7 +57,10 @@ Prog: Seq {
 }
 
 Seq: 
-| Seq Line
+| Seq Whitespace Line
+
+Whitespace:
+| TAB Whitespace
 
 Line: Let NWL { env->prog[env->lines++] = (struct Tree *) $1; }
 | If NWL { env->prog[env->lines++] = (struct Tree *) $1; }
