@@ -1,10 +1,11 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <cstring>
+#include <string>
 #include "interpreter.hh"
-#include "parser.h"
+#include "parser.hh"
 
-typedef std::map<char *, int> mci;
+typedef std::map<std::string*, int> mci;
 
 void eval(struct Env *prog, int start, int end, mci &variables) {
     for (int i = start; i < end; i++) {
@@ -47,9 +48,7 @@ int findEnd(struct Env *prog, int start) {
 }
 
 void evalLet(struct Let *let, mci &variables) {
-     variables[(char *) let -> id] = evalNum(let -> val, variables);
-     printf("Let: %d\n", variables[let->id]);
-     printf("Exp: %d\n", evalNum(let->val, variables));
+    variables[let -> id] = evalNum(let -> val, variables);
 }
 
 bool evalCond(struct Tree *tree, int type, mci &variables) {
@@ -64,7 +63,7 @@ bool evalCond(struct Tree *tree, int type, mci &variables) {
 
 int evalNum(struct Tree *tree, mci &variables) {
     if (tree -> type == 4) {
-        return variables[(char *)(((struct Ref *) tree) -> id)];
+        return variables[((struct Ref *) tree) -> id];
     } else if (tree -> type == 2) {
         return ((struct Lit *) tree) -> val;
     } else if (tree -> type == 1) {

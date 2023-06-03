@@ -1,6 +1,7 @@
 #include <stdlib.h>
-#include <string.h>
-#include "parser.h"
+#include <string>
+#include <cstring>
+#include "parser.hh"
 
 /*
 *   Constructor Functions
@@ -60,20 +61,20 @@ struct Lit *new_lit(int val) {
     return ret;
 }
 
-struct Let *new_let(char* id, struct Tree *val) {
+struct Let *new_let(std::string *id, struct Tree *val) {
     struct Let *ret = (struct Let *)malloc(sizeof(struct Let));
 
-    ret -> id = strdup(id);
+    ret -> id = id;
     ret -> val = val;
     ret -> type = 3;
 
     return ret;
 }
 
-struct Ref *new_ref(char* id) {
+struct Ref *new_ref(std::string *id) {
     struct Ref *ret = (struct Ref *)malloc(sizeof(struct Ref));
 
-    ret -> id = strdup(id);
+    ret -> id = id;
     ret -> type = 4;
 
     return ret;
@@ -149,13 +150,13 @@ char * lit_to_string(struct Lit *lit) {
 
 char * let_to_string(struct Let *let) {
     char * ret = (char *) malloc(1024);
-    sprintf(ret, "Let(%s, %s)", let->id, tree_to_string(let->val));
+    sprintf(ret, "Let(%s, %s)", let->id->c_str(), tree_to_string(let->val));
     return ret;
 }
 
 char * ref_to_string(struct Ref *ref) {
     char * ret = (char *) malloc(1024);
-    sprintf(ret, "Ref(%s)", ref->id);
+    sprintf(ret, "Ref(%s)", ref->id->c_str());
     return ret;
 }
 

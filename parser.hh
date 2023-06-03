@@ -29,14 +29,14 @@ struct Lit {
 
 struct Let {
     short type;
-    char* id;
+    std::string *id;
 
     struct Tree *val;
 };
 
 struct Ref {
     short type;
-    char* id;
+    std::string *id;
 };
 
 struct If {
@@ -64,8 +64,8 @@ struct While *new_while(struct Tree *cond);
 struct End *new_end();
 struct Prim *new_prim(char* op, struct Tree *left, struct Tree *right);
 struct Lit *new_lit(int val);
-struct Let *new_let(char* id, struct Tree *val);
-struct Ref *new_ref(char* id);
+struct Let *new_let(std::string *id, struct Tree *val);
+struct Ref *new_ref(std::string *id);
 struct Print *new_print(struct Tree *ref);
 
 char * tree_to_string(struct Tree *tree);

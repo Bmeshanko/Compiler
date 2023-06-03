@@ -1,8 +1,10 @@
-%{
+%code requires
+{
 	#include <stdio.h>
 	#include "interpreter.hh"
-	#include "parser.h"
+	#include "parser.hh"
 	#include <map>
+	#include <string>
 	int yyerror (char const *s) {
 		return fprintf(stderr, "%s\n", s);
 	}
@@ -10,8 +12,8 @@
 
 	struct Env *env = new_env();
 	int line_num = 1;
-	std::map<char *, int> variables;
-%}
+	std::map<std::string*, int> variables;
+}
 
 %union {
 	struct Tree *val;
@@ -20,7 +22,7 @@
 	struct While *whiles;
 	struct End *end;
 	struct Print *print;
-	char * id;
+	std::string *id;
 	int num;
 }
 

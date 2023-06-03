@@ -2,6 +2,7 @@
 	#include <stdio.h>
 	#include <stdlib.h>
 	#include "y.tab.h"
+	#include <string>
 %}
 
 %option noyywrap
@@ -40,7 +41,7 @@ DIGIT	[0-9]
 "print" { return PRINT; }
 
 [a-zA-Z][a-zA-Z0-9]* {
-	yylval.id = strdup(yytext);
+	yylval.id = new std::string(yytext);
 	return VAR;
 }
 
