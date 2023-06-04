@@ -1,7 +1,12 @@
-a = 2
-n = 10
-def b() {
-    a = a + n
+a = 1
+cond = 1
+
+int b() {
+    return 1 + c()
 }
-b()
-print(a)
+
+int c() {
+    return 1
+}
+
+print(a + b())

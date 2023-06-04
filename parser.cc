@@ -161,13 +161,21 @@ char * while_to_string(struct While *whiles) {
 
 char * fun_to_string(struct Fun *fun) {
     char * ret = (char *) malloc(1024);
-    sprintf(ret, "FunDef(%s)", fun->id->c_str());
+    if (fun -> type == 9) {
+        sprintf(ret, "VoidDef(%s)", fun->id->c_str());
+    } else {
+        sprintf(ret, "IntDef(%s)", fun->id->c_str());
+    }
     return ret;
 }
 
 char * app_to_string(struct App *app) {
     char * ret = (char *) malloc(1024);
-    sprintf(ret, "FunApp(%s)", app->id->c_str());
+    if (app -> type == 10) {
+        sprintf(ret, "VoidApp(%s)", app->id->c_str());
+    } else {
+        sprintf(ret, "IntApp(%s)", app->id->c_str());
+    }
     return ret;
 }
 
@@ -231,10 +239,12 @@ char * tree_to_string(struct Tree *tree) {
             return end_to_string((struct End*) tree);
         case 8:
             return print_to_string((struct Print*) tree);
-        case 9, 11:
+        case 9: case 11:
             return fun_to_string((struct Fun *) tree);
-        case 10, 12:
+        case 10: case 12:
             return app_to_string((struct App *) tree);
+        case 13: 
+            return return_to_string((struct Return *) tree);
     }
     return NULL;
 }

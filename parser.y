@@ -26,6 +26,7 @@
 	struct While *whiles;
 	struct Fun *fun;
 	struct App *app;
+	struct Return *returns;
 	struct End *end;
 	struct Print *print;
 	std::string *id;
@@ -49,6 +50,7 @@
 %type <fun> Void Int
 %type <app> App
 %type <end> End
+%type <returns> Return
 %type <print> Print
 %start Prog
 
@@ -73,8 +75,10 @@ Line: Let NWL { env->prog[env->lines++] = (struct Tree *) $1; }
 | While NWL { env->prog[env->lines++] = (struct Tree *) $1; }
 | Fun NWL 
 | App NWL { env->prog[env->lines++] = (struct Tree *) $1; }
+| Return NWL { env->prog[env->lines++] = (struct Tree *) $1; }
 | End NWL { env->prog[env->lines++] = (struct Tree *) $1; }
 | Print NWL { env->prog[env->lines++] = (struct Tree *) $1; }
+| NWL
 ;
 
 If: IF LPA Cond RPA LBR { $$ = new_if($3); }
@@ -94,6 +98,8 @@ Int: INT VAR LPA RPA LBR { $$ = new_fun($2, false); }
 
 App: VAR LPA RPA { $$ = new_app($1, true); }
 ;
+
+Return: RETURN Cond { $$ = new_return($2); }
 
 End: RBR { $$ = new_end(); }
 ;
