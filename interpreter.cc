@@ -57,7 +57,7 @@ int findEnd(struct Env *prog, int start) {
     for (int i = start + 1; i < prog->lines; i++) {
         short type = prog->prog[i]->type;
         if (type == 7) diff--;
-        if (type == 4 || type == 5 || type == 9) diff++;
+        if (type == 5 || type == 6 || type == 9 || type == 11) diff++;
         if (diff == 0) return i;
     }
     return -1;
@@ -66,7 +66,6 @@ int findEnd(struct Env *prog, int start) {
 int evalFun(struct Env *prog, int start, mci &variables) {
 
     int finish = findEnd(prog, start);
-
     // Same as standard eval() but returns will return the value
     for (int i = start; i < finish; i++) {
         struct Tree * tree = prog->prog[i];
@@ -79,14 +78,14 @@ int evalFun(struct Env *prog, int start, mci &variables) {
             // If Statement
             int end = findEnd(prog, i);
             if (evalCond(prog, ((struct If *)tree)->cond, 5, variables)) {
-                eval(prog, i + 1, end, variables);
+                evalFun(prog, i + 1, variables);
             }
             i = end;
         } else if (type == 6) {
             // While Statement
             int end = findEnd(prog, i);
             while (evalCond(prog, ((struct While *)tree)->cond, 6, variables)) {
-                eval(prog, i + 1, end, variables);
+                evalFun(prog, i + 1, variables);
             }
             i = end;
         } else if (type == 8) {

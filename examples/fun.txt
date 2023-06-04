@@ -1,12 +1,14 @@
 a = 1
-cond = 1
-
 int b() {
-    return 1 + c()
+    n = 0
+    ret = 1
+    while (n < 10) {
+        ret = ret + c()
+        n = n + 1
+    }
+    return ret
 }
-
 int c() {
-    return 1
+    return 3
 }
-
 print(a + b())
