@@ -36,6 +36,7 @@ DIGIT	[0-9]
 
 "if" { return IF; }
 "while" { return WHILE; }
+"def" { return DEF; }
 "{" { return LBR; }
 "}" { return RBR; }
 

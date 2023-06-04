@@ -24,6 +24,8 @@
 	struct Let *dec;
 	struct If *ifs;
 	struct While *whiles;
+	struct Fun *fun;
+	struct App *app;
 	struct End *end;
 	struct Print *print;
 	std::string *id;
@@ -33,7 +35,8 @@
 
 %token PLS MNS MLT DIV MOD BAND BOR BXOR LPA RPA AND OR
 %token LTN GTN GEQ LEQ NEQ EQU
-%token IF WHILE LBR RBR 
+%token IF WHILE LBR RBR
+%token DEF
 %token PRINT
 %token NWL TAB
 %token DEC
@@ -43,6 +46,8 @@
 %type <dec> Let
 %type <ifs> If
 %type <whiles> While
+%type <fun> Fun
+%type <app> App
 %type <end> End
 %type <print> Print
 %start Prog
@@ -66,6 +71,8 @@ Whitespace:
 Line: Let NWL { env->prog[env->lines++] = (struct Tree *) $1; }
 | If NWL { env->prog[env->lines++] = (struct Tree *) $1; }
 | While NWL { env->prog[env->lines++] = (struct Tree *) $1; }
+| Fun NWL { env->prog[env->lines++] = (struct Tree *) $1; }
+| App NWL { env->prog[env->lines++] = (struct Tree *) $1; }
 | End NWL { env->prog[env->lines++] = (struct Tree *) $1; }
 | Print NWL { env->prog[env->lines++] = (struct Tree *) $1; }
 ;
@@ -74,6 +81,12 @@ If: IF LPA Cond RPA LBR { $$ = new_if($3); }
 ;
 
 While: WHILE LPA Cond RPA LBR { $$ = new_while($3); }
+;
+
+Fun: DEF VAR LPA RPA LBR { $$ = new_fun($2); }
+;
+
+App: VAR LPA RPA { $$ = new_app($1); }
 ;
 
 End: RBR { $$ = new_end(); }

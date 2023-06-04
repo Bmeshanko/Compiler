@@ -33,8 +33,20 @@ void eval(struct Env *prog, int start, int finish, mci &variables) {
         } else if (type == 8) {
             // Print Statement
             printf("%d\n", evalNum(((struct Print *)tree)->val, variables));
+        } else if (type == 9) {
+            // Function Def Statement
+            int end = findEnd(prog, i);
+            // Insert the function name and the start location.
+            variables.insert({*((struct Fun *)tree)->id, i});
+            i = end;
+        } else if (type == 10) {
+            // Function application.
+            int funStart = variables[*((struct App *)tree)->id] + 1;
+            int funEnd = findEnd(prog, funStart);
+            // Find start and end, execute.
+            eval(prog, funStart, funEnd, variables);
         } else {
-            // End: Do nothing
+            // NOP
         }
     }
 }
@@ -44,7 +56,7 @@ int findEnd(struct Env *prog, int start) {
     for (int i = start + 1; i < prog->lines; i++) {
         short type = prog->prog[i]->type;
         if (type == 7) diff--;
-        if (type == 4 || type == 5) diff++;
+        if (type == 4 || type == 5 || type == 9) diff++;
         if (diff == 0) return i;
     }
     return -1;

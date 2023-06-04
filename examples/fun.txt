@@ -1,0 +1,7 @@
+a = 2
+n = 10
+def b() {
+    a = a + n
+}
+b()
+print(a)

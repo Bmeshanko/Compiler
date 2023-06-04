@@ -33,6 +33,24 @@ struct While *new_while(struct Tree *cond) {
     return ret;
 }
 
+struct Fun *new_fun(std::string *id) {
+    struct Fun *ret = (struct Fun *)malloc(sizeof(struct Fun));
+
+    ret -> id = id;
+    ret -> type = 9;
+
+    return ret;
+}
+
+struct App *new_app(std::string *id) {
+    struct App *ret = (struct App *)malloc(sizeof(struct App));
+
+    ret -> id = id;
+    ret -> type = 10;
+
+    return ret;
+}
+
 struct End *new_end() {
     struct End *ret = (struct End *)malloc(sizeof(struct End));
 
@@ -130,6 +148,18 @@ char * while_to_string(struct While *whiles) {
     return ret;
 }
 
+char * fun_to_string(struct Fun *fun) {
+    char * ret = (char *) malloc(1024);
+    sprintf(ret, "FunDef(%s)", fun->id->c_str());
+    return ret;
+}
+
+char * app_to_string(struct App *app) {
+    char * ret = (char *) malloc(1024);
+    sprintf(ret, "FunApp(%s)", app->id->c_str());
+    return ret;
+}
+
 char * end_to_string(struct End *end) {
     char * ret = (char *) malloc(16);
     sprintf(ret, "End");
@@ -184,6 +214,10 @@ char * tree_to_string(struct Tree *tree) {
             return end_to_string((struct End*) tree);
         case 8:
             return print_to_string((struct Print*) tree);
+        case 9:
+            return fun_to_string((struct Fun *) tree);
+        case 10:
+            return app_to_string((struct App *) tree);
     }
     return NULL;
 }
