@@ -6,7 +6,6 @@
 
 struct Tree {
     short type;
-    struct Env *parent;
 };
 
 struct Env {
@@ -50,13 +49,18 @@ struct While {
 };
 
 struct Fun {
-    short type;
+    short type; // 9 - Void // 11 - Int
     std::string *id;
 };
 
 struct App {
-    short type;
+    short type; // 10 - Void // 12 - Int
     std::string *id;
+};
+
+struct Return {
+    short type;
+    struct Tree *val;
 };
 
 struct End {
@@ -71,8 +75,9 @@ struct Print {
 struct Env *new_env();
 struct If *new_if(struct Tree *cond);
 struct While *new_while(struct Tree *cond);
-struct Fun *new_fun(std::string *id);
-struct App *new_app(std::string *id);
+struct Fun *new_fun(std::string *id, bool isVoid);
+struct App *new_app(std::string *id, bool isVoid);
+struct Return *new_return(struct Tree *val);
 struct End *new_end();
 struct Prim *new_prim(char* op, struct Tree *left, struct Tree *right);
 struct Lit *new_lit(int val);
@@ -84,8 +89,9 @@ char * tree_to_string(struct Tree *tree);
 char * env_to_string(struct Env *env);
 char * if_to_string(struct If *ifs);
 char * while_to_string(struct While *whiles);
-char * fun_to_string(struct Fun *fun);
-char * app_to_string(struct App *app);
+char * fun_to_string(struct Fun *fun, bool isVoid);
+char * app_to_string(struct App *app, bool isVoid);
+char * return_to_string(struct Return *returns);
 char * end_to_string(struct End *end);
 char * prim_to_string(struct Prim *tree);
 char * lit_to_string(struct Lit *lit);

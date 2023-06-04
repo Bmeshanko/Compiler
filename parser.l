@@ -36,7 +36,11 @@ DIGIT	[0-9]
 
 "if" { return IF; }
 "while" { return WHILE; }
-"def" { return DEF; }
+
+"void" { return VOID; }
+"int" { return INT; }
+"return" { return RETURN; }
+
 "{" { return LBR; }
 "}" { return RBR; }
 

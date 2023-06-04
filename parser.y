@@ -36,7 +36,7 @@
 %token PLS MNS MLT DIV MOD BAND BOR BXOR LPA RPA AND OR
 %token LTN GTN GEQ LEQ NEQ EQU
 %token IF WHILE LBR RBR
-%token DEF
+%token INT VOID RETURN
 %token PRINT
 %token NWL TAB
 %token DEC
@@ -46,7 +46,7 @@
 %type <dec> Let
 %type <ifs> If
 %type <whiles> While
-%type <fun> Fun
+%type <fun> Void Int
 %type <app> App
 %type <end> End
 %type <print> Print
@@ -71,7 +71,7 @@ Whitespace:
 Line: Let NWL { env->prog[env->lines++] = (struct Tree *) $1; }
 | If NWL { env->prog[env->lines++] = (struct Tree *) $1; }
 | While NWL { env->prog[env->lines++] = (struct Tree *) $1; }
-| Fun NWL { env->prog[env->lines++] = (struct Tree *) $1; }
+| Fun NWL 
 | App NWL { env->prog[env->lines++] = (struct Tree *) $1; }
 | End NWL { env->prog[env->lines++] = (struct Tree *) $1; }
 | Print NWL { env->prog[env->lines++] = (struct Tree *) $1; }
@@ -83,10 +83,16 @@ If: IF LPA Cond RPA LBR { $$ = new_if($3); }
 While: WHILE LPA Cond RPA LBR { $$ = new_while($3); }
 ;
 
-Fun: DEF VAR LPA RPA LBR { $$ = new_fun($2); }
+Fun: Void { env->prog[env->lines++] = (struct Tree *) $1; }
+| Int { env->prog[env->lines++] = (struct Tree *) $1; }
 ;
 
-App: VAR LPA RPA { $$ = new_app($1); }
+Void: VOID VAR LPA RPA LBR { $$ = new_fun($2, true); }
+;
+
+Int: INT VAR LPA RPA LBR { $$ = new_fun($2, false); }
+
+App: VAR LPA RPA { $$ = new_app($1, true); }
 ;
 
 End: RBR { $$ = new_end(); }
@@ -100,6 +106,7 @@ Print: PRINT LPA Cond RPA { $$ = new_print($3); }
 Factor: VAR { $$ = (struct Tree *) new_ref($1); }
 | NUM { $$ = (struct Tree *) new_lit($1); } 
 | LPA Cond RPA { $$ = $2; }
+| VAR LPA RPA { $$ = (struct Tree *) new_app($1, false); }
 |
 ;
 

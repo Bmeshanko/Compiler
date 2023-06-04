@@ -33,20 +33,31 @@ struct While *new_while(struct Tree *cond) {
     return ret;
 }
 
-struct Fun *new_fun(std::string *id) {
+struct Fun *new_fun(std::string *id, bool isVoid) {
     struct Fun *ret = (struct Fun *)malloc(sizeof(struct Fun));
 
     ret -> id = id;
-    ret -> type = 9;
+    if (isVoid) ret -> type = 9;
+    else ret -> type = 11;
 
     return ret;
 }
 
-struct App *new_app(std::string *id) {
+struct App *new_app(std::string *id, bool isVoid) {
     struct App *ret = (struct App *)malloc(sizeof(struct App));
 
     ret -> id = id;
-    ret -> type = 10;
+    if (isVoid) ret -> type = 10;
+    else ret -> type = 12;
+
+    return ret;
+}
+
+struct Return *new_return(struct Tree *val) {
+    struct Return *ret = (struct Return *)malloc(sizeof(struct Return));
+
+    ret -> val = val;
+    ret -> type = 13;
 
     return ret;
 }
@@ -160,6 +171,12 @@ char * app_to_string(struct App *app) {
     return ret;
 }
 
+char * return_to_string(struct Return *returns) {
+    char * ret = (char *) malloc(1024);
+    sprintf(ret, "Return(%s)", tree_to_string(returns->val));
+    return ret;
+}
+
 char * end_to_string(struct End *end) {
     char * ret = (char *) malloc(16);
     sprintf(ret, "End");
@@ -214,9 +231,9 @@ char * tree_to_string(struct Tree *tree) {
             return end_to_string((struct End*) tree);
         case 8:
             return print_to_string((struct Print*) tree);
-        case 9:
+        case 9, 11:
             return fun_to_string((struct Fun *) tree);
-        case 10:
+        case 10, 12:
             return app_to_string((struct App *) tree);
     }
     return NULL;
