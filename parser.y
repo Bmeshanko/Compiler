@@ -21,7 +21,8 @@
 
 %union {
 	struct Tree *val;
-	struct Let *dec;
+	struct Let *let;
+	struct Array *array;
 	struct If *ifs;
 	struct While *whiles;
 	struct Fun *fun;
@@ -33,18 +34,19 @@
 	int num;
 }
 
-
 %token PLS MNS MLT DIV MOD BAND BOR BXOR LPA RPA AND OR
 %token LTN GTN GEQ LEQ NEQ EQU
-%token IF WHILE LBR RBR
+%token IF WHILE LCB RCB
 %token INT VOID RETURN
 %token PRINT
+%token ARRAY LSB RSB
 %token NWL TAB
 %token DEC
 %token <id> VAR
 %token <num> NUM
 %type <val> Exp Cond Factor Term Num Line
-%type <dec> Let
+%type <let> VarLet ArrayLet
+%type <array> ArrayInit
 %type <ifs> If
 %type <whiles> While
 %type <fun> Void Int
@@ -71,6 +73,7 @@ Whitespace:
 | TAB Whitespace
 
 Line: Let NWL { env->prog[env->lines++] = (struct Tree *) $1; }
+| ArrayInit NWL { env->prog[env->lines++] = (struct Tree *) $1; }
 | If NWL { env->prog[env->lines++] = (struct Tree *) $1; }
 | While NWL { env->prog[env->lines++] = (struct Tree *) $1; }
 | Fun NWL 
@@ -81,30 +84,40 @@ Line: Let NWL { env->prog[env->lines++] = (struct Tree *) $1; }
 | NWL
 ;
 
-If: IF LPA Cond RPA LBR { $$ = new_if($3); }
+If: IF LPA Cond RPA LCB { $$ = new_if($3); }
 ;
 
-While: WHILE LPA Cond RPA LBR { $$ = new_while($3); }
+While: WHILE LPA Cond RPA LCB { $$ = new_while($3); }
 ;
 
 Fun: Void { env->prog[env->lines++] = (struct Tree *) $1; }
 | Int { env->prog[env->lines++] = (struct Tree *) $1; }
 ;
 
-Void: VOID VAR LPA RPA LBR { $$ = new_fun($2, true); }
+Void: VOID VAR LPA RPA LCB { $$ = new_fun($2, true); }
 ;
 
-Int: INT VAR LPA RPA LBR { $$ = new_fun($2, false); }
+Int: INT VAR LPA RPA LCB { $$ = new_fun($2, false); }
 
 App: VAR LPA RPA { $$ = new_app($1, true); }
 ;
 
 Return: RETURN Cond { $$ = new_return($2); }
 
-End: RBR { $$ = new_end(); }
+End: RCB { $$ = new_end(); }
 ;
 
-Let: VAR DEC Cond { $$ = new_let($1, $3); }
+Let: VarLet
+| ArrayLet 
+;
+
+VarLet: VAR DEC Cond { $$ = new_let($1, 0, $3); }
+;
+
+ArrayLet: VAR LSB Cond RSB DEC Cond { $$ = new_let($1, $3, $6); }
+;
+
+ArrayInit: ARRAY VAR LSB Cond RSB { $$ = new_array($2, $4); }
 ;
 
 Print: PRINT LPA Cond RPA { $$ = new_print($3); }

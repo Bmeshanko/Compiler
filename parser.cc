@@ -90,21 +90,33 @@ struct Lit *new_lit(int val) {
     return ret;
 }
 
-struct Let *new_let(std::string *id, struct Tree *val) {
+struct Let *new_let(std::string *id, int index, struct Tree *val) {
     struct Let *ret = (struct Let *)malloc(sizeof(struct Let));
 
     ret -> id = id;
+    ret -> index = index;
     ret -> val = val;
     ret -> type = 3;
 
     return ret;
 }
 
-struct Ref *new_ref(std::string *id) {
+struct Ref *new_ref(std::string *id, int index) {
     struct Ref *ret = (struct Ref *)malloc(sizeof(struct Ref));
 
     ret -> id = id;
+    ret -> index = index;
     ret -> type = 4;
+
+    return ret;
+}
+
+struct Array *new_array(std::string *id, int size) {
+    struct Array *ret = (struct Array *)malloc(sizeof(struct Array));
+
+    ret -> id = id;
+    ret -> size = size;
+    ret -> type = 14;
 
     return ret;
 }
@@ -205,13 +217,19 @@ char * lit_to_string(struct Lit *lit) {
 
 char * let_to_string(struct Let *let) {
     char * ret = (char *) malloc(1024);
-    sprintf(ret, "Let(%s, %s)", let->id->c_str(), tree_to_string(let->val));
+    sprintf(ret, "Let(%s, %d, %s)", let->id->c_str(), ref->index, tree_to_string(let->val));
     return ret;
 }
 
 char * ref_to_string(struct Ref *ref) {
     char * ret = (char *) malloc(1024);
-    sprintf(ret, "Ref(%s)", ref->id->c_str());
+    sprintf(ret, "Ref(%s, %d)", ref->id->c_str(), ref->index);
+    return ret;
+}
+
+char * array_to_string(struct Array *array) {
+    char * ret = (char *) malloc(1024);
+    sprintf(ret, "Array(%s, %d)", array->id->c_str(), array->size);
     return ret;
 }
 
@@ -245,6 +263,8 @@ char * tree_to_string(struct Tree *tree) {
             return app_to_string((struct App *) tree);
         case 13: 
             return return_to_string((struct Return *) tree);
+        case 14:
+            return array_to_string((struct Array *) tree);
     }
     return NULL;
 }

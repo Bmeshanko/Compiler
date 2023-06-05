@@ -41,11 +41,14 @@ DIGIT	[0-9]
 "int" { return INT; }
 "return" { return RETURN; }
 
-"{" { return LBR; }
-"}" { return RBR; }
+"{" { return LCB; }
+"}" { return LCB; }
 
 "print" { return PRINT; }
 
+"array" { return ARRAY; }
+"[" { return LSB; }
+"]" { return RSB; }
 
 "\t" { return TAB; }
 
