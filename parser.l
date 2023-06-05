@@ -42,7 +42,7 @@ DIGIT	[0-9]
 "return" { return RETURN; }
 
 "{" { return LCB; }
-"}" { return LCB; }
+"}" { return RCB; }
 
 "print" { return PRINT; }
 
