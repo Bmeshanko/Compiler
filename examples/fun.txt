@@ -1,14 +1,4 @@
-a = 1
 int b() {
-    n = 0
-    ret = 1
-    while (n < 10) {
-        ret = ret + c()
-        n = n + 1
-    }
-    return ret
+    return 1
 }
-int c() {
-    return 3
-}
-print(a + b())
+print(b())
