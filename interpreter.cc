@@ -6,7 +6,7 @@
 #include "parser.hh"
 #include <map>
 
-typedef std::map<std::string, int> mci;
+typedef std::map<std::string, int *> mci;
 
 void eval(struct Env *prog, int start, int finish, mci &variables) {
     for (int i = start; i < finish; i++) {
@@ -37,11 +37,11 @@ void eval(struct Env *prog, int start, int finish, mci &variables) {
             // Function Def Statement
             int end = findEnd(prog, i);
             // Insert the function name and the start location.
-            variables.insert({*((struct Fun *)tree)->id, i});
+            variables.insert({*((struct Fun *)tree)->id, &i});
             i = end;
         } else if (type == 10) {
             // Void Function application.
-            int funStart = variables[*((struct App *)tree)->id] + 1;
+            int funStart = *variables[*((struct App *)tree)->id] + 1;
             int funEnd = findEnd(prog, funStart);
             // Find start and end, execute.
             eval(prog, funStart, funEnd, variables);
@@ -93,7 +93,7 @@ int evalFun(struct Env *prog, int start, mci &variables) {
             printf("%d\n", evalNum(prog, ((struct Print *)tree)->val, variables));
         } else if (type == 10) {
             // Function application.
-            int funStart = variables[*((struct App *)tree)->id] + 1;
+            int funStart = *(variables[*((struct App *)tree)->id]) + 1;
             int funEnd = findEnd(prog, funStart);
             // Find start and end, execute.
             eval(prog, funStart, funEnd, variables);
@@ -108,7 +108,17 @@ int evalFun(struct Env *prog, int start, mci &variables) {
 }
 
 void evalLet(struct Env *prog, struct Let *let, mci &variables) {
-    variables.insert_or_assign(*(let -> id), evalNum(prog, let -> val, variables));
+    if (variables.count(*(let -> id)) != 0) {
+        int * arr = variables[*(let -> id)];
+        arr[evalNum(prog, let -> index, variables)] = evalNum(prog, let -> val, variables);
+        variables[*(let -> id)] = arr;
+    } else {
+        // Let is defining a new variable, we need to create a new int[1].
+        // Otherwise, this would've been parsed by Array and is a different case.
+        int arr[1];
+        arr[0] = evalNum(prog, let -> val, variables);
+        variables[*(let -> id)] = arr;
+    }
 }
 
 bool evalCond(struct Env *prog, struct Tree *tree, int type, mci &variables) {
@@ -117,9 +127,9 @@ bool evalCond(struct Env *prog, struct Tree *tree, int type, mci &variables) {
 
 int evalNum(struct Env *prog, struct Tree *tree, mci &variables) {
     if (tree -> type == 12) {
-        return evalFun(prog, variables[*(((struct App *) tree) -> id)], variables);
+        return evalFun(prog, *variables[*(((struct App *) tree) -> id)], variables);
     } else if (tree -> type == 4) {
-        return variables[*(((struct Ref *) tree) -> id)];
+        return variables[*(((struct Ref *) tree) -> id)][evalNum(prog, ((struct Ref *) tree) -> index, variables)];
     } else if (tree -> type == 2) {
         return ((struct Lit *) tree) -> val;
     } else if (tree -> type == 1) {

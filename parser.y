@@ -16,7 +16,7 @@
 	struct Env *env = new_env();
 	int line_num = 1;
 	// For Untyped AST Interpreter
-	std::map<std::string, int> variables;
+	std::map<std::string, int *> variables;
 %}
 
 %union {
@@ -72,7 +72,7 @@ Seq:
 Whitespace:
 | TAB Whitespace
 
-Line: Let NWL { env->prog[env->lines++] = (struct Tree *) $1; }
+Line: Let NWL 
 | ArrayInit NWL { env->prog[env->lines++] = (struct Tree *) $1; }
 | If NWL { env->prog[env->lines++] = (struct Tree *) $1; }
 | While NWL { env->prog[env->lines++] = (struct Tree *) $1; }
@@ -107,11 +107,11 @@ Return: RETURN Cond { $$ = new_return($2); }
 End: RCB { $$ = new_end(); }
 ;
 
-Let: VarLet
-| ArrayLet 
+Let: VarLet { env->prog[env->lines++] = (struct Tree *) $1; }
+| ArrayLet { env->prog[env->lines++] = (struct Tree *) $1; }
 ;
 
-VarLet: VAR DEC Cond { $$ = new_let($1, 0, $3); }
+VarLet: VAR DEC Cond { printf("YO\n"); $$ = new_let($1, 0, $3); }
 ;
 
 ArrayLet: VAR LSB Cond RSB DEC Cond { $$ = new_let($1, $3, $6); }
@@ -122,7 +122,8 @@ ArrayInit: ARRAY VAR LSB Cond RSB { $$ = new_array($2, $4); }
 
 Print: PRINT LPA Cond RPA { $$ = new_print($3); }
 
-Factor: VAR { $$ = (struct Tree *) new_ref($1); }
+Factor: VAR { $$ = (struct Tree *) new_ref($1, 0); }
+| VAR LSB Cond RSB { $$ = (struct Tree *) new_ref($1, $3); }
 | NUM { $$ = (struct Tree *) new_lit($1); } 
 | LPA Cond RPA { $$ = $2; }
 | VAR LPA RPA { $$ = (struct Tree *) new_app($1, false); }

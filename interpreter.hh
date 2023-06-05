@@ -3,7 +3,7 @@
 #include <map>
 #include <string>
 
-typedef std::map<std::string, int> mci;
+typedef std::map<std::string, int *> mci;
 
 void eval(struct Env *prog, int start, int end, mci &variables);
 int findEnd(struct Env *prog, int start);

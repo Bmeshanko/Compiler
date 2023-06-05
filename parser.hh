@@ -29,13 +29,13 @@ struct Lit {
 struct Array {
     short type;
     std::string *id;
-    int size;
-}
+    struct Tree * size;
+};
 
 struct Let {
     short type;
     std::string *id;
-    int index;
+    struct Tree * index;
 
     struct Tree *val;
 };
@@ -43,7 +43,7 @@ struct Let {
 struct Ref {
     short type;
     std::string *id;
-    int index;
+    struct Tree * index;
 };
 
 struct If {
@@ -89,9 +89,9 @@ struct Return *new_return(struct Tree *val);
 struct End *new_end();
 struct Prim *new_prim(char* op, struct Tree *left, struct Tree *right);
 struct Lit *new_lit(int val);
-struct Let *new_let(std::string *id, int index, struct Tree *val);
-struct Ref *new_ref(std::string *id, int index);
-struct Array *new_array(std::string *id, int size);
+struct Let *new_let(std::string *id, struct Tree * index, struct Tree *val);
+struct Ref *new_ref(std::string *id, struct Tree * index);
+struct Array *new_array(std::string *id, struct Tree * size);
 struct Print *new_print(struct Tree *ref);
 
 char * tree_to_string(struct Tree *tree);
