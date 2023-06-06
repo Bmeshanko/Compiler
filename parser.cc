@@ -111,12 +111,13 @@ struct Ref *new_ref(std::string *id, struct Tree * index) {
     return ret;
 }
 
-struct Array *new_array(std::string *id, struct Tree * size) {
+struct Array *new_array(std::string *id, struct Tree * size, int element_type) {
     struct Array *ret = (struct Array *)malloc(sizeof(struct Array));
 
     ret -> id = id;
     ret -> size = size;
     ret -> type = 14;
+    ret -> element_type = element_type;
 
     return ret;
 }
@@ -229,7 +230,11 @@ char * ref_to_string(struct Ref *ref) {
 
 char * array_to_string(struct Array *array) {
     char * ret = (char *) malloc(1024);
-    sprintf(ret, "Array(%s, %s)", array->id->c_str(), tree_to_string(array->size));
+    if (array -> element_type == 0) {
+        sprintf(ret, "Array(Int, %s, %s)", array->id->c_str(), tree_to_string(array->size));
+    } else if (array -> element_type == 1) {
+        sprintf(ret, "Array(Char, %s, %s)", array->id->c_str(), tree_to_string(array->size));
+    }
     return ret;
 }
 
