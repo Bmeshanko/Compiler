@@ -90,13 +90,14 @@ struct Lit *new_lit(int val) {
     return ret;
 }
 
-struct Let *new_let(std::string *id, struct Tree * index, struct Tree *val) {
+struct Let *new_let(std::string *id, struct Tree * index, struct Tree *val, int element_type) {
     struct Let *ret = (struct Let *)malloc(sizeof(struct Let));
 
     ret -> id = id;
     ret -> index = index;
     ret -> val = val;
     ret -> type = 3;
+    ret -> element_type = element_type;
 
     return ret;
 }
@@ -138,6 +139,15 @@ struct Print * new_print(struct Tree* val) {
 void add_to_env(struct Env *env, struct Tree *tree) {
     env->prog[env->lines++] = tree;
 }
+
+/*
+*   Element Type Getters
+*/
+
+int get_let_type(struct Let *let) {
+    return let -> element_type;
+}
+
 
 /*
 *   To String Functions

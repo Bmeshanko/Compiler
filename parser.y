@@ -37,9 +37,9 @@
 %token PLS MNS MLT DIV MOD BAND BOR BXOR LPA RPA AND OR
 %token LTN GTN GEQ LEQ NEQ EQU
 %token IF WHILE LCB RCB
-%token INT VOID RETURN
+%token INT CHAR VOID RETURN
 %token PRINT
-%token ARRAY STRING LSB RSB
+%token LSB RSB
 %token NWL TAB
 %token DEC
 %token <id> VAR
@@ -104,12 +104,13 @@ End: RCB { $$ = new_end(); }
 Let: VarLet { env->prog[env->lines++] = (struct Tree *) $1; }
 | ArrayLet { env->prog[env->lines++] = (struct Tree *) $1; }
 
-VarLet: VAR DEC Cond { $$ = new_let($1, (struct Tree *) new_lit(0), $3); }
+VarLet: INT VAR DEC Cond { $$ = new_let($2, (struct Tree *) new_lit(0), $4, 0); }
+| CHAR VAR DEC Cond { $$ = new_let($2, (struct Tree *) new_lit(0), $4, 1); }
 
-ArrayLet: VAR LSB Cond RSB DEC Cond { $$ = new_let($1, $3, $6); }
+ArrayLet: VAR LSB Cond RSB DEC Cond { $$ = new_let($1, $3, $6, 0); }
 
-ArrayInit: ARRAY VAR LSB Cond RSB { $$ = new_array($2, $4, 0); }
-| STRING VAR LSB Cond RSB { $$ = new_array($2, $4, 1); }
+ArrayInit: INT VAR LSB Cond RSB { $$ = new_array($2, $4, 0); }
+| CHAR VAR LSB Cond RSB { $$ = new_array($2, $4, 1); }
 
 Print: PRINT LPA Cond RPA { $$ = new_print($3); }
 

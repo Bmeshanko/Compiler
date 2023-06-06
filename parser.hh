@@ -16,7 +16,6 @@ struct Env {
 struct Prim {
     short type;
     char* op;
-
     struct Tree *left;
     struct Tree *right;
 };
@@ -35,10 +34,11 @@ struct Array {
 
 struct Let {
     short type;
+    int element_type;
     std::string *id;
     struct Tree * index;
-
     struct Tree *val;
+
 };
 
 struct Ref {
@@ -90,10 +90,14 @@ struct Return *new_return(struct Tree *val);
 struct End *new_end();
 struct Prim *new_prim(char* op, struct Tree *left, struct Tree *right);
 struct Lit *new_lit(int val);
-struct Let *new_let(std::string *id, struct Tree * index, struct Tree *val);
+struct Let *new_let(std::string *id, struct Tree * index, struct Tree *val, int element_type);
 struct Ref *new_ref(std::string *id, struct Tree * index);
 struct Array *new_array(std::string *id, struct Tree * size, int element_type);
 struct Print *new_print(struct Tree *ref);
+
+int get_let_type(struct Let *let);
+int get_array_type(struct Array *array);
+void add_to_env(struct Env *env, struct Tree *tree);
 
 char * tree_to_string(struct Tree *tree);
 char * env_to_string(struct Env *env);
