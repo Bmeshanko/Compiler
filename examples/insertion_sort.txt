@@ -1,5 +1,5 @@
-n = 5
-array a[5]
+int n = 5
+int a[5]
 
 a[0] = 3
 a[1] = 2
@@ -8,24 +8,24 @@ a[3] = 1
 a[4] = 5
 
 void p() {
-    i = 0
+    int i = 0
     while (i < n) {
         print(a[i])
-        i = i + 1
+        int i = i + 1
     }
 }
 
 void s() {
-    i = 1
+    int i = 1
     while (i < 5) {
-        x = a[i]
-        j = i - 1
+        int x = a[i]
+        int j = i - 1
         while (j >= 0 && a[j] > x) {
             a[j + 1] = a[j]
-            j = j - 1
+            int j = j - 1
         }
         a[j + 1] = x
-        i = i + 1
+        int i = i + 1
     }
 }
 

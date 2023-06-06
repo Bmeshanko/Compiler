@@ -46,8 +46,7 @@ DIGIT	[0-9]
 
 "print" { return PRINT; }
 
-"array" { return ARRAY; }
-"string" { return STRING; }
+"char" { return CHAR; }
 "[" { return LSB; }
 "]" { return RSB; }
 
