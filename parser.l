@@ -52,6 +52,11 @@ DIGIT	[0-9]
 
 "\t" { return TAB; }
 
+(\')[a-zA-Z0-9](\') {
+	yylval.ch = yytext[1];
+	return CH;
+}
+
 [a-zA-Z][a-zA-Z0-9]* {
 	yylval.id = new std::string(yytext);
 	return VAR;

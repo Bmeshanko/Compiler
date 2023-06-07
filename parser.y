@@ -31,6 +31,7 @@
 	struct End *end;
 	struct Print *print;
 	std::string *id;
+	char ch;
 	int num;
 }
 
@@ -44,6 +45,7 @@
 %token DEC
 %token <id> VAR
 %token <num> NUM
+%token <ch> CH
 %type <val> Exp Cond Factor Term Num Line
 %type <let> VarLet ArrayLet
 %type <array> ArrayInit
@@ -104,8 +106,8 @@ End: RCB { $$ = new_end(); }
 Let: VarLet { env->prog[env->lines++] = (struct Tree *) $1; }
 | ArrayLet { env->prog[env->lines++] = (struct Tree *) $1; }
 
-VarLet: INT VAR DEC Cond { $$ = new_let($2, (struct Tree *) new_lit(0), $4, 0); }
-| CHAR VAR DEC Cond { $$ = new_let($2, (struct Tree *) new_lit(0), $4, 1); }
+VarLet: VAR DEC Cond { $$ = new_let($1, (struct Tree *) new_lit(0), $3, 0); }
+| VAR DEC CH { $$ = new_let($1, (struct Tree *) new_lit(0), (struct Tree *) new_lit((int) $3), 1); }
 
 ArrayLet: VAR LSB Cond RSB DEC Cond { $$ = new_let($1, $3, $6, 0); }
 
@@ -116,7 +118,8 @@ Print: PRINT LPA Cond RPA { $$ = new_print($3); }
 
 Factor: VAR { $$ = (struct Tree *) new_ref($1, (struct Tree *) new_lit(0)); }
 | VAR LSB Cond RSB { $$ = (struct Tree *) new_ref($1, $3); }
-| NUM { $$ = (struct Tree *) new_lit($1); } 
+| NUM { $$ = (struct Tree *) new_lit($1); }
+| CH { $$ = (struct Tree *) new_lit((int) $1); } 
 | LPA Cond RPA { $$ = $2; }
 | VAR LPA RPA { $$ = (struct Tree *) new_app($1, false); }
 |
