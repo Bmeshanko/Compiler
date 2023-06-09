@@ -129,6 +129,18 @@ struct TypedPrint {
     short tree_type;
 };
 
+struct TypedPrim * new_typed_prim(struct Prim * prim);
+struct TypedLit * new_typed_lit(struct Lit * lit);
+struct TypedArrayDec * new_typed_arraydec(struct Array * array);
+struct TypedLet * new_typed_let(struct Let * let);
+struct TypedRef * new_typed_ref(struct Ref * ref);
+struct TypedIf * new_typed_if(struct If * ifs);
+struct TypedWhile * new_typed_while(struct While * whiles);
+struct TypedFunc * new_typed_func(struct Fun * fun);
+struct TypedApp * new_typed_app(struct App * app);
+struct TypedReturn * new_typed_return(struct Return *returns);
+struct TypedEnd * new_typed_end(struct End *end);
+struct TypedPrint * new_typed_print(struct Print *print);
 
-enum Type typeInfer(struct Tree * tree);
+Type typeInfer(struct Tree * tree);
 void analyzeSemantics(struct Env * prog);
