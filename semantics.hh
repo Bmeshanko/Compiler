@@ -2,6 +2,8 @@
 #include <bits
 using namespace std;
 
+#define N 1000
+
 class Type {
     std::string type;
     public:
@@ -16,6 +18,7 @@ class Type {
 
 Type IntType = new Type("Int");
 Type CharType = new Type("Char");
+Type UnitType = new Type("Unit"); // i.e. a Variable Declaration/If Statement is UnitType.
 
 class FunType : Type {
     vector<pair<std::string, Type>> args;
@@ -34,6 +37,18 @@ class FunType : Type {
             return ret;
         }
 }
+
+struct TypedTree {
+    Type element_type;
+    int tree_type;
+}
+
+struct TypedEnv {
+    struct TypedTree * prog[N];
+    int lines;
+}
+
+
 
 enum Type typeInfer(struct Tree * tree);
 void analyzeSemantics(struct Env * prog);
