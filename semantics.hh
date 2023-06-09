@@ -19,6 +19,7 @@ class Type {
 Type IntType = new Type("Int");
 Type CharType = new Type("Char");
 Type UnitType = new Type("Unit"); // i.e. a Variable Declaration/If Statement is UnitType.
+Type BooleanType = new Type("Boolean");
 
 class FunType : Type {
     vector<pair<std::string, Type>> args;
@@ -40,14 +41,93 @@ class FunType : Type {
 
 struct TypedTree {
     Type element_type;
-    int tree_type;
-}
+    short tree_type;
+};
 
 struct TypedEnv {
     struct TypedTree * prog[N];
     int lines;
-}
+};
 
+struct TypedPrim {
+    Type element_type;
+    char * op;
+    struct TypedTree * left;
+    struct TypedTree * right;
+    short tree_type;
+};
+
+struct TypedLit {
+    Type element_type;
+    // We will still use 64-bit long for a boolean. This will waste memory in the intermediate phases,
+    // but the resultant ASM program will be unaffected by this decision. 
+    // Unit is always 0, Char will be 0-256, and Boolean is always 0 or 1.
+    long long int val;
+    short tree_type;
+};
+
+struct TypedArrayDec {
+    Type element_type;
+    std::string * id;
+    struct Tree * size;
+    short tree_type;
+};
+
+struct TypedLet {
+    Type element_type;
+    std::string * id;
+    struct Tree * index;
+    struct Tree * val;
+    short tree_type;
+};
+
+struct TypedRef {
+    Type element_type;
+    std::string * id;
+    struct Tree * index;
+    short tree_type;
+};
+
+struct TypedIf {
+    Type element_type;
+    struct Tree * cond;
+    short tree_type;
+};
+
+struct TypedWhile {
+    Type element_type;
+    struct Tree * cond;
+    short tree_type;
+};
+
+struct TypedFunc {
+    Type element_type;
+    std::string * id;
+    short tree_type;
+};
+
+struct TypedApp {
+    Type element_type;
+    std::string * id;
+    short tree_type;
+};
+
+struct TypedReturn {
+    Type element_type;
+    struct Tree * val;
+    short tree_type;
+};
+
+struct TypedEnd {
+    Type element_type;
+    short tree_type;
+};
+
+struct TypedPrint {
+    Type element_type;
+    struct Tree * val;
+    short tree_type;
+};
 
 
 enum Type typeInfer(struct Tree * tree);
