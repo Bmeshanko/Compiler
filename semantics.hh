@@ -1,5 +1,5 @@
 #include "parser.hh"
-#include <bits
+#include <bits/stdc++.h>
 using namespace std;
 
 #define N 1000
@@ -11,15 +11,15 @@ class Type {
             this.type = type;
         }
 
-        toString() {
+        std::string toString() {
             return type;
         }
 };
 
-Type IntType = new Type("Int");
-Type CharType = new Type("Char");
-Type UnitType = new Type("Unit"); // i.e. a Variable Declaration/If Statement is UnitType.
-Type BooleanType = new Type("Boolean");
+Type IntType = Type("Int");
+Type CharType = Type("Char");
+Type UnitType = Type("Unit"); // i.e. a Variable Declaration/If Statement is UnitType.
+Type BooleanType = Type("Boolean");
 
 class FunType : Type {
     vector<pair<std::string, Type>> args;
@@ -29,9 +29,9 @@ class FunType : Type {
             this.args = args;
         }
 
-        toString() {
+        std::string toString() {
             std::string ret = "(";
-            for (arg : args) {
+            for (auto arg : args) {
                 ret += "[" + arg.first() + ", " + arg.second + "]";
             }
             ret += ")";

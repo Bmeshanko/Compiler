@@ -1,6 +1,5 @@
 #include <bits/stdc++.h>
 #include "semantics.hh"
-#include "parser.hh"
 
 struct TypedPrim * new_typed_prim(struct Prim * prim) {
     struct TypedPrim * ret = malloc(sizeof(struct TypedPrim));
