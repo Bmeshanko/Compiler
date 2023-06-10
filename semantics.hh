@@ -14,7 +14,7 @@ class Type {
         toString() {
             return type;
         }
-}
+};
 
 Type IntType = new Type("Int");
 Type CharType = new Type("Char");
@@ -37,7 +37,7 @@ class FunType : Type {
             ret += ")";
             return ret;
         }
-}
+};
 
 struct TypedTree {
     Type element_type;
@@ -129,6 +129,7 @@ struct TypedPrint {
     short tree_type;
 };
 
+struct TypedTree * new_typed_tree(struct Tree * tree);
 struct TypedPrim * new_typed_prim(struct Prim * prim);
 struct TypedLit * new_typed_lit(struct Lit * lit);
 struct TypedArrayDec * new_typed_arraydec(struct Array * array);
