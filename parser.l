@@ -41,6 +41,9 @@ DIGIT	[0-9]
 "int" { return INT; }
 "return" { return RETURN; }
 
+"true" { return TR; }
+"false" { return FL; }
+
 "{" { return LCB; }
 "}" { return RCB; }
 

@@ -129,7 +129,7 @@ struct TypedPrint {
     short tree_type;
 };
 
-struct TypedTree * new_typed_tree(struct Tree * tree);
+struct TypedTree * new_typed_tree(struct Tree * tree, short force_type);
 struct TypedPrim * new_typed_prim(struct Prim * prim);
 struct TypedLit * new_typed_lit(struct Lit * lit);
 struct TypedArrayDec * new_typed_arraydec(struct Array * array);
