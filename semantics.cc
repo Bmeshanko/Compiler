@@ -37,6 +37,12 @@ struct TypedPrim * new_typed_prim(struct Prim * prim) {
     return ret;
 }
 
+struct TypedLit * new_typed_lit(struct Lit * lit) {
+    struct TypedLit * ret = malloc(sizeof(struct TypedLit));
+
+    return ret;
+}
+
 struct TypedLet * new_typed_let(struct Let * let) {
     struct TypedLet * ret = malloc(sizeof(struct TypedLet));
 
@@ -72,6 +78,64 @@ struct TypedRef * new_typed_ref(struct Ref * ref) {
     ret -> id = ref -> id;
     ret -> index = new_typed_tree(ref -> index, 0);
     ret -> tree_type = 4;
+
+    return ret;
+}
+
+struct TypedArrayDec * new_typed_arraydec(struct Array * array) {
+    struct TypedArrayDec * ret = malloc(sizeof(struct TypedArrayDec));
+
+    Type type;
+    if (array -> element_type == 0) {
+        type = IntType;
+    } else if (array -> element_type == 1) {
+        type = CharType;
+    }
+
+    ret -> element_type = type;
+
+    ret -> id = ref -> id;
+    ret -> size = new_typed_tree(ref -> size, 0);
+    ret -> tree_type = 14;
+
+    return ret;
+}
+
+struct TypedIf * new_typed_if(struct If *ifs) {
+    struct TypedIf * ret = malloc(sizeof(struct TypedIf));
+
+    ret -> element_type = UnitType;
+    ret -> cond = new_typed_tree(ifs -> cond, 2);
+    ret -> tree_type = 5;
+
+    return ret;
+}
+
+struct TypedWhile * new_typed_while(struct Whiles *whiles) {
+    struct TypedWhile * ret = malloc(sizeof(struct TypedWhile));
+
+    ret -> element_type = UnitType;
+    ret -> cond = new_typed_tree(whiles -> cond, 2);
+    ret -> tree_type = 5;
+
+    return ret;
+}
+
+struct TypedReturn * new_typed_return(struct Return *returns) {
+    struct TypedReturns * ret = malloc(sizeof(struct TypedReturn));
+
+    ret -> element_type = UnitType;
+    ret -> val = new_typed_tree(returns -> val, -1);
+    ret -> tree_type = 13;
+
+    return ret;
+}
+
+struct TypedEnd * new_typed_end(struct End *end) {
+    struct TypedEnd * ret = malloc(sizeof(struct TypedEnd));
+
+    ret -> element_type = UnitType;
+    ret -> tree_type = 7;
 
     return ret;
 }

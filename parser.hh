@@ -23,6 +23,7 @@ struct Prim {
 struct Lit {
     short type;
     int val;
+    short element_type;
 };
 
 struct Array {
