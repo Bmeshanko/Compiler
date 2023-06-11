@@ -133,3 +133,36 @@ struct TypedEnd * new_typed_end(struct End *end) {
     return ret;
 }
 
+char * ttree_string(struct TypedTree * tree) {
+
+}
+
+char * tprim_string(struct TypedPrim * prim) {
+
+}
+
+char * tlit_string(struct TypedLit * lit) {
+    char * ret = (char *)malloc(1024);
+
+    if (lit -> element_type == IntType) {
+        sprintf(ret, "IntLit(%d)", lit -> val);
+    } else if (lit -> element_type == CharType) {
+        sprintf(ret, "CharLit(%c)", lit -> val);
+    } else if (lit -> element_type == BooleanType) {
+        if (lit -> val) sprintf(ret, "Lit(true)", lit -> val);
+        else sprintf(ret, "Lit(false)", lit -> val);
+    }
+
+    return ret;
+}
+
+char * tlet_string(struct TypedLet * let);
+char * tref_string(struct TypedRef * ref);
+char * tarraydec_string(struct TypedArrayDec * array);
+char * tif_string(struct TypedIf * ifs);
+char * twhile_string(struct TypedWhile * whiles);
+char * tfunc_string(struct TypedFunc * func);
+char * tapp_string(struct TypedApp * app);
+char * treturn_string(struct TypedReturn * returns);
+char * tend_string(struct TypedEnd * end);
+char * tprint_string(struct TypedPrint * print);
