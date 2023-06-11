@@ -124,5 +124,19 @@ struct TypedReturn * new_typed_return(struct Return *returns);
 struct TypedEnd * new_typed_end(struct End *end);
 struct TypedPrint * new_typed_print(struct Print *print);
 
+char * ttree_string(struct TypedTree * tree);
+char * tprim_string(struct TypedPrim * prim);
+char * tlit_string(struct TypedLit * lit);
+char * tlet_string(struct TypedLet * let);
+char * tref_string(struct TypedRef * ref);
+char * tarraydec_string(struct TypedArrayDec * array);
+char * tif_string(struct TypedIf * ifs);
+char * twhile_string(struct TypedWhile * whiles);
+char * tfunc_string(struct TypedFunc * func);
+char * tapp_string(struct TypedApp * app);
+char * treturn_string(struct TypedReturn * returns);
+char * tend_string(struct TypedEnd * end);
+char * tprint_string(struct TypedPrint * print);
+
 Type typeInfer(struct Tree * tree);
 void analyzeSemantics(struct Env * prog);
