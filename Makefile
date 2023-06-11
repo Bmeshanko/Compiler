@@ -20,8 +20,8 @@ lex.yy.o: parser.l
 	$(LEX) parser.l
 	$(CC) -c lex.yy.c
 
-compiler: y.tab.o lex.yy.o parser.hh parser.cc interpreter.hh interpreter.cc
-	$(CC) -o compiler y.tab.o lex.yy.o parser.hh parser.cc interpreter.hh interpreter.cc
+compiler: y.tab.o lex.yy.o parser.hh parser.cc interpreter.hh interpreter.cc semantics.hh semantics.cc
+	$(CC) -o compiler y.tab.o lex.yy.o parser.hh parser.cc interpreter.hh interpreter.cc semantics.hh semantics.cc
 
 clean:
 	rm *.o compiler y.tab.c y.tab.h lex.yy.c

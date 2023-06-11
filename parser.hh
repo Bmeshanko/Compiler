@@ -46,6 +46,7 @@ struct Ref {
     short type;
     std::string *id;
     struct Tree * index;
+    short element_type;
 };
 
 struct If {
@@ -91,7 +92,7 @@ struct Return *new_return(struct Tree *val);
 struct End *new_end();
 struct Prim *new_prim(char* op, struct Tree *left, struct Tree *right);
 struct Lit *new_lit(int val);
-struct Let *new_let(std::string *id, struct Tree * index, struct Tree *val, int element_type);
+struct Let *new_let(std::string *id, struct Tree * index, struct Tree *val, short element_type);
 struct Ref *new_ref(std::string *id, struct Tree * index);
 struct Array *new_array(std::string *id, struct Tree * size, int element_type);
 struct Print *new_print(struct Tree *ref);

@@ -1,4 +1,5 @@
 #include "parser.hh"
+#include <vector>
 #include <bits/stdc++.h>
 using namespace std;
 
@@ -7,8 +8,8 @@ using namespace std;
 class Type {
     std::string type;
     public:
-        Type(std::string type) {
-            this.type = type;
+        Type(std::string t) {
+            type = t;
         }
 
         std::string toString() {
@@ -16,28 +17,11 @@ class Type {
         }
 };
 
+
 Type IntType = Type("Int");
 Type CharType = Type("Char");
 Type UnitType = Type("Unit"); // i.e. a Variable Declaration/If Statement is UnitType.
 Type BooleanType = Type("Boolean");
-
-class FunType : Type {
-    vector<pair<std::string, Type>> args;
-
-    public:
-        Type(vector<pair<std::string, Type>> args) {
-            this.args = args;
-        }
-
-        std::string toString() {
-            std::string ret = "(";
-            for (auto arg : args) {
-                ret += "[" + arg.first() + ", " + arg.second + "]";
-            }
-            ret += ")";
-            return ret;
-        }
-};
 
 struct TypedTree {
     Type element_type;
@@ -59,9 +43,6 @@ struct TypedPrim {
 
 struct TypedLit {
     Type element_type;
-    // We will still use 64-bit long for a boolean. This will waste memory in the intermediate phases,
-    // but the resultant ASM program will be unaffected by this decision. 
-    // Unit is always 0, Char will be 0-256, and Boolean is always 0 or 1.
     long long int val;
     short tree_type;
 };
@@ -84,13 +65,13 @@ struct TypedLet {
 struct TypedRef {
     Type element_type;
     std::string * id;
-    struct Tree * index;
+    struct TypedTree * index;
     short tree_type;
 };
 
 struct TypedIf {
     Type element_type;
-    struct Tree * cond;
+    struct TypedTree * cond;
     short tree_type;
 };
 

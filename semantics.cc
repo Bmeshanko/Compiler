@@ -1,30 +1,32 @@
 #include <bits/stdc++.h>
 #include "semantics.hh"
 
+struct TypedTree * new_typed_tree(struct Tree * tree, short force_type) {
+    return NULL;
+}
+
 struct TypedPrim * new_typed_prim(struct Prim * prim) {
-    struct TypedPrim * ret = malloc(sizeof(struct TypedPrim));
+    struct TypedPrim * ret = (struct TypedPrim *)malloc(sizeof(struct TypedPrim));
 
     char * op = prim -> op;
-    
-    Type type;
-    if (strcmp(op, "+") == 0) type = IntType;
-    else if (strcmp(op, "-") == 0) type = IntType;
-    else if (strcmp(op, "*")== 0) type = IntType;
-    else if (strcmp(op, "/") == 0) type = IntType;
-    else if (strcmp(op, "%") == 0) type = IntType;
-    else if (strcmp(op, "^") == 0) type = IntType;
-    else if (strcmp(op, "&") == 0) type = IntType;
-    else if (strcmp(op, "|") == 0) type = IntType; 
-    else if (strcmp(op, "<") == 0) type = BooleanType; 
-    else if (strcmp(op, ">") == 0) type = BooleanType; 
-    else if (strcmp(op, "==") == 0) type = BooleanType;  
-    else if (strcmp(op, "!=") == 0) type = BooleanType; 
-    else if (strcmp(op, "<=") == 0) type = BooleanType; 
-    else if (strcmp(op, ">=") == 0) type = BooleanType; 
-    else if (strcmp(op, "&&") == 0) type = BooleanType; 
-    else if (strcmp(op, "||") == 0) type = BooleanType; 
 
-    ret -> element_type = type;
+    if (strcmp(op, "+") == 0) ret -> element_type = IntType;
+    else if (strcmp(op, "-") == 0) ret -> element_type = IntType;
+    else if (strcmp(op, "*")== 0) ret -> element_type = IntType;
+    else if (strcmp(op, "/") == 0) ret -> element_type = IntType;
+    else if (strcmp(op, "%") == 0) ret -> element_type = IntType;
+    else if (strcmp(op, "^") == 0) ret -> element_type = IntType;
+    else if (strcmp(op, "&") == 0) ret -> element_type = IntType;
+    else if (strcmp(op, "|") == 0) ret -> element_type = IntType; 
+    else if (strcmp(op, "<") == 0) ret -> element_type = BooleanType; 
+    else if (strcmp(op, ">") == 0) ret -> element_type = BooleanType; 
+    else if (strcmp(op, "==") == 0) ret -> element_type = BooleanType;  
+    else if (strcmp(op, "!=") == 0) ret -> element_type = BooleanType; 
+    else if (strcmp(op, "<=") == 0) ret -> element_type = BooleanType; 
+    else if (strcmp(op, ">=") == 0) ret -> element_type = BooleanType; 
+    else if (strcmp(op, "&&") == 0) ret -> element_type = BooleanType; 
+    else if (strcmp(op, "||") == 0) ret -> element_type = BooleanType; 
+
     ret -> op = op;
     ret -> tree_type = 1;
 
@@ -38,22 +40,19 @@ struct TypedPrim * new_typed_prim(struct Prim * prim) {
 }
 
 struct TypedLit * new_typed_lit(struct Lit * lit) {
-    struct TypedLit * ret = malloc(sizeof(struct TypedLit));
+    struct TypedLit * ret = (struct TypedLit *)malloc(sizeof(struct TypedLit));
 
     return ret;
 }
 
 struct TypedLet * new_typed_let(struct Let * let) {
-    struct TypedLet * ret = malloc(sizeof(struct TypedLet));
+    struct TypedLet * ret = (struct TypedLet *)malloc(sizeof(struct TypedLet));
 
-    Type type;
     if (let -> element_type == 0) {
-        type = IntType;
+        ret -> element_type = IntType;
     } else if (let -> element_type == 1) {
-        type = CharType;
+        ret -> element_type = CharType;
     }
-
-    ret -> element_type = type;
 
     ret -> id = let -> id;
     ret -> index = new_typed_tree(let -> index, 0); // Index must be IntType
@@ -64,16 +63,13 @@ struct TypedLet * new_typed_let(struct Let * let) {
 }
 
 struct TypedRef * new_typed_ref(struct Ref * ref) {
-    struct TypedRef * ret = malloc(sizeof(struct TypedRef));
+    struct TypedRef * ret = (struct TypedRef *)malloc(sizeof(struct TypedRef));
 
-    Type type;
     if (ref -> element_type == 0) {
-        type = IntType;
+        ret -> element_type = IntType;
     } else if (ref -> element_type == 1) {
-        type = CharType;
+        ret -> element_type = CharType;
     }
-
-    ret -> element_type = type;
 
     ret -> id = ref -> id;
     ret -> index = new_typed_tree(ref -> index, 0);
@@ -83,26 +79,23 @@ struct TypedRef * new_typed_ref(struct Ref * ref) {
 }
 
 struct TypedArrayDec * new_typed_arraydec(struct Array * array) {
-    struct TypedArrayDec * ret = malloc(sizeof(struct TypedArrayDec));
+    struct TypedArrayDec * ret = (struct TypedArrayDec *)malloc(sizeof(struct TypedArrayDec));
 
-    Type type;
     if (array -> element_type == 0) {
-        type = IntType;
+        ret -> element_type = IntType;
     } else if (array -> element_type == 1) {
-        type = CharType;
+        ret -> element_type = CharType;
     }
 
-    ret -> element_type = type;
-
-    ret -> id = ref -> id;
-    ret -> size = new_typed_tree(ref -> size, 0);
+    ret -> id = array -> id;
+    ret -> size = new_typed_tree(array -> size, 0);
     ret -> tree_type = 14;
 
     return ret;
 }
 
 struct TypedIf * new_typed_if(struct If *ifs) {
-    struct TypedIf * ret = malloc(sizeof(struct TypedIf));
+    struct TypedIf * ret = (struct TypedIf *)malloc(sizeof(struct TypedIf));
 
     ret -> element_type = UnitType;
     ret -> cond = new_typed_tree(ifs -> cond, 2);
@@ -111,8 +104,8 @@ struct TypedIf * new_typed_if(struct If *ifs) {
     return ret;
 }
 
-struct TypedWhile * new_typed_while(struct Whiles *whiles) {
-    struct TypedWhile * ret = malloc(sizeof(struct TypedWhile));
+struct TypedWhile * new_typed_while(struct While *whiles) {
+    struct TypedWhile * ret = (struct TypedWhile *)malloc(sizeof(struct TypedWhile));
 
     ret -> element_type = UnitType;
     ret -> cond = new_typed_tree(whiles -> cond, 2);
@@ -122,7 +115,7 @@ struct TypedWhile * new_typed_while(struct Whiles *whiles) {
 }
 
 struct TypedReturn * new_typed_return(struct Return *returns) {
-    struct TypedReturns * ret = malloc(sizeof(struct TypedReturn));
+    struct TypedReturn * ret = (struct TypedReturn *)malloc(sizeof(struct TypedReturn));
 
     ret -> element_type = UnitType;
     ret -> val = new_typed_tree(returns -> val, -1);
@@ -132,7 +125,7 @@ struct TypedReturn * new_typed_return(struct Return *returns) {
 }
 
 struct TypedEnd * new_typed_end(struct End *end) {
-    struct TypedEnd * ret = malloc(sizeof(struct TypedEnd));
+    struct TypedEnd * ret = (struct TypedEnd *)malloc(sizeof(struct TypedEnd));
 
     ret -> element_type = UnitType;
     ret -> tree_type = 7;

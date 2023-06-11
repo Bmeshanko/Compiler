@@ -90,7 +90,7 @@ struct Lit *new_lit(int val) {
     return ret;
 }
 
-struct Let *new_let(std::string *id, struct Tree * index, struct Tree *val, int element_type) {
+struct Let *new_let(std::string *id, struct Tree * index, struct Tree *val, short element_type) {
     struct Let *ret = (struct Let *)malloc(sizeof(struct Let));
 
     ret -> id = id;
