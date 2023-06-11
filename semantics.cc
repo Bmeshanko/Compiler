@@ -47,6 +47,8 @@ struct TypedLet * new_typed_let(struct Let * let) {
         type = CharType;
     }
 
+    ret -> element_type = type;
+
     ret -> id = let -> id;
     ret -> index = new_typed_tree(let -> index, 0); // Index must be IntType
     ret -> val = new_typed_tree(let -> val, -1); // Val can be any type
@@ -54,3 +56,23 @@ struct TypedLet * new_typed_let(struct Let * let) {
 
     return ret;
 }
+
+struct TypedRef * new_typed_ref(struct Ref * ref) {
+    struct TypedRef * ret = malloc(sizeof(struct TypedRef));
+
+    Type type;
+    if (ref -> element_type == 0) {
+        type = IntType;
+    } else if (ref -> element_type == 1) {
+        type = CharType;
+    }
+
+    ret -> element_type = type;
+
+    ret -> id = ref -> id;
+    ret -> index = new_typed_tree(ref -> index, 0);
+    ret -> tree_type = 4;
+
+    return ret;
+}
+

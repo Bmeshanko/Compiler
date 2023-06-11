@@ -69,15 +69,15 @@ struct TypedLit {
 struct TypedArrayDec {
     Type element_type;
     std::string * id;
-    struct Tree * size;
+    struct TypedTree * size;
     short tree_type;
 };
 
 struct TypedLet {
     Type element_type;
     std::string * id;
-    struct Tree * index;
-    struct Tree * val;
+    struct TypedTree * index;
+    struct TypedTree * val;
     short tree_type;
 };
 
@@ -96,7 +96,7 @@ struct TypedIf {
 
 struct TypedWhile {
     Type element_type;
-    struct Tree * cond;
+    struct TypedTree * cond;
     short tree_type;
 };
 
@@ -114,7 +114,7 @@ struct TypedApp {
 
 struct TypedReturn {
     Type element_type;
-    struct Tree * val;
+    struct TypedTree * val;
     short tree_type;
 };
 
@@ -125,7 +125,7 @@ struct TypedEnd {
 
 struct TypedPrint {
     Type element_type;
-    struct Tree * val;
+    struct TypedTree * val;
     short tree_type;
 };
 
