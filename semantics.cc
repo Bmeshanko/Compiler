@@ -157,12 +157,27 @@ char * tlit_string(struct TypedLit * lit) {
 }
 
 char * tlet_string(struct TypedLet * let);
+
 char * tref_string(struct TypedRef * ref);
+
 char * tarraydec_string(struct TypedArrayDec * array);
-char * tif_string(struct TypedIf * ifs);
-char * twhile_string(struct TypedWhile * whiles);
+
+char * tif_string(struct TypedIf * ifs) {
+    return if_to_string((struct If *) ifs);
+}
+
+char * twhile_string(struct TypedWhile * whiles) {
+    return while_to_string((struct If *) ifs);
+}
+
 char * tfunc_string(struct TypedFunc * func);
+
 char * tapp_string(struct TypedApp * app);
+
 char * treturn_string(struct TypedReturn * returns);
-char * tend_string(struct TypedEnd * end);
+
+char * tend_string(struct TypedEnd * end) {
+    return end_to_string((struct End *) end);
+}
+
 char * tprint_string(struct TypedPrint * print);
