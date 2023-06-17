@@ -228,11 +228,7 @@ char * lit_to_string(struct Lit *lit) {
 
 char * let_to_string(struct Let *let) {
     char * ret = (char *) malloc(1024);
-    if (let->element_type == 0) {
-        sprintf(ret, "Let(Int, %s, %s, %s)", let->id->c_str(), tree_to_string(let->index), tree_to_string(let->val));
-    } else if (let->element_type == 1) {   
-        sprintf(ret, "Let(Char, %s, %s, %s)", let->id->c_str(), tree_to_string(let->index), tree_to_string(let->val));
-    }
+    sprintf(ret, "Let(%s, %s, %s)", let->id->c_str(), tree_to_string(let->index), tree_to_string(let->val));
     return ret;
 }
 
