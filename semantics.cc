@@ -156,7 +156,11 @@ char * tlit_string(struct TypedLit * lit) {
     return ret;
 }
 
-char * tlet_string(struct TypedLet * let);
+char * tlet_string(struct TypedLet * let) {
+    char * ret = (char *)malloc(1024);
+    sprintf(ret, "Let(%s, %s, %s, %s)", let->element_type, let->id->c_str(), ttree_to_string(let->index), ttree_to_string(let->val));
+    return ret;
+}
 
 char * tref_string(struct TypedRef * ref);
 
