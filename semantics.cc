@@ -158,13 +158,21 @@ char * tlit_string(struct TypedLit * lit) {
 
 char * tlet_string(struct TypedLet * let) {
     char * ret = (char *)malloc(1024);
-    sprintf(ret, "Let(%s, %s, %s, %s)", let->element_type, let->id->c_str(), ttree_to_string(let->index), ttree_to_string(let->val));
+    sprintf(ret, "Let(%s, %s, %s, %s)", let->id->c_str(), let->element_type, ttree_to_string(let->index), ttree_to_string(let->val));
     return ret;
 }
 
-char * tref_string(struct TypedRef * ref);
+char * tref_string(struct TypedRef * ref) {
+    char * ret = (char *)malloc(1024);
+    sprintf(ret, "Ref(%s, %s, %s, %s)", ref->id->c_str(), ref->element_type, ttree_to_string(ref->index));
+    return ret;
+}
 
-char * tarraydec_string(struct TypedArrayDec * array);
+char * tarraydec_string(struct TypedArrayDec * array) {
+    char * ret = (char *)malloc(1024);
+    sprintf(ret, "ArrayDec(%s, %s, %s)", array->id->c_str(), array->element_type, ttree_string(array->size));
+    return ret;
+}
 
 char * tif_string(struct TypedIf * ifs) {
     return if_to_string((struct If *) ifs);
