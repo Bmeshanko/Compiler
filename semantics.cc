@@ -5,7 +5,7 @@ struct TypedTree * new_typed_tree(struct Tree * tree, short force_type) {
     return NULL;
 }
 
-struct TypedPrim * new_typed_prim(struct Prim * prim) {
+struct TypedPrim * new_typed_prim(struct Prim * prim, short force_type) {
     struct TypedPrim * ret = (struct TypedPrim *)malloc(sizeof(struct TypedPrim));
 
     char * op = prim -> op;
@@ -29,8 +29,6 @@ struct TypedPrim * new_typed_prim(struct Prim * prim) {
 
     ret -> op = op;
     ret -> tree_type = 1;
-
-    short force_type;
 
     // If we forced a type here, 'a' + 1 would be an error, not 'b'.
     ret -> left = new_typed_tree(prim -> left, -1);
@@ -192,4 +190,8 @@ char * tend_string(struct TypedEnd * end) {
     return end_to_string((struct End *) end);
 }
 
-char * tprint_string(struct TypedPrint * print);
+char * tprint_string(struct TypedPrint * print) {
+    char * ret = (char *)malloc(1024);
+    sprintf(ret, "Print(%s, %s)", print->element_type, ttree_string(print->val));
+    return ret;
+}
